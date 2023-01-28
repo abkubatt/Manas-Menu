@@ -6,32 +6,64 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
     
+//    ScrollView(.horizontal, showsIndicators: false) {
+//        HStack(spacing: 20) {
+//            ForEach(0..<10) {
+//                Text("Item \($0)")
+//                    .foregroundColor(.white)
+//                    .font(.largeTitle)
+//                    .frame(width: 200, height: 200)
+//                    .background(.red)
+//            }
+//        }
+//    }
+//
     private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.backgroundColor = .green
+        scroll.showsHorizontalScrollIndicator = true
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
     
     private let imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "arka")
-        image.contentMode = .scaleAspectFit
+        image.backgroundColor = .blue
+        image.image = UIImage(systemName: "house")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
+        view.addSubview(imageView)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(didTapSignOut))
 
+        validateAuth()
         congfigureConstraints()
+    }
+    
+    @objc private func didTapSignOut() {
+           try? Auth.auth().signOut()
+           validateAuth()
+       }
+    
+    private func validateAuth() {
+        if FirebaseAuth.Auth.auth().currentUser == nil {
+            let vc = UINavigationController(rootViewController: LoginViewController())
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false)
+        }
     }
     
     
