@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .blue
-        image.image = UIImage(systemName: "house")
+        image.image = UIImage(named: "arka")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
