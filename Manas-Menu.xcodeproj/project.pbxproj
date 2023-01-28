@@ -29,6 +29,9 @@
 		A024039C29855D3500F5227C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024039B29855D3500F5227C /* RegisterViewController.swift */; };
 		A024039E29855E2900F5227C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024039D29855E2900F5227C /* AuthManager.swift */; };
 		A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024039F29855EE300F5227C /* AuthenticationViewViewModel.swift */; };
+		A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A129857C0600F5227C /* FreeFoodsViewController.swift */; };
+		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
+		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		A024039B29855D3500F5227C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A024039D29855E2900F5227C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		A024039F29855EE300F5227C /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
+		A02403A129857C0600F5227C /* FreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFoodsViewController.swift; sourceTree = "<group>"; };
+		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,9 @@
 		A024037D29850C0C00F5227C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				A02403A129857C0600F5227C /* FreeFoodsViewController.swift */,
+				A02403A32985932C00F5227C /* SearchViewController.swift */,
+				A02403A52985943000F5227C /* SearchResultsViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -264,10 +273,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A024039A29855D2900F5227C /* LoginViewController.swift in Sources */,
+				A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */,
+				A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */,
 				A024039E29855E2900F5227C /* AuthManager.swift in Sources */,
 				A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
 				A024039C29855D3500F5227C /* RegisterViewController.swift in Sources */,
+				A02403A42985932D00F5227C /* SearchViewController.swift in Sources */,
 				A02403832985185A00F5227C /* CanteenViewController.swift in Sources */,
 				A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
