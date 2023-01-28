@@ -27,17 +27,29 @@ class FreeFoodsViewController: UIViewController {
 //        controller.hidesNavigationBarDuringPresentation = false
         return controller
     }()
+    
+    private let descriptionOfFreeFood: UILabel = {
+        let label = UILabel()
+        label.text = "Free food is provided by our philanthropic staff for students in need at the Turkish World Nation Coffeehouse. These services are carried out in accordance with a specially prepared digital program. Suspended food is paid for by volunteers at our university. In order to help our students in need, you can suspend any number of products in the cafeteria by paying the fee to the cashier."
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        return label
+    }()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(titleLabel)
+        
 //        searchController.obscuresBackgroundDuringPresentation = false
 //        searchController.hidesNavigationBarDuringPresentation = false
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        self.navigationController?.navigationBar.isHidden = false
         view.addSubview(searchController.searchBar)
+        view.addSubview(descriptionOfFreeFood)
 //        navigationItem.searchController = searchController
 //        searchController.searchBar.sizeToFit()
         configureConstraints()
@@ -56,8 +68,15 @@ class FreeFoodsViewController: UIViewController {
             searchController.searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7)
         ]
         
+        let descriptionOfFreeFoodConstraints = [
+            descriptionOfFreeFood.topAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor, constant: 8),
+            descriptionOfFreeFood.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 9),
+            descriptionOfFreeFood.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -6)
+        ]
+        
         NSLayoutConstraint.activate(titleConstraints)
         NSLayoutConstraint.activate(searchControllerConstraints)
+        NSLayoutConstraint.activate(descriptionOfFreeFoodConstraints)
     }
     
     

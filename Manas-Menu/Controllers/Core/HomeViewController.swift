@@ -48,6 +48,7 @@ class HomeViewController: UIViewController {
         view.addSubview(imageView)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(didTapSignOut))
+        
 
         validateAuth()
         congfigureConstraints()
