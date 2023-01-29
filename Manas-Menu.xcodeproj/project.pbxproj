@@ -32,6 +32,10 @@
 		A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A129857C0600F5227C /* FreeFoodsViewController.swift */; };
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
+		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
+		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
+		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
+		A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A1029866050001081B2 /* CarouselLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,8 @@
 		A02403A129857C0600F5227C /* FreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
+		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +70,10 @@
 				A024038C298555CD00F5227C /* FirebaseDatabase in Frameworks */,
 				A0240388298555CD00F5227C /* FirebaseAuth in Frameworks */,
 				A0240394298555CD00F5227C /* FirebaseFirestoreSwift in Frameworks */,
+				A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */,
 				A0240392298555CD00F5227C /* FirebaseFirestoreCombine-Community in Frameworks */,
 				A0240396298555CD00F5227C /* FirebaseStorage in Frameworks */,
+				A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */,
 				A0240390298555CD00F5227C /* FirebaseFirestore in Frameworks */,
 				A0240398298555CD00F5227C /* FirebaseStorageCombine-Community in Frameworks */,
 				A024038A298555CD00F5227C /* FirebaseAuthCombine-Community in Frameworks */,
@@ -180,11 +188,21 @@
 		A024037D29850C0C00F5227C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				A0853A12298669A6001081B2 /* ImageCarousel */,
 				A02403A129857C0600F5227C /* FreeFoodsViewController.swift */,
 				A02403A32985932C00F5227C /* SearchViewController.swift */,
 				A02403A52985943000F5227C /* SearchResultsViewController.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		A0853A12298669A6001081B2 /* ImageCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				A0853A0E2986600C001081B2 /* Carousel.swift */,
+				A0853A1029866050001081B2 /* CarouselLayout.swift */,
+			);
+			path = ImageCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +231,8 @@
 				A0240393298555CD00F5227C /* FirebaseFirestoreSwift */,
 				A0240395298555CD00F5227C /* FirebaseStorage */,
 				A0240397298555CD00F5227C /* FirebaseStorageCombine-Community */,
+				A0853A0A29865FEA001081B2 /* SDWebImage */,
+				A0853A0C29865FEA001081B2 /* SDWebImageMapKit */,
 			);
 			productName = "Manas-Menu";
 			productReference = A024035E2984ED8E00F5227C /* Manas-Menu.app */;
@@ -244,6 +264,7 @@
 			mainGroup = A02403552984ED8E00F5227C;
 			packageReferences = (
 				A0240386298555CD00F5227C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = A024035F2984ED8E00F5227C /* Products */;
 			projectDirPath = "";
@@ -282,7 +303,9 @@
 				A02403A42985932D00F5227C /* SearchViewController.swift in Sources */,
 				A02403832985185A00F5227C /* CanteenViewController.swift in Sources */,
 				A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */,
+				A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
+				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,
 				A02403812985183000F5227C /* CafeViewController.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
 			);
@@ -500,6 +523,14 @@
 				minimumVersion = 9.6.0;
 			};
 		};
+		A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -547,6 +578,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0240386298555CD00F5227C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		A0853A0A29865FEA001081B2 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		A0853A0C29865FEA001081B2 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
