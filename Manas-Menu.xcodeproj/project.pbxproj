@@ -36,6 +36,7 @@
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
 		A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A1029866050001081B2 /* CarouselLayout.swift */; };
+		A0853A14298673F2001081B2 /* UniversityImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A13298673F2001081B2 /* UniversityImages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
+		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				A024039D29855E2900F5227C /* AuthManager.swift */,
+				A0853A13298673F2001081B2 /* UniversityImages.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
 				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,
+				A0853A14298673F2001081B2 /* UniversityImages.swift in Sources */,
 				A02403812985183000F5227C /* CafeViewController.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
 			);

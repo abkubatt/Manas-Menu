@@ -66,7 +66,7 @@ class Carousel: UIView {
         guard urls.count > 1 else { return }
         timer?.invalidate()
         timer = Timer.scheduledTimer(
-            withTimeInterval: 3.0,
+            withTimeInterval: 4.0,
             repeats: true,
             block: { [weak self] _ in
                 self?.selectNext()
@@ -98,7 +98,7 @@ extension Carousel: UICollectionViewDataSource {
         imageView.contentMode = .center
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 24
         imageView.contentMode = .scaleAspectFill
         imageView.sd_setImage(with: urls[indexPath.row], placeholderImage: UIImage(named: "placeholder"))
         cell.contentView.addSubview(imageView)
