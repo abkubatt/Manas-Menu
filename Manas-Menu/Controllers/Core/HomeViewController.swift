@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-    
+        
     lazy var carousel = Carousel(frame: .zero, urls: UniversityImages.urls)
         
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     func setupComponents() {
         carousel.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+        
     @objc private func didTapSignOut() {
            try? Auth.auth().signOut()
            validateAuth()

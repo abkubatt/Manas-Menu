@@ -26,4 +26,6 @@ class AuthManager {
             .map(\.user)
             .eraseToAnyPublisher()
     }
+    
+    
 }
