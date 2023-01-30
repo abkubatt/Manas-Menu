@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
 class HomeViewController: UIViewController {
         
@@ -38,8 +39,9 @@ class HomeViewController: UIViewController {
     }
         
     @objc private func didTapSignOut() {
-           try? Auth.auth().signOut()
-           validateAuth()
+        try FBSDKLoginKit.LoginManager().logOut()
+        try? Auth.auth().signOut()
+        validateAuth()
        }
 
     private func validateAuth() {

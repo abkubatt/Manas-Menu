@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C310CE79D484B7CCC4B3548 /* Pods_Manas_Menu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */; };
 		A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403612984ED8E00F5227C /* AppDelegate.swift */; };
 		A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403632984ED8E00F5227C /* SceneDelegate.swift */; };
 		A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403652984ED8E00F5227C /* MainTabBarViewController.swift */; };
@@ -40,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61A5CE2DDE77C56460A38147 /* Pods-Manas-Menu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.release.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.release.xcconfig"; sourceTree = "<group>"; };
+		848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manas_Menu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		892EF9386621FB46C6E5A38F /* Pods-Manas-Menu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.debug.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.debug.xcconfig"; sourceTree = "<group>"; };
 		A024035E2984ED8E00F5227C /* Manas-Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Manas-Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02403612984ED8E00F5227C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A02403632984ED8E00F5227C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,17 +83,38 @@
 				A0240390298555CD00F5227C /* FirebaseFirestore in Frameworks */,
 				A0240398298555CD00F5227C /* FirebaseStorageCombine-Community in Frameworks */,
 				A024038A298555CD00F5227C /* FirebaseAuthCombine-Community in Frameworks */,
+				9C310CE79D484B7CCC4B3548 /* Pods_Manas_Menu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81F41F93429D879BF4765742 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				892EF9386621FB46C6E5A38F /* Pods-Manas-Menu.debug.xcconfig */,
+				61A5CE2DDE77C56460A38147 /* Pods-Manas-Menu.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9F5D27D01C78CC893C4E9298 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A02403552984ED8E00F5227C = {
 			isa = PBXGroup;
 			children = (
 				A02403602984ED8E00F5227C /* Manas-Menu */,
 				A024035F2984ED8E00F5227C /* Products */,
+				81F41F93429D879BF4765742 /* Pods */,
+				9F5D27D01C78CC893C4E9298 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,9 +240,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A02403722984ED9100F5227C /* Build configuration list for PBXNativeTarget "Manas-Menu" */;
 			buildPhases = (
+				B25CA83614E4CB9327AD3DAD /* [CP] Check Pods Manifest.lock */,
 				A024035A2984ED8E00F5227C /* Sources */,
 				A024035B2984ED8E00F5227C /* Frameworks */,
 				A024035C2984ED8E00F5227C /* Resources */,
+				FC09AC2F1EB15EA1E8568005 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,7 +294,7 @@
 			mainGroup = A02403552984ED8E00F5227C;
 			packageReferences = (
 				A0240386298555CD00F5227C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
 			);
 			productRefGroup = A024035F2984ED8E00F5227C /* Products */;
 			projectDirPath = "";
@@ -290,6 +317,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B25CA83614E4CB9327AD3DAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Manas-Menu-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC09AC2F1EB15EA1E8568005 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A024035A2984ED8E00F5227C /* Sources */ = {
@@ -445,6 +514,7 @@
 		};
 		A02403732984ED9100F5227C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 892EF9386621FB46C6E5A38F /* Pods-Manas-Menu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +541,7 @@
 		};
 		A02403742984ED9100F5227C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61A5CE2DDE77C56460A38147 /* Pods-Manas-Menu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -527,7 +598,7 @@
 				minimumVersion = 9.6.0;
 			};
 		};
-		A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -585,12 +656,12 @@
 		};
 		A0853A0A29865FEA001081B2 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
 			productName = SDWebImage;
 		};
 		A0853A0C29865FEA001081B2 /* SDWebImageMapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = A0853A0929865FE9001081B2 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
 			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

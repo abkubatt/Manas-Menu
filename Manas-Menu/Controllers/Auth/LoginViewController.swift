@@ -7,7 +7,9 @@
 
 import UIKit
 import Combine
-
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -18,7 +20,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Login to your account"
-        label.font = .systemFont(ofSize: 32, weight: .bold)
+        label.font = .systemFont(ofSize: 25, weight: .bold)
         return label
     }()
     
@@ -72,8 +74,15 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
         button.layer.masksToBounds = true
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 20
         button.isEnabled = false
+        return button
+    }()
+    
+    private let facebookLoginButton: FBLoginButton = {
+       let button = FBLoginButton()
+        button.permissions = ["email", "public_profile"]
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -118,17 +127,27 @@ class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    private func alreadyHaveAccountAlert(with error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okayButton = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okayButton)
+        present(alert, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Log In"
         view.backgroundColor = .systemBackground
+        facebookLoginButton.delegate = self
         view.addSubview(loginTitleLabel)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(promptLabel)
         view.addSubview(signUpButton)
+//        facebookLoginButton.permissions = ["public_profile", "email"]
+        view.addSubview(facebookLoginButton)
         loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
 
@@ -158,7 +177,7 @@ class LoginViewController: UIViewController {
             emailTextField.topAnchor.constraint(equalTo: loginTitleLabel.bottomAnchor, constant: 20),
             emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
             emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emailTextField.heightAnchor.constraint(equalToConstant: 60)
+            emailTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         
@@ -167,15 +186,15 @@ class LoginViewController: UIViewController {
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
             passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 60)
+            passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         
         let loginButtonConstraints = [
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            loginButton.widthAnchor.constraint(equalToConstant: 180),
-            loginButton.heightAnchor.constraint(equalToConstant: 50)
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            loginButton.widthAnchor.constraint(equalToConstant: 140),
+            loginButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         let promptLabelConstraints = [
@@ -188,6 +207,13 @@ class LoginViewController: UIViewController {
            signUpButton.leadingAnchor.constraint(equalTo: promptLabel.trailingAnchor, constant: 10)
        ]
         
+       let facebookLoginButtonConstraints = [
+        facebookLoginButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: 20),
+        facebookLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+        facebookLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+        facebookLoginButton.heightAnchor.constraint(equalToConstant: 30)
+        ]
+        
         
         NSLayoutConstraint.activate(loginTitleLabelCosntraints)
         NSLayoutConstraint.activate(emailTextFieldConstraints)
@@ -195,5 +221,76 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(loginButtonConstraints)
         NSLayoutConstraint.activate(promptLabelConstraints)
         NSLayoutConstraint.activate(signUpButtonConstraints)
+        NSLayoutConstraint.activate(facebookLoginButtonConstraints)
     }
+}
+
+
+extension LoginViewController: LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
+        // no operation
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
+        
+        guard let token = result?.token?.tokenString else {
+            print("User failed to log in with facebook")
+            return
+        }
+        
+//        let faceBookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
+//                                                         parameters: ["fields": "email, name"],
+//                                                         tokenString: token,
+//                                                         version: nil,
+//                                                         httpMethod: .get
+//        )
+//
+//
+//        faceBookRequest.start(completionHandler: {_, result, error in
+//            guard let result = result as? [String: Any],
+//                  error == nil else{
+//                print("Failed to make facebook graph request")
+//                return
+//            }
+//
+//            guard let email = result["email"] as? String else{
+//                print("Failed to get email from fb request")
+//                return
+//            }
+//
+//            Auth.auth().fetchSignInMethods(forEmail: email, completion: { (providers, error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    print("email not exists")
+//                } else if let providers = providers {
+//                    print(providers)
+//                    self.alreadyHaveAccountAlert(with: "With this email account already exists")
+//                    return
+//                }
+//            })
+//        })
+       
+        
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken: token)
+         
+        FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            guard authResult != nil, error == nil  else{
+                if let error = error {
+                    print("Facebook credential login failed, MFA may be needed - \(error)")
+                    
+                }
+                return
+            }
+            
+            print("Successfully logged user in")
+            strongSelf.navigationController?.dismiss(animated: true)
+        })
+    }
+    
+    
 }

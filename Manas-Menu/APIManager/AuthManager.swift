@@ -26,6 +26,18 @@ class AuthManager {
             .map(\.user)
             .eraseToAnyPublisher()
     }
-    
+//
+//    public func userExists(with email: String,
+//                           completion: @escaping ((Bool) -> Void)){
+//        
+//        database.child(email).observeSingleEvent(of: .value, with: { snapshot in
+//            guard snapshot.value as? String != nil else{
+//                completion(false)
+//                return
+//            }
+//            completion(true)
+//        })
+//    }
+//
     
 }
