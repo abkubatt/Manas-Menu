@@ -36,7 +36,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ceo-01-5X0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="8Go-jj-APy"/>
                             <constraint firstItem="ceo-01-5X0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lcw-8v-ixp"/>
@@ -50,9 +50,6 @@
     </scenes>
     <resources>
         <image name="manas_logo" width="1024" height="1024"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
