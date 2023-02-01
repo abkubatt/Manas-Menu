@@ -96,7 +96,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-        APICaller.shared.getMovie(with: titleName + " trailer") { [weak self] result in
+        APICaller.shared.getMovie(with: titleName + " video") { [weak self] result in
             switch result{
             case .success(let videoElement):
                 let title = self?.titles[indexPath.row]

@@ -177,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				A0A08C10298930AF007FD406 /* Title.swift */,
-				A0A08C12298930DA007FD406 /* Enums */,
 				A0A08C1F298933C7007FD406 /* YoutubeSearchResponse.swift */,
+				A0A08C12298930DA007FD406 /* Enums */,
 			);
 			path = Models;
 			sourceTree = "<group>";
