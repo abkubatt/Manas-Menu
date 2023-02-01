@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Foundation
+
 enum APIError: Error {
     case failedToGetData
 }
@@ -22,7 +24,7 @@ class APICaller {
     static let shared = APICaller()
     
     func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "\(Constant.baseURL)/3/trending/movie/day?api_key=\(Constant.API_KEY)") else {return}
+        guard let url = URL(string: "https://drink.free.beeceptor.com/drink") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return

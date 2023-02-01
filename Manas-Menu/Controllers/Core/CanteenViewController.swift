@@ -19,7 +19,7 @@ class CanteenViewController: UIViewController {
     private var randomTrendingMovie: Title?
 //    private var headerView: HeroHeaderUIView?
     
-    let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top rated"]
+    let sectionTitles: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
     
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
