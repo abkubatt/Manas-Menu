@@ -147,7 +147,7 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         case Sections.TopRated.rawValue:
-            APICaller.shared.getPopular {result in
+            APICaller.shared.getTopRated {result in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles)
