@@ -18,7 +18,6 @@ class CanteenViewController: UIViewController {
     
     private var randomTrendingMovie: Title?
 //    private var headerView: HeroHeaderUIView?
-    
     let sectionTitles: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
     
     private let homeFeedTable: UITableView = {
