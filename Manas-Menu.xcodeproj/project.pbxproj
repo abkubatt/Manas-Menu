@@ -33,6 +33,7 @@
 		A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A129857C0600F5227C /* FreeFoodsViewController.swift */; };
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
+		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
@@ -73,6 +74,7 @@
 		A02403A129857C0600F5227C /* FreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				A0A08C0E29892F1C007FD406 /* StringExtension.swift */,
+				A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				A024035B2984ED8E00F5227C /* Frameworks */,
 				A024035C2984ED8E00F5227C /* Resources */,
 				FC09AC2F1EB15EA1E8568005 /* [CP] Embed Pods Frameworks */,
+				AFBD926AB04DE8BD5E76C884 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +371,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AFBD926AB04DE8BD5E76C884 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B25CA83614E4CB9327AD3DAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -420,6 +441,7 @@
 				A024039E29855E2900F5227C /* AuthManager.swift in Sources */,
 				A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
+				A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */,
 				A024039C29855D3500F5227C /* RegisterViewController.swift in Sources */,
 				A02403A42985932D00F5227C /* SearchViewController.swift in Sources */,
 				A0A08C0F29892F1C007FD406 /* StringExtension.swift in Sources */,
@@ -585,6 +607,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,6 +635,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

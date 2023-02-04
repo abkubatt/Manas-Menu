@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import GoogleSignIn
 
 class RegisterViewController: UIViewController {
     

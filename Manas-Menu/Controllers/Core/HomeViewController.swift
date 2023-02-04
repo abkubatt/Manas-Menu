@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import GoogleSignIn
 
 class HomeViewController: UIViewController {
         
@@ -39,7 +40,8 @@ class HomeViewController: UIViewController {
     }
         
     @objc private func didTapSignOut() {
-        try FBSDKLoginKit.LoginManager().logOut()
+        FBSDKLoginKit.LoginManager().logOut()
+        GIDSignIn.sharedInstance()?.signOut()
         try? Auth.auth().signOut()
         validateAuth()
        }

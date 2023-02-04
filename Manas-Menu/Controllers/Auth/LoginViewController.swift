@@ -10,6 +10,7 @@ import Combine
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -85,6 +86,15 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    private let googleLogInButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var loginObserver: NSObjectProtocol?
+    
+    
     
     @objc private func didChangeEmailField() {
         viewModel.email = emailTextField.text
@@ -135,8 +145,26 @@ class LoginViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginObserver = NotificationCenter.default.addObserver(
+            forName: .didLogInNotification,
+            object: nil,
+            queue: .main,
+            using: { [weak self] _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                strongSelf.navigationController?.dismiss(animated: true)
+            })
+        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        
+        
         title = "Log In"
         view.backgroundColor = .systemBackground
         facebookLoginButton.delegate = self
@@ -148,12 +176,22 @@ class LoginViewController: UIViewController {
         view.addSubview(signUpButton)
 //        facebookLoginButton.permissions = ["public_profile", "email"]
         view.addSubview(facebookLoginButton)
+        for constraint in facebookLoginButton.constraints where constraint.firstAttribute == .height {
+            constraint.constant = 39
+        }
+        view.addSubview(googleLogInButton)
         loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
 
         configureConstraints()
         bindViews()
 
+    }
+    
+    deinit{
+        if let observer = loginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     @objc private func didTapSignUp() {
@@ -207,12 +245,19 @@ class LoginViewController: UIViewController {
            signUpButton.leadingAnchor.constraint(equalTo: promptLabel.trailingAnchor, constant: 10)
        ]
         
-       let facebookLoginButtonConstraints = [
-        facebookLoginButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: 20),
-        facebookLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-        facebookLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-        facebookLoginButton.heightAnchor.constraint(equalToConstant: 30)
+     
+        
+        let googleLogInButtonConstraints = [
+            googleLogInButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: 25),
+            googleLogInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            googleLogInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ]
+        
+        let facebookLoginButtonConstraints = [
+             facebookLoginButton.topAnchor.constraint(equalTo: googleLogInButton.bottomAnchor,constant: 17),
+             facebookLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
+             facebookLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -34),
+         ]
         
         
         NSLayoutConstraint.activate(loginTitleLabelCosntraints)
@@ -221,6 +266,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(loginButtonConstraints)
         NSLayoutConstraint.activate(promptLabelConstraints)
         NSLayoutConstraint.activate(signUpButtonConstraints)
+        NSLayoutConstraint.activate(googleLogInButtonConstraints)
         NSLayoutConstraint.activate(facebookLoginButtonConstraints)
     }
 }
