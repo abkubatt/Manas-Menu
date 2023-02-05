@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "Home"
         view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(didTapSignOut))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
 
         setupHierarchy()
         setupComponents()
@@ -38,13 +38,14 @@ class HomeViewController: UIViewController {
     func setupComponents() {
         carousel.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    @objc private func didTapSettings(){
+        let vc = UINavigationController(rootViewController: SettingsViewController())
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
         
-    @objc private func didTapSignOut() {
-        FBSDKLoginKit.LoginManager().logOut()
-        GIDSignIn.sharedInstance()?.signOut()
-        try? Auth.auth().signOut()
-        validateAuth()
-       }
+    
 
     private func validateAuth() {
         if FirebaseAuth.Auth.auth().currentUser == nil {

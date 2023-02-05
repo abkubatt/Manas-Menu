@@ -124,5 +124,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         }
         return config
     }
+    
+    
 }
 

@@ -117,7 +117,9 @@ class LoginViewController: UIViewController {
         viewModel.$user.sink { [weak self] user in
             guard user != nil else { return }
             guard let vc = self?.navigationController?.viewControllers.first as? LoginViewController else { return }
-            vc.dismiss(animated: true)
+            print(vc)
+            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+
         }
         .store(in: &subscriptions)
         
@@ -284,6 +286,7 @@ extension LoginViewController: LoginButtonDelegate {
             return
         }
         
+        
 //        let faceBookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
 //                                                         parameters: ["fields": "email, name"],
 //                                                         tokenString: token,
@@ -334,7 +337,7 @@ extension LoginViewController: LoginButtonDelegate {
             }
             
             print("Successfully logged user in")
-            strongSelf.navigationController?.dismiss(animated: true)
+            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         })
     }
     
