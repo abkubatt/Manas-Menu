@@ -84,8 +84,9 @@ class RegisterViewController: UIViewController {
             guard user != nil else { return }
             guard let vc = self?.navigationController?.viewControllers.first as? LoginViewController else { return }
 //            self?.presentSignUpMessage()
-            vc.dismiss(animated: true)
-            
+            print(vc)
+            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+
         }
         .store(in: &subscriptions)
         
