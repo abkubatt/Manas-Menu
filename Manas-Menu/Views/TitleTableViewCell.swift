@@ -21,6 +21,21 @@ class TitleTableViewCell: UITableViewCell {
 //
 //        return button
 //    }()
+    private let countOfFoodLabel: UILabel = {
+        let label = UILabel()
+        label.text = "5"
+        label.textColor = .label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let amountOfFoodLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "amount:"
+        label.textColor = .secondaryLabel
+        return label
+    }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -40,6 +55,8 @@ class TitleTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
+        contentView.addSubview(amountOfFoodLabel)
+        contentView.addSubview(countOfFoodLabel)
 //        contentView.addSubview(playTitleButton)
         contentView.addSubview(titlesPosterUIImageView)
         
@@ -59,10 +76,22 @@ class TitleTableViewCell: UITableViewCell {
             titlesPosterUIImageView.heightAnchor.constraint(equalToConstant: 110)
         ]
         
+        
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: titlesPosterUIImageView.trailingAnchor, constant: 20),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -14)
         ]
+        
+        let amountOfFoodLabelConstraints = [
+            amountOfFoodLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            amountOfFoodLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 14)
+        ]
+        
+        let countOfFoodLabelConstraints = [
+            countOfFoodLabel.leadingAnchor.constraint(equalTo: amountOfFoodLabel.trailingAnchor, constant: 8),
+            countOfFoodLabel.centerYAnchor.constraint(equalTo: amountOfFoodLabel.centerYAnchor)
+        ]
+        
 //
 //        let playTitleButtonConstraints = [
 //            playTitleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
@@ -71,6 +100,8 @@ class TitleTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(titlesPosterUIImageViewConstraints)
         NSLayoutConstraint.activate(titleLabelConstraints)
+        NSLayoutConstraint.activate(amountOfFoodLabelConstraints)
+        NSLayoutConstraint.activate(countOfFoodLabelConstraints)
 //        NSLayoutConstraint.activate(playTitleButtonConstraints)
     }
     
@@ -83,6 +114,7 @@ class TitleTableViewCell: UITableViewCell {
         
         titlesPosterUIImageView.sd_setImage(with: url)
         titleLabel.text = model.titleName
+        countOfFoodLabel.text = "\(model.countOfFood)"
     }
       
 

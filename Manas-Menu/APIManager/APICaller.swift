@@ -41,7 +41,7 @@ class APICaller {
     
     //"https://drink.free.beeceptor.com/desserts"
     func getUpcomingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "https://aizat.free.beeceptor.com/free") else {return}
+        guard let url = URL(string: "https://freef.free.beeceptor.com/free") else {return}
         //https://abkubatt.free.beeceptor.com/desserts
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
