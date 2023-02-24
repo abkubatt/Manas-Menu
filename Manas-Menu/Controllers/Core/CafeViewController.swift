@@ -7,6 +7,49 @@
 
 import UIKit
 
+//class CafeViewController: UIViewController {
+//
+//    let tableView: UITableView = {
+//        let table = UITableView()
+//        table.backgroundColor = .red
+//        table.translatesAutoresizingMaskIntoConstraints = false
+//        return table
+//    }()
+//
+//    override func viewDidLoad() {
+//       super.viewDidLoad()
+//        title = "Cafe"
+//        navigationItem.largeTitleDisplayMode = .automatic
+//        view.backgroundColor = .systemBackground
+//        view.addSubview(tableView)
+//
+//        configureConstraints()
+//   }
+//
+//    private func configureConstraints() {
+//
+//        let tableViewConstraints = [
+//            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ]
+//
+//        NSLayoutConstraint.activate(tableViewConstraints)
+//    }
+//
+//}
+
+
+
+
+
+
+
+
+
+
+
 
 final class CafeViewController: UIViewController, RMCharacterListViewDelegate {
 
@@ -18,7 +61,7 @@ final class CafeViewController: UIViewController, RMCharacterListViewDelegate {
         title = "Characters"
         setUpView()
     }
-    
+
     private func setUpView(){
         characterListView.delegate = self
         view.addSubview(characterListView)
@@ -29,9 +72,9 @@ final class CafeViewController: UIViewController, RMCharacterListViewDelegate {
             characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
+
     // MARK: - RMCharacterListViewDelegate
-    
+
     func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
         // Open details controller for that character
         let viewModel = RMCharacterDetailViewViewModel(character: character)
@@ -39,7 +82,7 @@ final class CafeViewController: UIViewController, RMCharacterListViewDelegate {
         detailVC.navigationItem.largeTitleDisplayMode  = .never
         navigationController?.pushViewController(detailVC, animated: true)
     }
-    
+
 }
 
 
@@ -77,9 +120,9 @@ final class CafeViewController: UIViewController, RMCharacterListViewDelegate {
 
 
 
-
-
-
+//
+//
+//
 //class CafeViewController: UIViewController {
 //
 //    private let searchController: UISearchController = {

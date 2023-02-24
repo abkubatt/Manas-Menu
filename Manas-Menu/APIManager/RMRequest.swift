@@ -53,7 +53,7 @@ final class RMRequest {
     
     /// Computed & constructed API url
     public var url: URL? {
-        return URL(string: "https://manas.free.beeceptor.com/menu")
+        return URL(string: "https://menus.free.beeceptor.com/menus")
     }
     
     public let httpMethod = "GET"

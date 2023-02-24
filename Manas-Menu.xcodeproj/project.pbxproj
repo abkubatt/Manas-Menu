@@ -34,6 +34,7 @@
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
+		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
@@ -95,6 +96,7 @@
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				A0EBFA8B298FB79C002F7B16 /* RMCharacterListView.swift */,
 				A0EBFAA9298FBB94002F7B16 /* RMCharacterCollectionViewCell.swift */,
 				A0EBFAB1298FBC29002F7B16 /* RMFooterLoadingCollectionReusableView.swift */,
+				A073542A299662B200FD74C9 /* MenuTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				A0EBFAB4298FBCD6002F7B16 /* UIViewExtension.swift in Sources */,
 				A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */,
 				A0EBFA90298FB8A1002F7B16 /* RMCharacter.swift in Sources */,
+				A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
 				A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */,
 				A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */,

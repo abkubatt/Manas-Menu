@@ -65,6 +65,8 @@ class CollectionViewTableViewCell: UITableViewCell {
 //            }
 //        }
 //    }
+//    let sectionT: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
+
 
 }
 
@@ -84,6 +86,11 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         
         return cell
     }
+    
+//    func indexTitles(for collectionView: UICollectionView) -> [String]? {
+//        return sectionT
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return titles.count
     }
