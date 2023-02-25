@@ -15,6 +15,14 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         lazy var carousel = Carousel(frame: .zero, urls: UniversityImages.urls)
 
     private let characterListView = RMCharacterListView()
+    
+    private let todayDateLabel: UILabel = {
+       let label = UILabel()
+        label.text = "25.02.2023"
+        label.font = label.font.withSize(20)
+        label.textColor = .label
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,47 +44,73 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
-        let imageView = UIImageView()
-        imageView.image = UIImage (named: "first_img")
-        stackView.addArrangedSubview(imageView)
-        imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        stackView.addArrangedSubview(carousel)
+        carousel.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+        carousel.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        let imageView1 = UIImageView()
-        imageView1.image = UIImage (named: "second_img")
-        stackView.addArrangedSubview(imageView1)
-        imageView1.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        imageView1.heightAnchor.constraint (equalToConstant: 400).isActive = true
+//        let imageView1 = UIImageView()
+//        imageView1.image = UIImage (named: "yemek")
+//        stackView.addArrangedSubview(imageView1)
+//        imageView1.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+//        imageView1.heightAnchor.constraint (equalToConstant: 400).isActive = true
+//
+//        let imageView2 = UIImageView()
+//        imageView2.image = UIImage(named: "yemek" )
+//        stackView.addArrangedSubview(imageView2)
+//        imageView2.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+//        imageView2.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        stackView.setCustomSpacing(20, after: stackView.subviews[0])
+        
+        stackView.addArrangedSubview(todayDateLabel)
+        todayDateLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: self.view.frame.width / 2.6).isActive = true
+        todayDateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        stackView.setCustomSpacing(15, after: stackView.subviews[1])
+        
+        characterListView.delegate = self
+        stackView.addArrangedSubview(characterListView)
+        characterListView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+        characterListView.heightAnchor.constraint(equalToConstant: 600).isActive = true
+//        view.addSubview(characterListView)
     
-        let imageView2 = UIImageView()
-        imageView2.image = UIImage(named: "third_img" )
-        stackView.addArrangedSubview(imageView2)
-        imageView2.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        imageView2.heightAnchor.constraint(equalToConstant: 400).isActive = true
+//        let carouselContraints = [
+//                    carousel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+//                    carousel.bottomAnchor.constraint(equalTo: carousel.topAnchor, constant: 180),
+//                    carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//                    carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+//                ]
+//
+//                NSLayoutConstraint.activate(carouselContraints)
+//        NSLayoutConstraint.activate([
+//            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+//            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+//            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+//            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
         
         view.backgroundColor = .systemBackground
         title = "Home"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
-        setupHierarchy()
-                setupComponents()
+//        setupHierarchy()
+//                setupComponents()
                 validateAuth()
         setUpView()
     }
     
-    override func loadView() {
-            let view = UIView()
-            view.backgroundColor = .systemBackground
-            self.view = view
-        }
-    
-        func setupHierarchy() {
-            self.view.addSubview(carousel)
-        }
-    
-        func setupComponents() {
-            carousel.translatesAutoresizingMaskIntoConstraints = false
-        }
+//    override func loadView() {
+//            let view = UIView()
+//            view.backgroundColor = .systemBackground
+//            self.view = view
+//        }
+
+//        func setupHierarchy() {
+//            self.view.addSubview(carousel)
+//        }
+
+//        func setupComponents() {
+//            carousel.translatesAutoresizingMaskIntoConstraints = false
+//        }
     
         @objc private func didTapSettings(){
             let vc = UINavigationController(rootViewController: SettingsViewController())
@@ -95,22 +129,7 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         }
 
     private func setUpView(){
-        characterListView.delegate = self
-        view.addSubview(characterListView)
-        let carouselContraints = [
-                    carousel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                    carousel.bottomAnchor.constraint(equalTo: carousel.topAnchor, constant: 180),
-                    carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                    carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-                ]
-        
-                NSLayoutConstraint.activate(carouselContraints)
-        NSLayoutConstraint.activate([
-            characterListView.topAnchor.constraint(equalTo: carousel.bottomAnchor, constant: 30),
-            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+       
     }
 
     // MARK: - RMCharacterListViewDelegate

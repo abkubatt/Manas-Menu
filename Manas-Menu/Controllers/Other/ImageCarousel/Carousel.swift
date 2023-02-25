@@ -98,7 +98,7 @@ extension Carousel: UICollectionViewDataSource {
         imageView.contentMode = .center
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 24
+//        imageView.layer.cornerRadius = 24
         imageView.contentMode = .scaleAspectFill
         imageView.sd_setImage(with: urls[indexPath.row], placeholderImage: UIImage(named: "placeholder"))
         cell.contentView.addSubview(imageView)
