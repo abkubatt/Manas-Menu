@@ -55,6 +55,8 @@ final class RMCharacterListViewViewModel: NSObject {
         }
     }
     
+    
+    
     /// Paginate it additional characters    are needed
     public func fetchAdditionalCharacters(){
         isLoadingMoreCharacters = true

@@ -44,6 +44,7 @@ final class RMCharacterCollectionViewCellViewModel{
             completion(.success(data))
         }
         task.resume()
+        
     }
     
 }
