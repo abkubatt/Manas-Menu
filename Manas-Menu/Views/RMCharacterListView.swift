@@ -12,6 +12,8 @@ protocol RMCharacterListViewDelegate: AnyObject {
         _ characterListView: RMCharacterListView,
         didSelectCharacter character: RMCharacter
     )
+    
+    
 }
 
 
@@ -85,7 +87,6 @@ extension RMCharacterListView: RMCharacterListViewViewModelDelegate{
     }
     
    
-    
     func didLoadInitialCharacters() {
         spinner.stopAnimating()
         collectionView.isHidden = false
@@ -94,8 +95,6 @@ extension RMCharacterListView: RMCharacterListViewViewModelDelegate{
             self.collectionView.alpha = 1
         }
     }
-    
-    
     
 }
 

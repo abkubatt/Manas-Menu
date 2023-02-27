@@ -33,6 +33,7 @@ final class RMCharacterListViewViewModel: NSObject {
         }
     }
     
+    
     private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
     
     private var apiInfo: RMGetAllCharactersResponse.Info? = nil
@@ -100,6 +101,8 @@ extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollection
 //        footer.startAnimating()
 //        return footer
 //    }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard shouldShowLoadMoreIndicator else {

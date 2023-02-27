@@ -17,8 +17,15 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
     private let characterListView = RMCharacterListView()
     
     private let todayDateLabel: UILabel = {
-       let label = UILabel()
-        label.text = "25.02.2023"
+        let label = UILabel()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        let dateString = dateFormatter.string(from: Date.now)
+        print(dateString)
+        print("---->>>>>>>>>>>>>>>>>>>>>>>>\(dateString) ")
+        label.text = dateString
+
+        
         label.font = label.font.withSize(20)
         label.textColor = .label
         return label
@@ -62,7 +69,7 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         stackView.setCustomSpacing(20, after: stackView.subviews[0])
         
         stackView.addArrangedSubview(todayDateLabel)
-        todayDateLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: self.view.frame.width / 2.6).isActive = true
+        todayDateLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: self.view.frame.width / 2.85).isActive = true
         todayDateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         stackView.setCustomSpacing(15, after: stackView.subviews[1])
