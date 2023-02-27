@@ -21,10 +21,8 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         let dateString = dateFormatter.string(from: Date.now)
-        print(dateString)
-        print("---->>>>>>>>>>>>>>>>>>>>>>>>\(dateString) ")
         label.text = dateString
-
+        
         
         label.font = label.font.withSize(20)
         label.textColor = .label

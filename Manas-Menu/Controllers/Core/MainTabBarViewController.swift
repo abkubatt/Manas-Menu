@@ -34,7 +34,7 @@ class MainTabBarViewController: UITabBarController {
         nav3.tabBarItem = UITabBarItem(title: "Canteen", image: UIImage(systemName: "cup.and.saucer"), selectedImage: UIImage(systemName: "cup.and.saucer.fill"))
         
 //        nav1.navigationBar.prefersLargeTitles = true
-        nav2.navigationBar.prefersLargeTitles = true
+//        nav2.navigationBar.prefersLargeTitles = true
         nav3.navigationBar.prefersLargeTitles = true
         
         setViewControllers([nav1, nav2, nav3], animated: true)
