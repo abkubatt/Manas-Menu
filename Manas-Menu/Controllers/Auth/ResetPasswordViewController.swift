@@ -45,12 +45,32 @@ class ResetPasswordViewController: UIViewController,UITextFieldDelegate {
         backButton.title = ""
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.emailTextField.delegate = self
+        
+        sendButton.addTarget(self, action: #selector(didTapResetPassword), for: .touchUpInside)
+
         configureConstraints()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    @objc private func didTapResetPassword() {
+        Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { error in
+            if error == nil {
+                let alert = UIAlertController(title: "Success", message: "Reset your password with a link sent to your email: \(self.emailTextField.text!)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                let alert = UIAlertController(title: "Error", message: "\(error!.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     private func configureConstraints() {
