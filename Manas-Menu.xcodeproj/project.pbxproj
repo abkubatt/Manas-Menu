@@ -33,6 +33,7 @@
 		A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A129857C0600F5227C /* FreeFoodsViewController.swift */; };
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
+		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
@@ -96,6 +97,7 @@
 		A02403A129857C0600F5227C /* FreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				A024039929855D2900F5227C /* LoginViewController.swift */,
 				A024039B29855D3500F5227C /* RegisterViewController.swift */,
+				A031581129B9FA80006090CD /* ResetPasswordViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */,
 				A0EBFA9C298FB9AB002F7B16 /* RMGetAllCharactersResponse.swift in Sources */,
 				A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */,
+				A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
 				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,
 				A0EBFA9E298FBA0E002F7B16 /* RMCharacterDetailViewViewModel.swift in Sources */,

@@ -65,6 +65,15 @@ class LoginViewController: UIViewController {
          button.tintColor = .blue
          return button
      }()
+     
+     private let forgotPasswordButton: UIButton = {
+         let button = UIButton(type: .system)
+         button.translatesAutoresizingMaskIntoConstraints = false
+         button.setTitle("Forgot Password?", for: .normal)
+         button.titleLabel?.font = .systemFont(ofSize: 14)
+         button.tintColor = .blue
+         return button
+     }()
     
     
     private let loginButton: UIButton = {
@@ -176,6 +185,7 @@ class LoginViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(promptLabel)
         view.addSubview(signUpButton)
+        view.addSubviews(forgotPasswordButton)
 //        facebookLoginButton.permissions = ["public_profile", "email"]
         view.addSubview(facebookLoginButton)
         for constraint in facebookLoginButton.constraints where constraint.firstAttribute == .height {
@@ -184,6 +194,7 @@ class LoginViewController: UIViewController {
         view.addSubview(googleLogInButton)
         loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
+        forgotPasswordButton.addTarget(self, action: #selector(didTapForgotPassword), for: .touchUpInside)
 
         configureConstraints()
         bindViews()
@@ -200,6 +211,12 @@ class LoginViewController: UIViewController {
         let vc = RegisterViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc private func didTapForgotPassword() {
+        let vc = ResetPasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     @objc private func didTapLogin() {
         viewModel.loginUser()
@@ -247,6 +264,8 @@ class LoginViewController: UIViewController {
            signUpButton.leadingAnchor.constraint(equalTo: promptLabel.trailingAnchor, constant: 10)
        ]
         
+        
+        
      
         
         let googleLogInButtonConstraints = [
@@ -261,6 +280,11 @@ class LoginViewController: UIViewController {
              facebookLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -34),
          ]
         
+        let forgotPasswordButtonConstraints = [
+            forgotPasswordButton.topAnchor.constraint(equalTo: facebookLoginButton.bottomAnchor, constant: 20),
+            forgotPasswordButton.centerXAnchor.constraint(equalTo: facebookLoginButton.centerXAnchor)
+        ]
+        
         
         NSLayoutConstraint.activate(loginTitleLabelCosntraints)
         NSLayoutConstraint.activate(emailTextFieldConstraints)
@@ -268,6 +292,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(loginButtonConstraints)
         NSLayoutConstraint.activate(promptLabelConstraints)
         NSLayoutConstraint.activate(signUpButtonConstraints)
+        NSLayoutConstraint.activate(forgotPasswordButtonConstraints)
         NSLayoutConstraint.activate(googleLogInButtonConstraints)
         NSLayoutConstraint.activate(facebookLoginButtonConstraints)
     }
