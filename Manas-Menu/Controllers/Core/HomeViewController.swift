@@ -118,9 +118,13 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
 //        }
     
         @objc private func didTapSettings(){
+//            MainTabBarViewController.hidd()
             let vc = UINavigationController(rootViewController: SettingsViewController())
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
+
+            
+
         }
     
     

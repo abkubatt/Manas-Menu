@@ -191,6 +191,8 @@ class LoginViewController: UIViewController {
         for constraint in facebookLoginButton.constraints where constraint.firstAttribute == .height {
             constraint.constant = 39
         }
+        
+        
         view.addSubview(googleLogInButton)
         loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
