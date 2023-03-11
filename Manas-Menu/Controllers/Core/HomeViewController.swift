@@ -12,7 +12,7 @@ import GoogleSignIn
 
 
 class HomeViewController: UIViewController, RMCharacterListViewDelegate {
-        lazy var carousel = Carousel(frame: .zero, urls: UniversityImages.urls)
+    lazy var carousel = Carousel(frame: .zero, urls: UniversityImages.urls)
 
     private let characterListView = RMCharacterListView()
     
