@@ -36,6 +36,8 @@
 		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
+		A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BA29BC4F6C00499A71 /* Menus.swift */; };
+		A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BC29BC759E00499A71 /* APIFirebase.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
@@ -102,6 +104,8 @@
 		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		A08188BA29BC4F6C00499A71 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
+		A08188BC29BC759E00499A71 /* APIFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFirebase.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				A0EBFA99298FB97C002F7B16 /* RMOrigin.swift */,
 				A0EBFA9B298FB9AB002F7B16 /* RMGetAllCharactersResponse.swift */,
 				A0C307E629BB754D001F3230 /* Menu.swift */,
+				A08188BA29BC4F6C00499A71 /* Menus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				A0EBFAAB298FBBCB002F7B16 /* RMService.swift */,
 				A0EBFAAD298FBBE0002F7B16 /* RMRequest.swift */,
 				A0EBFAAF298FBBF1002F7B16 /* RMEndpoint.swift */,
+				A08188BC29BC759E00499A71 /* APIFirebase.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -525,6 +531,7 @@
 				A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */,
 				A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */,
 				A024039C29855D3500F5227C /* RegisterViewController.swift in Sources */,
+				A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */,
 				A02403A42985932D00F5227C /* SearchViewController.swift in Sources */,
 				A0A08C0F29892F1C007FD406 /* StringExtension.swift in Sources */,
 				A02403832985185A00F5227C /* CanteenViewController.swift in Sources */,
@@ -553,6 +560,7 @@
 				A0853A14298673F2001081B2 /* UniversityImages.swift in Sources */,
 				A02403812985183000F5227C /* CafeViewController.swift in Sources */,
 				A0A08C1E29893378007FD406 /* TitlePreviewViewController.swift in Sources */,
+				A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */,
 				A0EBFAA2298FBA90002F7B16 /* RMCharacterDetailViewController.swift in Sources */,
 				A0EBFA8C298FB79C002F7B16 /* RMCharacterListView.swift in Sources */,
 				A0EBFA98298FB95B002F7B16 /* RMSingleLocation.swift in Sources */,
