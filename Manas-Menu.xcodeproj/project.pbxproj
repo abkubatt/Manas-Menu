@@ -57,6 +57,7 @@
 		A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C2329893469007FD406 /* DataPersistenceManager.swift */; };
 		A0C307E729BB754D001F3230 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C307E629BB754D001F3230 /* Menu.swift */; };
 		A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */; };
+		A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */; };
 		A0EBFA8C298FB79C002F7B16 /* RMCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBFA8B298FB79C002F7B16 /* RMCharacterListView.swift */; };
 		A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBFA8D298FB87B002F7B16 /* RMLocation.swift */; };
 		A0EBFA90298FB8A1002F7B16 /* RMCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBFA8F298FB8A1002F7B16 /* RMCharacter.swift */; };
@@ -123,6 +124,7 @@
 		A0A08C2329893469007FD406 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		A0C307E629BB754D001F3230 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
+		A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuViewController.swift; sourceTree = "<group>"; };
 		A0EBFA8B298FB79C002F7B16 /* RMCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterListView.swift; sourceTree = "<group>"; };
 		A0EBFA8D298FB87B002F7B16 /* RMLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocation.swift; sourceTree = "<group>"; };
 		A0EBFA8F298FB8A1002F7B16 /* RMCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacter.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				A0A08C1D29893378007FD406 /* TitlePreviewViewController.swift */,
 				A0EBFAA1298FBA90002F7B16 /* RMCharacterDetailViewController.swift */,
 				A0EBFAB5298FDF1F002F7B16 /* SettingsViewController.swift */,
+				A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				A0EBFA98298FB95B002F7B16 /* RMSingleLocation.swift in Sources */,
 				A0A08C1C29893322007FD406 /* TitlePreviewViewModel.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
+				A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */,
 				A0EBFAB0298FBBF1002F7B16 /* RMEndpoint.swift in Sources */,
 				A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */,
 				A0EBFAAE298FBBE0002F7B16 /* RMRequest.swift in Sources */,
