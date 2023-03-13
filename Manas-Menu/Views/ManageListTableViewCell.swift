@@ -47,9 +47,9 @@ class ManageListTableViewCell: UITableViewCell {
         fatalError("init coder")
     }
     
-    public func configure(with image: UIImage, and label: String) {
+    public func configure(with image: UIImage?, and title: String?) {
         iconOfTitle.image = image
-        titles.text = label
+        titles.text = title
     }
     
     private func setupUI() {

@@ -7,13 +7,23 @@
 
 import UIKit
 
+class TitleForSection {
+    var title: String?
+    var icons: [UIImage]?
+    var rows: [String]?
+    
+    init(title: String? = nil, icons: [UIImage]? = nil, rows: [String]? = nil) {
+        self.title = title
+        self.icons = icons
+        self.rows = rows
+    }
+    
+}
 
 class ManageViewController: UIViewController {
     
     private let images: [UIImage] = [
-        UIImage(systemName: "calendar.badge.plus")!,
-        UIImage(systemName: "square.and.pencil")!,
-        UIImage(systemName: "trash")!,
+       
         UIImage(systemName: "cup.and.saucer")!,
         UIImage(systemName: "square.and.pencil")!,
         UIImage(systemName: "trash")!,
@@ -24,6 +34,10 @@ class ManageViewController: UIViewController {
     ]
     
     private let titles: [String] = ["Add menu", "Update menu", "Delete menu", "Add canteen foods", "Update canteen foods", "Delete canteen foods", "Add free foods", "Update free foods", "Delete free foods"]
+    
+    var listChoice = [TitleForSection]()
+    
+    
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -43,9 +57,15 @@ class ManageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-
+        configureList()
         configureConstraints()
 
+    }
+    
+    private func configureList(){
+        listChoice.append(TitleForSection.init(title: "Manage Menu", icons: [ UIImage(systemName: "calendar.badge.plus")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!], rows: ["Add menu", "Update menu", "Delete menu"] ))
+        listChoice.append(TitleForSection.init(title: "Manage Canteen", icons: [UIImage(systemName: "cup.and.saucer")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!],rows: ["Add canteen foods", "Update canteen foods", "Delete canteen foods"]))
+        listChoice.append(TitleForSection.init(title: "Manage Free Foods", icons: [UIImage(systemName: "fork.knife")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!], rows: ["Add free foods", "Update free foods", "Delete free foods"]))
     }
 
     
@@ -68,8 +88,12 @@ class ManageViewController: UIViewController {
 
 extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return listChoice.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.titles.count
+        return listChoice[section].icons?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,8 +101,9 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("The TableView could not dequeue a ManageListUITableViewCell in ManageViewController.")
         }
         
-        let image = self.images[indexPath.row]
-        cell.configure(with: image, and: titles[indexPath.row])
+        let image = listChoice[indexPath.section].icons?[indexPath.row]
+        let title = listChoice[indexPath.section].rows?[indexPath.row]
+        cell.configure(with: image, and: title)
         
         return cell
     }
@@ -91,6 +116,12 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         print("DEBUG PRINT:", indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return listChoice[section].title
+    }
+    
+    
     
     
 }
