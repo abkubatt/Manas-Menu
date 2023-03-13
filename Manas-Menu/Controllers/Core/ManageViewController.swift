@@ -9,10 +9,10 @@ import UIKit
 
 class TitleForSection {
     var title: String?
-    var icons: [UIImage]?
-    var rows: [String]?
+    var icons: [UIImage]
+    var rows: [String]
     
-    init(title: String? = nil, icons: [UIImage]? = nil, rows: [String]? = nil) {
+    init(title: String? = nil, icons: [UIImage], rows: [String]) {
         self.title = title
         self.icons = icons
         self.rows = rows
@@ -93,7 +93,7 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listChoice[section].icons?.count ?? 0
+        return listChoice[section].icons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,8 +101,8 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("The TableView could not dequeue a ManageListUITableViewCell in ManageViewController.")
         }
         
-        let image = listChoice[indexPath.section].icons?[indexPath.row]
-        let title = listChoice[indexPath.section].rows?[indexPath.row]
+        let image = listChoice[indexPath.section].icons[indexPath.row]
+        let title = listChoice[indexPath.section].rows[indexPath.row]
         cell.configure(with: image, and: title)
         
         return cell
@@ -114,7 +114,7 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("DEBUG PRINT:", indexPath.row)
+        print(listChoice[indexPath.section].rows[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
