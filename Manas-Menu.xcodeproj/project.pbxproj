@@ -35,6 +35,7 @@
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
+		A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
 		A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BA29BC4F6C00499A71 /* Menus.swift */; };
 		A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BC29BC759E00499A71 /* APIFirebase.swift */; };
@@ -104,6 +105,7 @@
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListTableViewCell.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		A08188BA29BC4F6C00499A71 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		A08188BC29BC759E00499A71 /* APIFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFirebase.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				A0EBFAB1298FBC29002F7B16 /* RMFooterLoadingCollectionReusableView.swift */,
 				A073542A299662B200FD74C9 /* MenuTableViewCell.swift */,
 				A0938E5E29A86672007B1727 /* TitleTableViewCell.swift */,
+				A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */,
 				A0EBFAB0298FBBF1002F7B16 /* RMEndpoint.swift in Sources */,
 				A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */,
+				A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */,
 				A0EBFAAE298FBBE0002F7B16 /* RMRequest.swift in Sources */,
 				A0A08C1A29893285007FD406 /* TitleViewModel.swift in Sources */,
 			);
