@@ -56,6 +56,14 @@
 		A0A08C20298933C7007FD406 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C1F298933C7007FD406 /* YoutubeSearchResponse.swift */; };
 		A0A08C2229893432007FD406 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C2129893432007FD406 /* TitleCollectionViewCell.swift */; };
 		A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C2329893469007FD406 /* DataPersistenceManager.swift */; };
+		A0B4C38029BF382F00583E7A /* UpdateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C37F29BF382F00583E7A /* UpdateMenuViewController.swift */; };
+		A0B4C38229BF385300583E7A /* DeleteMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38129BF385300583E7A /* DeleteMenuViewController.swift */; };
+		A0B4C38429BF388000583E7A /* AddCanteenFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38329BF388000583E7A /* AddCanteenFoodsViewController.swift */; };
+		A0B4C38629BF38B100583E7A /* UpdateCanteenFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38529BF38B100583E7A /* UpdateCanteenFoodsViewController.swift */; };
+		A0B4C38829BF38D200583E7A /* DeleteCanteenFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38729BF38D200583E7A /* DeleteCanteenFoodsViewController.swift */; };
+		A0B4C38A29BF38F000583E7A /* AddFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38929BF38F000583E7A /* AddFreeFoodsViewController.swift */; };
+		A0B4C38C29BF391500583E7A /* UpdateFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */; };
+		A0B4C38E29BF393F00583E7A /* DeleteFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */; };
 		A0C307E729BB754D001F3230 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C307E629BB754D001F3230 /* Menu.swift */; };
 		A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */; };
 		A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */; };
@@ -124,6 +132,14 @@
 		A0A08C1F298933C7007FD406 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		A0A08C2129893432007FD406 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		A0A08C2329893469007FD406 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		A0B4C37F29BF382F00583E7A /* UpdateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuViewController.swift; sourceTree = "<group>"; };
+		A0B4C38129BF385300583E7A /* DeleteMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMenuViewController.swift; sourceTree = "<group>"; };
+		A0B4C38329BF388000583E7A /* AddCanteenFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCanteenFoodsViewController.swift; sourceTree = "<group>"; };
+		A0B4C38529BF38B100583E7A /* UpdateCanteenFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCanteenFoodsViewController.swift; sourceTree = "<group>"; };
+		A0B4C38729BF38D200583E7A /* DeleteCanteenFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCanteenFoodsViewController.swift; sourceTree = "<group>"; };
+		A0B4C38929BF38F000583E7A /* AddFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFreeFoodsViewController.swift; sourceTree = "<group>"; };
+		A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFreeFoodsViewController.swift; sourceTree = "<group>"; };
+		A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A0C307E629BB754D001F3230 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
 		A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuViewController.swift; sourceTree = "<group>"; };
@@ -226,8 +242,8 @@
 		A0240375298509D200F5227C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A024037B29850BB800F5227C /* Core */,
 				A024037C29850BBE00F5227C /* Auth */,
+				A024037B29850BB800F5227C /* Core */,
 				A024037D29850C0C00F5227C /* Other */,
 			);
 			path = Controllers;
@@ -340,6 +356,14 @@
 				A0EBFAA1298FBA90002F7B16 /* RMCharacterDetailViewController.swift */,
 				A0EBFAB5298FDF1F002F7B16 /* SettingsViewController.swift */,
 				A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */,
+				A0B4C37F29BF382F00583E7A /* UpdateMenuViewController.swift */,
+				A0B4C38129BF385300583E7A /* DeleteMenuViewController.swift */,
+				A0B4C38329BF388000583E7A /* AddCanteenFoodsViewController.swift */,
+				A0B4C38529BF38B100583E7A /* UpdateCanteenFoodsViewController.swift */,
+				A0B4C38729BF38D200583E7A /* DeleteCanteenFoodsViewController.swift */,
+				A0B4C38929BF38F000583E7A /* AddFreeFoodsViewController.swift */,
+				A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */,
+				A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -525,6 +549,8 @@
 				A024039A29855D2900F5227C /* LoginViewController.swift in Sources */,
 				A0A08C2229893432007FD406 /* TitleCollectionViewCell.swift in Sources */,
 				A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */,
+				A0B4C38029BF382F00583E7A /* UpdateMenuViewController.swift in Sources */,
+				A0B4C38C29BF391500583E7A /* UpdateFreeFoodsViewController.swift in Sources */,
 				A0EBFA96298FB8E7002F7B16 /* RMCharacterGender.swift in Sources */,
 				A02403A229857C0600F5227C /* FreeFoodsViewController.swift in Sources */,
 				A024039E29855E2900F5227C /* AuthManager.swift in Sources */,
@@ -532,6 +558,8 @@
 				A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */,
 				A0EBFA90298FB8A1002F7B16 /* RMCharacter.swift in Sources */,
 				A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */,
+				A0B4C38829BF38D200583E7A /* DeleteCanteenFoodsViewController.swift in Sources */,
+				A0B4C38E29BF393F00583E7A /* DeleteFreeFoodsViewController.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
 				A0C307E729BB754D001F3230 /* Menu.swift in Sources */,
 				A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */,
@@ -541,12 +569,15 @@
 				A02403A42985932D00F5227C /* SearchViewController.swift in Sources */,
 				A0A08C0F29892F1C007FD406 /* StringExtension.swift in Sources */,
 				A02403832985185A00F5227C /* CanteenViewController.swift in Sources */,
+				A0B4C38A29BF38F000583E7A /* AddFreeFoodsViewController.swift in Sources */,
 				A0EBFA94298FB8CE002F7B16 /* RMCharacterStatus.swift in Sources */,
 				A0EBFA9A298FB97C002F7B16 /* RMOrigin.swift in Sources */,
 				A0EBFAAA298FBB94002F7B16 /* RMCharacterCollectionViewCell.swift in Sources */,
+				A0B4C38629BF38B100583E7A /* UpdateCanteenFoodsViewController.swift in Sources */,
 				A0A08C1829893240007FD406 /* APICaller.swift in Sources */,
 				A0A08C16298931EC007FD406 /* CollectionViewTableViewCell.swift in Sources */,
 				A0A08C11298930AF007FD406 /* Title.swift in Sources */,
+				A0B4C38229BF385300583E7A /* DeleteMenuViewController.swift in Sources */,
 				A0EBFAA5298FBAFF002F7B16 /* RMCharacterListViewViewModel.swift in Sources */,
 				A0EBFAB6298FDF1F002F7B16 /* SettingsViewController.swift in Sources */,
 				A0A08C20298933C7007FD406 /* YoutubeSearchResponse.swift in Sources */,
@@ -570,6 +601,7 @@
 				A0EBFAA2298FBA90002F7B16 /* RMCharacterDetailViewController.swift in Sources */,
 				A0EBFA8C298FB79C002F7B16 /* RMCharacterListView.swift in Sources */,
 				A0EBFA98298FB95B002F7B16 /* RMSingleLocation.swift in Sources */,
+				A0B4C38429BF388000583E7A /* AddCanteenFoodsViewController.swift in Sources */,
 				A0A08C1C29893322007FD406 /* TitlePreviewViewModel.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
 				A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */,

@@ -69,7 +69,7 @@ class AddMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Manage"
+        title = "Add Menu"
         view.backgroundColor = .systemBackground
 
         view.addSubview(dateForMenu)

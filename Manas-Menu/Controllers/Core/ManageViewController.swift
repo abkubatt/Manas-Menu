@@ -17,26 +17,12 @@ class TitleForSection {
         self.icons = icons
         self.rows = rows
     }
-    
 }
 
 class ManageViewController: UIViewController {
-    
-    private let images: [UIImage] = [
-       
-        UIImage(systemName: "cup.and.saucer")!,
-        UIImage(systemName: "square.and.pencil")!,
-        UIImage(systemName: "trash")!,
-        UIImage(systemName: "fork.knife")!,
-        UIImage(systemName: "square.and.pencil")!,
-        UIImage(systemName: "trash")!,
-        
-    ]
-    
-    private let titles: [String] = ["Add menu", "Update menu", "Delete menu", "Add canteen foods", "Update canteen foods", "Delete canteen foods", "Add free foods", "Update free foods", "Delete free foods"]
+
     
     var listChoice = [TitleForSection]()
-    
     
     
     private let tableView: UITableView = {
@@ -112,18 +98,48 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(listChoice[indexPath.section].rows[indexPath.row])
+        let selected = listChoice[indexPath.section].rows[indexPath.row]
+        switch selected {
+            case "Add menu":
+            navigationController?.pushViewController(AddMenuViewController(), animated: true)
+            
+            case "Update menu":
+            navigationController?.pushViewController(UpdateMenuViewController(), animated: true)
+
+            case "Delete menu":
+            navigationController?.pushViewController(DeleteMenuViewController(), animated: true)
+            
+            case "Add canteen foods":
+            navigationController?.pushViewController(AddCanteenFoodsViewController(), animated: true)
+
+            case "Update canteen foods":
+            navigationController?.pushViewController(UpdateCanteenFoodsViewController(), animated: true)
+
+            case "Delete canteen foods":
+            navigationController?.pushViewController(DeleteCanteenFoodsViewController(), animated: true)
+
+            case "Add free foods":
+            navigationController?.pushViewController(AddFreeFoodsViewController(), animated: true)
+
+            case "Update free foods":
+            navigationController?.pushViewController(UpdateMenuViewController(), animated: true)
+
+            case "Delete free foods":
+            navigationController?.pushViewController(DeleteFreeFoodsViewController(), animated: true)
+
+            
+        default:
+            print("Error")
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return listChoice[section].title
     }
-    
-    
-    
-    
+       
 }
 
 
