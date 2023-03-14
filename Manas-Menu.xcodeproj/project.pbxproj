@@ -37,6 +37,7 @@
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
 		A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
+		A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */; };
 		A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BA29BC4F6C00499A71 /* Menus.swift */; };
 		A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BC29BC759E00499A71 /* APIFirebase.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
@@ -115,6 +116,7 @@
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListTableViewCell.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeleteTableViewCell.swift; sourceTree = "<group>"; };
 		A08188BA29BC4F6C00499A71 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		A08188BC29BC759E00499A71 /* APIFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFirebase.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				A073542A299662B200FD74C9 /* MenuTableViewCell.swift */,
 				A0938E5E29A86672007B1727 /* TitleTableViewCell.swift */,
 				A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */,
+				A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */,
 				A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
+				A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */,
 				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,
 				A0EBFA9E298FBA0E002F7B16 /* RMCharacterDetailViewViewModel.swift in Sources */,
 				A0853A14298673F2001081B2 /* UniversityImages.swift in Sources */,
