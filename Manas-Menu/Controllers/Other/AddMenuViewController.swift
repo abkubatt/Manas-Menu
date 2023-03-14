@@ -96,11 +96,17 @@ class AddMenuViewController: UIViewController {
     }
     
     @objc private func addBtn(){
-        adding.append(pic1)
-        adding.append(pic2)
-        adding.append(pic3)
-        adding.append(pic4)
-        adding.append(dateOfMenu)
+        adding.append(pic1 == "" ? desserts[0] : pic1)
+        adding.append(pic2 == "" ? desserts[0] : pic2)
+        adding.append(pic3 == "" ? desserts[0] : pic3)
+        adding.append(pic4 == "" ? desserts[0] : pic4)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let selectedDate = dateFormatter.string(from: Date())
+        adding.append(dateOfMenu == "" ? selectedDate : dateOfMenu)
         print(adding)
     }
  
@@ -158,6 +164,7 @@ class AddMenuViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         let selectedDate = dateFormatter.string(from: sender.date)
         print("Selected date: \(selectedDate)")
         dateOfMenu = "\(selectedDate)"

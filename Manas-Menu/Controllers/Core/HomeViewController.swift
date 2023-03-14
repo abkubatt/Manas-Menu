@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
         let label = UILabel()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        let dateString = dateFormatter.string(from: Date.now)
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: Date())
         label.text = dateString
         
         
