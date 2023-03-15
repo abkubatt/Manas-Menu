@@ -40,12 +40,15 @@
 		A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */; };
 		A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BA29BC4F6C00499A71 /* Menus.swift */; };
 		A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BC29BC759E00499A71 /* APIFirebase.swift */; };
+		A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
 		A0853A1129866050001081B2 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A1029866050001081B2 /* CarouselLayout.swift */; };
 		A0853A14298673F2001081B2 /* UniversityImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A13298673F2001081B2 /* UniversityImages.swift */; };
 		A0938E5F29A86672007B1727 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0938E5E29A86672007B1727 /* TitleTableViewCell.swift */; };
+		A0997F8529C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0997F8429C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift */; };
+		A0997F8729C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0997F8629C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift */; };
 		A0A08C0F29892F1C007FD406 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C0E29892F1C007FD406 /* StringExtension.swift */; };
 		A0A08C11298930AF007FD406 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C10298930AF007FD406 /* Title.swift */; };
 		A0A08C14298930EC007FD406 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A08C13298930EC007FD406 /* Sections.swift */; };
@@ -119,10 +122,13 @@
 		A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeleteTableViewCell.swift; sourceTree = "<group>"; };
 		A08188BA29BC4F6C00499A71 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		A08188BC29BC759E00499A71 /* APIFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFirebase.swift; sourceTree = "<group>"; };
+		A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateMenuViewController.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
 		A0938E5E29A86672007B1727 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		A0997F8429C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateCanteenViewController.swift; sourceTree = "<group>"; };
+		A0997F8629C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateFreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A0A08C0E29892F1C007FD406 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		A0A08C10298930AF007FD406 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		A0A08C13298930EC007FD406 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
@@ -361,12 +367,15 @@
 				A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */,
 				A0B4C37F29BF382F00583E7A /* UpdateMenuViewController.swift */,
 				A0B4C38129BF385300583E7A /* DeleteMenuViewController.swift */,
+				A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */,
 				A0B4C38329BF388000583E7A /* AddCanteenFoodsViewController.swift */,
 				A0B4C38529BF38B100583E7A /* UpdateCanteenFoodsViewController.swift */,
 				A0B4C38729BF38D200583E7A /* DeleteCanteenFoodsViewController.swift */,
+				A0997F8429C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift */,
 				A0B4C38929BF38F000583E7A /* AddFreeFoodsViewController.swift */,
 				A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */,
 				A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */,
+				A0997F8629C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -565,6 +574,8 @@
 				A0B4C38E29BF393F00583E7A /* DeleteFreeFoodsViewController.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
 				A0C307E729BB754D001F3230 /* Menu.swift in Sources */,
+				A0997F8729C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift in Sources */,
+				A0997F8529C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift in Sources */,
 				A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */,
 				A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */,
 				A024039C29855D3500F5227C /* RegisterViewController.swift in Sources */,
@@ -614,6 +625,7 @@
 				A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */,
 				A0EBFAAE298FBBE0002F7B16 /* RMRequest.swift in Sources */,
 				A0A08C1A29893285007FD406 /* TitleViewModel.swift in Sources */,
+				A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

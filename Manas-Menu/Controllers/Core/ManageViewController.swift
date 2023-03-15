@@ -125,7 +125,7 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(AddFreeFoodsViewController(), animated: true)
 
             case "Update free foods":
-            navigationController?.pushViewController(UpdateMenuViewController(), animated: true)
+            navigationController?.pushViewController(UpdateFreeFoodsViewController(), animated: true)
 
             case "Delete free foods":
             navigationController?.pushViewController(DeleteFreeFoodsViewController(), animated: true)
