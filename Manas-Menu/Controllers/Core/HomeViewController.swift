@@ -9,12 +9,15 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
-
+import Firebase
+import FirebaseFirestore
 
 class HomeViewController: UIViewController, RMCharacterListViewDelegate {
     lazy var carousel = Carousel(frame: .zero, urls: UniversityImages.urls)
 
     private let characterListView = RMCharacterListView()
+    private let dbReference = Firestore.firestore().collection("menu")
+    private var menus = [UserRole]()
     
     private let todayDateLabel: UILabel = {
         let label = UILabel()
@@ -127,6 +130,8 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
             
 
         }
+    
+    
     
     
     

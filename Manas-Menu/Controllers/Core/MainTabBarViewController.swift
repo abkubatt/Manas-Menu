@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 enum UserType {
     case admin
@@ -21,9 +23,37 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+            let db = Firestore.firestore()
+
+            guard let userUid = Auth.auth().currentUser?.uid else { return }
+            let documentRef = db.collection("roles").document(userUid)
+            
+            documentRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: data ?? [:], options: [])
+                        let model = try JSONDecoder().decode(UserRole.self, from: jsonData)
+                        print("-----------------------------\(String(describing: model.user_role))")
+                        guard model.user_role != nil else{
+                            return
+                        }
+                        print("--------- \(model.user_role ?? "===")")
+                    } catch {
+                        print("Error decoding model: \(error)")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+
+
         
         setUpTabs(userType)
     }
+    
+    
+    
     
     private func setUpTabs(_ userType: UserType) {
         

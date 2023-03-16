@@ -11,11 +11,16 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseFirestore
+
 
 class LoginViewController: UIViewController {
     
     private var viewModel = AuthenticationViewViewModel()
     private var subscriptions: Set<AnyCancellable> = []
+    
+    private let dbReference = Firestore.firestore().collection("roles")
+    private var userR = [UserRole]()
     
     private let loginTitleLabel: UILabel = {
         let label = UILabel()
@@ -298,6 +303,42 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(googleLogInButtonConstraints)
         NSLayoutConstraint.activate(facebookLoginButtonConstraints)
     }
+    
+    func fetchMenus() {
+            dbReference.addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else { return }
+                self.userR = documents.compactMap{ document in
+                    do {
+                        let menu = try document.data(as: UserRole.self)
+                        return menu
+                    } catch {
+                        print("Error decoding Menu: \(error.localizedDescription)")
+                        return nil
+                    }
+                }
+                print("Fetched Menus: \(self.userR)")
+            }
+        }
+    
+    
+    func addDocumentToFirestore(userRole: UserRole, completion: @escaping (Error?) -> Void) {
+        do {
+            _ = try  dbReference.addDocument(from: userRole) { error in
+                if let error = error {
+                    print("Error")
+                    completion(error)
+                } else {
+                    print("Successfully added to fireStore")
+                    completion(nil)
+                }
+            }
+        }catch let error{
+            print("Error while adding to firestore \(error)")
+        }
+    }
+    
+    
+   
 }
 
 
@@ -364,6 +405,7 @@ extension LoginViewController: LoginButtonDelegate {
             }
             
             print("Successfully logged user in")
+            APIFirebase.shared.addDocumentToFirestore()
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         })
     }

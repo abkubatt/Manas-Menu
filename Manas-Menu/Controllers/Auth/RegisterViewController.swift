@@ -9,8 +9,11 @@
 import UIKit
 import Combine
 import GoogleSignIn
+import FirebaseFirestore
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
+    
     
     
     private var viewModel = AuthenticationViewViewModel()
@@ -130,10 +133,23 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         bindViews()
 
+
     }
     
     @objc private func didTapRegister() {
-        viewModel.createUser()
+//        let userRole = UserRole(email: viewModel.email, userRole: "user")
+//        addDocumentToFirestore(userRole: userRole) { error in
+//            if let error = error {
+//                print("Error adding document: \(error.localizedDescription)")
+//            } else {
+//                print("Document added successfully!")
+//            }
+//        }
+        Auth.auth().createUser(withEmail: emailTextField.text ?? "empty", password: passwordTextField.text ?? "empty") { response, error in
+            print("\(String(describing: response)) + \(String(describing: error))")
+        }
+        APIFirebase.shared.addDocumentToFirestore()
+
     }
     
     private func configureConstraints() {
@@ -174,4 +190,23 @@ class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate(passwordTextFieldConstraints)
         NSLayoutConstraint.activate(registerButtonConstraints)
     }
+//
+//    func fetchMenus() {
+//            dbReference.addSnapshotListener { querySnapshot, error in
+//                guard let documents = querySnapshot?.documents else { return }
+//                self.userR = documents.compactMap{ document in
+//                    do {
+//                        let menu = try document.data(as: UserRole.self)
+//                        return menu
+//                    } catch {
+//                        print("Error decoding Menu: \(error.localizedDescription)")
+//                        return nil
+//                    }
+//                }
+//                print("Fetched Menus: \(self.userR)")
+//            }
+//        }
+    
+    
+
 }

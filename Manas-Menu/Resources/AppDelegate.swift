@@ -71,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("failed to log in with google credential")
                 return
             }
-            
             print("Successfully signed in with Google cred.")
+            APIFirebase.shared.addDocumentToFirestore()
             NotificationCenter.default.post(name: .didLogInNotification, object: nil)
             
             NotificationCenter.default.post(
@@ -84,6 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Google user was disconnected")
     }
+    
+   
     
     
 }

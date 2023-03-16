@@ -57,6 +57,7 @@ final class AuthenticationViewViewModel: ObservableObject {
     }
     
     
+    
     func loginUser() {
         guard let email = email,
               let password = password else{return}
