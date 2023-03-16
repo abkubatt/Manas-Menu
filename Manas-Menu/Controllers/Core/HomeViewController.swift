@@ -133,8 +133,6 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
     
     
     
-    
-    
         private func validateAuth() {
             if FirebaseAuth.Auth.auth().currentUser == nil {
                 let vc = UINavigationController(rootViewController: LoginViewController())

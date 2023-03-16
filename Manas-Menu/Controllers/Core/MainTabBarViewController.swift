@@ -25,18 +25,19 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
-        let userType = checkUserForAdmin()
-        
-        if userType == "admin"{
-            setUpTabs(.admin)
-        }else{
-            setUpTabs(.user)
+        checkUserForAdmin { role in
+            if role == "admin"{
+                self.setUpTabs(.admin)
+            }else{
+                self.setUpTabs(.user)
+            }
         }
+        
     }
     
-    private func checkUserForAdmin() -> String {
-        var response: String = ""
-        guard let userUid = Auth.auth().currentUser?.uid else { return ""}
+    private func checkUserForAdmin(completion: @escaping ((String) -> Void)){
+        var response = String()
+        guard let userUid = Auth.auth().currentUser?.uid else { return}
         let documentRef = db.collection("roles").document(userUid)
         
         documentRef.getDocument { (document, error) in
@@ -45,7 +46,8 @@ class MainTabBarViewController: UITabBarController {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: data ?? [:], options: [])
                     let model = try JSONDecoder().decode(UserRole.self, from: jsonData)
-                    response = model.user_role ?? "user"
+                
+                    response = model.user_role!
                 } catch {
                     print("Error decoding model: \(error)")
                 }
@@ -53,7 +55,9 @@ class MainTabBarViewController: UITabBarController {
                 print("Document does not exist")
             }
         }
-        return response
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                completion(response)
+        }
     }
     
     

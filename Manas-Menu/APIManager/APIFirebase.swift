@@ -12,45 +12,45 @@ import FirebaseAuth
 
 class APIFirebase {
     
-//    fetch menus
-//        fetchMenus()
-//       fetchSubcollection()
-       
-       
-       /// addDocument
-       //        addDocumentToFirestore(menu: menuData) { error in
-       //            if let error = error {
-       //                print("Error adding document: \(error.localizedDescription)")
-       //            } else {
-       //                print("Document added successfully!")
-       //            }
-       //        }
-       
-       
-       
-       /// Update
-       
-       //        let menuData = Menu(id: nil, name: "Turk Pilavi", calorie: "453", image: "https://plovnaya1.com/thumb/2/NcOqCNLPeEzcWnn7QN_RsA/r/d/plov_chajhana_375.jpg")
-       //
-       //        updateData(documentID: "cuo456lx94Wk2vYzZbH4", updateMenu: menuData) { error in
-       //            if let error = error {
-       //                print("Error updating document: \(error.localizedDescription)")
-       //            }else{
-       //                print("Document updated successfully!")
-       //            }
-       //        }
-       
-       
-       /// Delete function
-       
-       //        deleteDocument(documentID: "cuo456lx94Wk2vYzZbH4", collectionName: "menu") { error in
-       //            if let error = error {
-       //                print("Error deleting document: \(error.localizedDescription)")
-       //            } else {
-       //                print("Document deleted successfully.")
-       //            }
-       //        }
-
+    //    fetch menus
+    //        fetchMenus()
+    //       fetchSubcollection()
+    
+    
+    /// addDocument
+    //        addDocumentToFirestore(menu: menuData) { error in
+    //            if let error = error {
+    //                print("Error adding document: \(error.localizedDescription)")
+    //            } else {
+    //                print("Document added successfully!")
+    //            }
+    //        }
+    
+    
+    
+    /// Update
+    
+    //        let menuData = Menu(id: nil, name: "Turk Pilavi", calorie: "453", image: "https://plovnaya1.com/thumb/2/NcOqCNLPeEzcWnn7QN_RsA/r/d/plov_chajhana_375.jpg")
+    //
+    //        updateData(documentID: "cuo456lx94Wk2vYzZbH4", updateMenu: menuData) { error in
+    //            if let error = error {
+    //                print("Error updating document: \(error.localizedDescription)")
+    //            }else{
+    //                print("Document updated successfully!")
+    //            }
+    //        }
+    
+    
+    /// Delete function
+    
+    //        deleteDocument(documentID: "cuo456lx94Wk2vYzZbH4", collectionName: "menu") { error in
+    //            if let error = error {
+    //                print("Error deleting document: \(error.localizedDescription)")
+    //            } else {
+    //                print("Document deleted successfully.")
+    //            }
+    //        }
+    
     
     static let shared = APIFirebase()
     
@@ -59,24 +59,24 @@ class APIFirebase {
     
     
     func fetchSubcollection() {
-      // Assuming you have a reference to the document containing the subcollection
-      let docRef = Firestore.firestore().collection("menus").document("9PDAWz2m38LVAmBxUbsv")
-
-      // Get the subcollection reference
-      let subcollectionRef = docRef.collection("menu")
-
-      // Query the subcollection for documents
-      subcollectionRef.getDocuments() { (querySnapshot, error) in
-        if let error = error {
-          print("-----------------------------Error getting documents: \(error)")
-        } else {
-          for document in querySnapshot!.documents {
-            print("-----------------------\(document.documentID) => \(document.data())")
-          }
+        // Assuming you have a reference to the document containing the subcollection
+        let docRef = Firestore.firestore().collection("menus").document("9PDAWz2m38LVAmBxUbsv")
+        
+        // Get the subcollection reference
+        let subcollectionRef = docRef.collection("menu")
+        
+        // Query the subcollection for documents
+        subcollectionRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("-----------------------------Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("-----------------------\(document.documentID) => \(document.data())")
+                }
+            }
         }
-      }
     }
-
+    
     
     
     
@@ -98,7 +98,7 @@ class APIFirebase {
             print("Error while adding to firestore \(error)")
         }
     }
-        
+    
     
     func updateData(documentID: String, updateMenu: Menu, completion: @escaping (Error?) -> Void) {
         do{
@@ -118,8 +118,8 @@ class APIFirebase {
     
     
     func deleteDocument(documentID: String, collectionName: String, completion: @escaping (Error?) -> Void) {
-//        let db = Firestore.firestore()
-//        let documentRef = db.collection(collectionName).document(documentID)
+        //        let db = Firestore.firestore()
+        //        let documentRef = db.collection(collectionName).document(documentID)
         dbReference.document(documentID).delete() { error in
             if let error = error {
                 print("Error deleting document: \(error.localizedDescription)")
@@ -134,18 +134,24 @@ class APIFirebase {
     
     func addDocumentToFirestore() {
         guard let currentUser = Auth.auth().currentUser else { return }
-        print("========================\(currentUser)")
+        
         let dbReference = Firestore.firestore().collection("roles").document(currentUser.uid)
-        let userToAdd = UserRole(email: currentUser.email, user_role: "user")
-        dbReference.setData([
-            "email": userToAdd.email as Any,
-            "user_role": "user",
-        ]) { err in
-          if let err = err {
-            print("-----------------------------Error writing document: \(err)")
-          } else {
-            print("----------------------------Document successfully written!")
-          }
+        dbReference.getDocument { (document, error) in
+            guard let document = document, !document.exists else {
+                return
+            }
+            let userToAdd = UserRole(email: currentUser.email, user_role: "user")
+            dbReference.setData([
+                "email": userToAdd.email as Any,
+                "user_role": "user",
+            ]) { err in
+                if let err = err {
+                    print("-----------------------------Error writing document: \(err)")
+                } else {
+                    print("----------------------------Document successfully written!")
+                }
+            }
         }
     }
+    
 }
