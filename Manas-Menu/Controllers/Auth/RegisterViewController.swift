@@ -137,18 +137,14 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func didTapRegister() {
-//        let userRole = UserRole(email: viewModel.email, userRole: "user")
-//        addDocumentToFirestore(userRole: userRole) { error in
-//            if let error = error {
-//                print("Error adding document: \(error.localizedDescription)")
-//            } else {
-//                print("Document added successfully!")
-//            }
-//        }
         Auth.auth().createUser(withEmail: emailTextField.text ?? "empty", password: passwordTextField.text ?? "empty") { response, error in
             print("\(String(describing: response)) + \(String(describing: error))")
         }
         APIFirebase.shared.addDocumentToFirestore()
+
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+
+
 
     }
     

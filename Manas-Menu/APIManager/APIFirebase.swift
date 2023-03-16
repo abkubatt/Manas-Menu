@@ -133,23 +133,19 @@ class APIFirebase {
     
     
     func addDocumentToFirestore() {
-        do {
-            guard let currentUser = Auth.auth().currentUser else { return }
-            print("========================\(currentUser)")
-            let dbReference = Firestore.firestore().collection("roles").document(currentUser.uid)
-            let userToAdd = UserRole(email: currentUser.email, user_role: "user")
-            dbReference.setData([
-                "email": userToAdd.email,
-                "user_role": "user",
-            ]) { err in
-              if let err = err {
-                print("-----------------------------Error writing document: \(err)")
-              } else {
-                print("----------------------------Document successfully written!")
-              }
-            }
-        } catch let error {
-            print("Error while adding to firestore: \(error)")
+        guard let currentUser = Auth.auth().currentUser else { return }
+        print("========================\(currentUser)")
+        let dbReference = Firestore.firestore().collection("roles").document(currentUser.uid)
+        let userToAdd = UserRole(email: currentUser.email, user_role: "user")
+        dbReference.setData([
+            "email": userToAdd.email as Any,
+            "user_role": "user",
+        ]) { err in
+          if let err = err {
+            print("-----------------------------Error writing document: \(err)")
+          } else {
+            print("----------------------------Document successfully written!")
+          }
         }
     }
 }

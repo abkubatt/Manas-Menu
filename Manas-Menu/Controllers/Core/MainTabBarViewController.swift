@@ -19,37 +19,41 @@ class MainTabBarViewController: UITabBarController {
     static let shared = MainTabBarViewController()
     
     var userType: UserType = .admin
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-            let db = Firestore.firestore()
 
-            guard let userUid = Auth.auth().currentUser?.uid else { return }
-            let documentRef = db.collection("roles").document(userUid)
-            
-            documentRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let data = document.data()
-                    do {
-                        let jsonData = try JSONSerialization.data(withJSONObject: data ?? [:], options: [])
-                        let model = try JSONDecoder().decode(UserRole.self, from: jsonData)
-                        print("-----------------------------\(String(describing: model.user_role))")
-                        guard model.user_role != nil else{
-                            return
-                        }
-                        print("--------- \(model.user_role ?? "===")")
-                    } catch {
-                        print("Error decoding model: \(error)")
-                    }
-                } else {
-                    print("Document does not exist")
-                }
-            }
-
-
+        let userType = checkUserForAdmin()
         
-        setUpTabs(userType)
+        if userType == "admin"{
+            setUpTabs(.admin)
+        }else{
+            setUpTabs(.user)
+        }
+    }
+    
+    private func checkUserForAdmin() -> String {
+        var response: String = ""
+        guard let userUid = Auth.auth().currentUser?.uid else { return ""}
+        let documentRef = db.collection("roles").document(userUid)
+        
+        documentRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: data ?? [:], options: [])
+                    let model = try JSONDecoder().decode(UserRole.self, from: jsonData)
+                    response = model.user_role ?? "user"
+                } catch {
+                    print("Error decoding model: \(error)")
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+        return response
     }
     
     
