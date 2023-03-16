@@ -34,10 +34,17 @@ class MainTabBarViewController: UITabBarController {
         }
         
     }
+   
     
     private func checkUserForAdmin(completion: @escaping ((String) -> Void)){
-        var response = String()
-        guard let userUid = Auth.auth().currentUser?.uid else { return}
+        var response: String = ""
+        guard let userUid = Auth.auth().currentUser?.uid else {
+            if Auth.auth().currentUser?.uid == nil {
+                completion("quest")
+            }
+            return
+        }
+        
         let documentRef = db.collection("roles").document(userUid)
         
         documentRef.getDocument { (document, error) in
@@ -47,7 +54,8 @@ class MainTabBarViewController: UITabBarController {
                     let jsonData = try JSONSerialization.data(withJSONObject: data ?? [:], options: [])
                     let model = try JSONDecoder().decode(UserRole.self, from: jsonData)
                 
-                    response = model.user_role!
+                    response = model.user_role ?? ""
+                    completion(response)
                 } catch {
                     print("Error decoding model: \(error)")
                 }
@@ -55,10 +63,8 @@ class MainTabBarViewController: UITabBarController {
                 print("Document does not exist")
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                completion(response)
-        }
     }
+    
     
     
     
@@ -95,4 +101,5 @@ class MainTabBarViewController: UITabBarController {
         }
     }
 }
+
 

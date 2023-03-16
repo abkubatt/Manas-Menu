@@ -23,13 +23,4 @@ struct Menu: Codable {
    
 }
 
-struct UserRole: Codable {
-    let email: String?
-    let user_role: String?
-    
-    
-    init(email: String? = nil, user_role: String? = nil) {
-        self.email = email
-        self.user_role = user_role
-    }
-}
+

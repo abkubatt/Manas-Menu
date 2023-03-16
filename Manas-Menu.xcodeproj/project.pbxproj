@@ -38,6 +38,7 @@
 		A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
 		A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */; };
+		A081253129C3662100A05D4D /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A081253029C3662100A05D4D /* UserRole.swift */; };
 		A08188BB29BC4F6C00499A71 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BA29BC4F6C00499A71 /* Menus.swift */; };
 		A08188BD29BC759E00499A71 /* APIFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08188BC29BC759E00499A71 /* APIFirebase.swift */; };
 		A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */; };
@@ -120,6 +121,7 @@
 		A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListTableViewCell.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeleteTableViewCell.swift; sourceTree = "<group>"; };
+		A081253029C3662100A05D4D /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		A08188BA29BC4F6C00499A71 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		A08188BC29BC759E00499A71 /* APIFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFirebase.swift; sourceTree = "<group>"; };
 		A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateMenuViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				A0EBFA9B298FB9AB002F7B16 /* RMGetAllCharactersResponse.swift */,
 				A0C307E629BB754D001F3230 /* Menu.swift */,
 				A08188BA29BC4F6C00499A71 /* Menus.swift */,
+				A081253029C3662100A05D4D /* UserRole.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				A0A08C11298930AF007FD406 /* Title.swift in Sources */,
 				A0B4C38229BF385300583E7A /* DeleteMenuViewController.swift in Sources */,
 				A0EBFAA5298FBAFF002F7B16 /* RMCharacterListViewViewModel.swift in Sources */,
+				A081253129C3662100A05D4D /* UserRole.swift in Sources */,
 				A0EBFAB6298FDF1F002F7B16 /* SettingsViewController.swift in Sources */,
 				A0A08C20298933C7007FD406 /* YoutubeSearchResponse.swift in Sources */,
 				A0EBFA92298FB8B6002F7B16 /* RMEpisode.swift in Sources */,

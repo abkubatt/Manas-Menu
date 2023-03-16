@@ -406,6 +406,7 @@ extension LoginViewController: LoginButtonDelegate {
             
             print("Successfully logged user in")
             APIFirebase.shared.addDocumentToFirestore()
+
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         })
     }
