@@ -11,12 +11,13 @@ class AddFoodViewController: UIViewController {
     
     let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
     let canteedCategories = ["DRINKS", "PIZZA AND PIDES", "BAKERY PRODUCTS", "DESSERTS", "OTHER FOODS"]
-    var adding = [String]()
+    var adding = [String?]()
+    
+    var nameField: String?
+    var calorieField: String?
+    var imageField: String?
     var categoryFood = ""
-    var amount = 1
-    var pic3 = ""
-    var pic4 = ""
-    var dateOfMenu = ""
+    
     
     let addButton: UIButton = {
         let button = UIButton()
@@ -31,7 +32,7 @@ class AddFoodViewController: UIViewController {
     }()
     
   
-    let textField1: UITextField = {
+    let nameUIField: UITextField = {
         let field = UITextField()
         field.placeholder = "Name"
         field.backgroundColor = .textFieldCustomColor
@@ -41,7 +42,7 @@ class AddFoodViewController: UIViewController {
         return field
     }()
     
-    let textField2: UITextField = {
+    let calorieUIField: UITextField = {
         let field = UITextField()
         field.placeholder = "Calorie"
         field.backgroundColor = .textFieldCustomColor
@@ -51,7 +52,7 @@ class AddFoodViewController: UIViewController {
         return field
     }()
     
-    let textField3: UITextField = {
+    let imageUIField: UITextField = {
         let field = UITextField()
         field.placeholder = "Image"
         field.backgroundColor = .textFieldCustomColor
@@ -75,15 +76,15 @@ class AddFoodViewController: UIViewController {
         title = "Add Food"
         view.backgroundColor = .systemBackground
 
-        view.addSubviews(textField1)
-        view.addSubviews(textField2)
-        view.addSubviews(textField3)
+        view.addSubviews(nameUIField)
+        view.addSubviews(calorieUIField)
+        view.addSubviews(imageUIField)
         view.addSubviews(categoryPicker)
         view.addSubview(addButton)
         
-        textField1.delegate = self
-        textField2.delegate = self
-        textField3.delegate = self
+        nameUIField.delegate = self
+        calorieUIField.delegate = self
+        imageUIField.delegate = self
         
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
@@ -94,9 +95,10 @@ class AddFoodViewController: UIViewController {
     }
     
     @objc private func addBtn(){
+        adding.append(nameField)
+        adding.append(calorieField)
+        adding.append(imageField)
         adding.append(categoryFood == "" ? canteedCategories[0] : categoryFood)
-//        adding.append(amount)
-        print(amount)
         print(adding)
     }
  
@@ -104,29 +106,29 @@ class AddFoodViewController: UIViewController {
     private func configureConstraints() {
         
         let textField1Constraints = [
-            textField1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            textField1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            textField1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            textField1.heightAnchor.constraint(equalToConstant: 35)
+            nameUIField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            nameUIField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            nameUIField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            nameUIField.heightAnchor.constraint(equalToConstant: 35)
             
         ]
         
         let textField2Constraints = [
-            textField2.topAnchor.constraint(equalTo: textField1.bottomAnchor, constant: 40),
-            textField2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            textField2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            textField2.heightAnchor.constraint(equalToConstant: 35)
+            calorieUIField.topAnchor.constraint(equalTo: nameUIField.bottomAnchor, constant: 40),
+            calorieUIField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            calorieUIField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            calorieUIField.heightAnchor.constraint(equalToConstant: 35)
         ]
         
         let textField3Constraints = [
-            textField3.topAnchor.constraint(equalTo: textField2.bottomAnchor, constant: 40),
-            textField3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            textField3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            textField3.heightAnchor.constraint(equalToConstant: 35)
+            imageUIField.topAnchor.constraint(equalTo: calorieUIField.bottomAnchor, constant: 40),
+            imageUIField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            imageUIField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            imageUIField.heightAnchor.constraint(equalToConstant: 35)
         ]
         
         let categoryPickerConstraints = [
-            categoryPicker.topAnchor.constraint(equalTo: textField3.bottomAnchor, constant: 35),
+            categoryPicker.topAnchor.constraint(equalTo: imageUIField.bottomAnchor, constant: 35),
             categoryPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             categoryPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             categoryPicker.heightAnchor.constraint(equalToConstant: 100)
@@ -161,10 +163,12 @@ extension AddFoodViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text {
-            amount = Int(text) ?? 1
-        }else{
-            amount = 1
+        if textField == nameUIField {
+            nameField = textField.text
+        }else if textField == calorieUIField {
+            calorieField = textField.text
+        }else if textField == imageUIField {
+            imageField = textField.text
         }
     }
     
