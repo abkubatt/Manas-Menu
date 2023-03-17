@@ -44,6 +44,7 @@
 		A083B60329C4B96C00B0E405 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60229C4B96C00B0E405 /* AddFoodViewController.swift */; };
 		A083B60529C4B98800B0E405 /* UpdateFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60429C4B98800B0E405 /* UpdateFoodViewController.swift */; };
 		A083B60729C4B9AA00B0E405 /* DeleteFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */; };
+		A083B60929C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60829C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift */; };
 		A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
@@ -130,6 +131,7 @@
 		A083B60229C4B96C00B0E405 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		A083B60429C4B98800B0E405 /* UpdateFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFoodViewController.swift; sourceTree = "<group>"; };
 		A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFoodViewController.swift; sourceTree = "<group>"; };
+		A083B60829C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateFoodViewController.swift; sourceTree = "<group>"; };
 		A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateMenuViewController.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				A024039929855D2900F5227C /* LoginViewController.swift */,
 				A024039B29855D3500F5227C /* RegisterViewController.swift */,
 				A031581129B9FA80006090CD /* ResetPasswordViewController.swift */,
+				A0EBFAB5298FDF1F002F7B16 /* SettingsViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -366,30 +369,78 @@
 		A024037D29850C0C00F5227C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				A083B60F29C4C90C00B0E405 /* Others */,
+				A083B60E29C4C89300B0E405 /* ManageFreeFoods */,
+				A083B60D29C4C88900B0E405 /* ManageCanteen */,
+				A083B60C29C4C85900B0E405 /* ManageMenu */,
+				A083B60B29C4C7CD00B0E405 /* ManageMenuFood */,
+				A083B60A29C4C75E00B0E405 /* FreeFoods */,
 				A0853A12298669A6001081B2 /* ImageCarousel */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		A083B60A29C4C75E00B0E405 /* FreeFoods */ = {
+			isa = PBXGroup;
+			children = (
 				A02403A129857C0600F5227C /* FreeFoodsViewController.swift */,
-				A02403A32985932C00F5227C /* SearchViewController.swift */,
-				A02403A52985943000F5227C /* SearchResultsViewController.swift */,
-				A0A08C1D29893378007FD406 /* TitlePreviewViewController.swift */,
-				A0EBFAA1298FBA90002F7B16 /* RMCharacterDetailViewController.swift */,
-				A0EBFAB5298FDF1F002F7B16 /* SettingsViewController.swift */,
+			);
+			path = FreeFoods;
+			sourceTree = "<group>";
+		};
+		A083B60B29C4C7CD00B0E405 /* ManageMenuFood */ = {
+			isa = PBXGroup;
+			children = (
+				A083B60229C4B96C00B0E405 /* AddFoodViewController.swift */,
+				A083B60429C4B98800B0E405 /* UpdateFoodViewController.swift */,
+				A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */,
+				A083B60829C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift */,
+			);
+			path = ManageMenuFood;
+			sourceTree = "<group>";
+		};
+		A083B60C29C4C85900B0E405 /* ManageMenu */ = {
+			isa = PBXGroup;
+			children = (
 				A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */,
 				A0B4C37F29BF382F00583E7A /* UpdateMenuViewController.swift */,
 				A0B4C38129BF385300583E7A /* DeleteMenuViewController.swift */,
 				A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */,
+			);
+			path = ManageMenu;
+			sourceTree = "<group>";
+		};
+		A083B60D29C4C88900B0E405 /* ManageCanteen */ = {
+			isa = PBXGroup;
+			children = (
 				A0B4C38329BF388000583E7A /* AddCanteenFoodsViewController.swift */,
 				A0B4C38529BF38B100583E7A /* UpdateCanteenFoodsViewController.swift */,
 				A0B4C38729BF38D200583E7A /* DeleteCanteenFoodsViewController.swift */,
 				A0997F8429C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift */,
+			);
+			path = ManageCanteen;
+			sourceTree = "<group>";
+		};
+		A083B60E29C4C89300B0E405 /* ManageFreeFoods */ = {
+			isa = PBXGroup;
+			children = (
 				A0B4C38929BF38F000583E7A /* AddFreeFoodsViewController.swift */,
 				A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */,
 				A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */,
 				A0997F8629C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift */,
-				A083B60229C4B96C00B0E405 /* AddFoodViewController.swift */,
-				A083B60429C4B98800B0E405 /* UpdateFoodViewController.swift */,
-				A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */,
 			);
-			path = Other;
+			path = ManageFreeFoods;
+			sourceTree = "<group>";
+		};
+		A083B60F29C4C90C00B0E405 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				A0EBFAA1298FBA90002F7B16 /* RMCharacterDetailViewController.swift */,
+				A0A08C1D29893378007FD406 /* TitlePreviewViewController.swift */,
+				A02403A52985943000F5227C /* SearchResultsViewController.swift */,
+				A02403A32985932C00F5227C /* SearchViewController.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		A0853A12298669A6001081B2 /* ImageCarousel */ = {
@@ -641,6 +692,7 @@
 				A0EBFAAE298FBBE0002F7B16 /* RMRequest.swift in Sources */,
 				A0A08C1A29893285007FD406 /* TitleViewModel.swift in Sources */,
 				A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */,
+				A083B60929C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift in Sources */,
 				A083B60329C4B96C00B0E405 /* AddFoodViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
