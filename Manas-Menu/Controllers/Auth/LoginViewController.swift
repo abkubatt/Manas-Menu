@@ -400,7 +400,7 @@ extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: token)
          
         FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
-            guard let strongSelf = self else {
+            guard self != nil else {
                 return
             }
             
