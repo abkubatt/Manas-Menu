@@ -191,6 +191,8 @@ class LoginViewController: UIViewController {
         view.addSubview(promptLabel)
         view.addSubview(signUpButton)
         view.addSubviews(forgotPasswordButton)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
 //        facebookLoginButton.permissions = ["public_profile", "email"]
         view.addSubview(facebookLoginButton)
         for constraint in facebookLoginButton.constraints where constraint.firstAttribute == .height {
@@ -342,7 +344,13 @@ class LoginViewController: UIViewController {
 }
 
 
-extension LoginViewController: LoginButtonDelegate {
+extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true;
+    }
+    
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
         // no operation
     }

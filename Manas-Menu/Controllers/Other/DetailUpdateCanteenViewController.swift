@@ -17,7 +17,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
     var pic1 = ""
     var pic2 = ""
     var pic3 = ""
-    var pic4 = ""
+    var price: Int = 1
     var dateOfMenu = ""
     
     var idOfCanteenFood: Int = 0
@@ -53,10 +53,15 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         return picker
     }()
     
-    let pickerView4: UIPickerView = {
-        let picker = UIPickerView()
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        return picker
+    let priceField: UITextField = {
+        let field = UITextField()
+        field.placeholder = "Price"
+        field.text = "1"
+        field.backgroundColor = .secondaryLabel
+        field.layer.cornerRadius = 6
+        field.textAlignment = .center
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
     }()
 
     
@@ -68,7 +73,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         view.addSubview(pickerView1)
         view.addSubview(pickerView2)
         view.addSubview(pickerView3)
-        view.addSubview(pickerView4)
+        view.addSubview(priceField)
         view.addSubview(addButton)
         pickerView1.delegate = self
         pickerView1.dataSource = self
@@ -79,8 +84,8 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         pickerView3.delegate = self
         pickerView3.dataSource = self
 
-        pickerView4.delegate = self
-        pickerView4.dataSource = self
+        priceField.delegate = self
+        
         addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
         
         configureConstraints()
@@ -90,7 +95,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         adding.append(pic1 == "" ? desserts[0] : pic1)
         adding.append(pic2 == "" ? desserts[0] : pic2)
         adding.append(pic3 == "" ? desserts[0] : pic3)
-        adding.append(pic4 == "" ? canteedCategories[0] : pic4)
+        print(price == 1 ? 1 : price)
 
         print(adding)
     }
@@ -119,15 +124,15 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
             pickerView3.heightAnchor.constraint(equalToConstant: 100)
         ]
         
-        let pickerView4Constraints = [
-            pickerView4.topAnchor.constraint(equalTo: pickerView3.bottomAnchor, constant: 12),
-            pickerView4.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            pickerView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            pickerView4.heightAnchor.constraint(equalToConstant: 100)
+        let priceFieldConstraints = [
+            priceField.topAnchor.constraint(equalTo: pickerView3.bottomAnchor, constant: 25),
+            priceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            priceField.heightAnchor.constraint(equalToConstant: 30),
+            priceField.widthAnchor.constraint(equalToConstant: 80)
         ]
         
         let addButtonConstraints = [
-            addButton.topAnchor.constraint(equalTo: pickerView4.bottomAnchor, constant: 30),
+            addButton.topAnchor.constraint(equalTo: priceField.bottomAnchor, constant: 30),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 90),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -90),
             addButton.heightAnchor.constraint(equalToConstant: 40)
@@ -136,7 +141,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         NSLayoutConstraint.activate(pickerView1Constraints)
         NSLayoutConstraint.activate(pickerView2Constraints)
         NSLayoutConstraint.activate(pickerView3Constraints)
-        NSLayoutConstraint.activate(pickerView4Constraints)
+        NSLayoutConstraint.activate(priceFieldConstraints)
         NSLayoutConstraint.activate(addButtonConstraints)
     }
     
@@ -149,8 +154,22 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
 }
 
 
-extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate{
+extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, UITextFieldDelegate{
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = textField.text {
+            price = Int(text) ?? 1
+        }else{
+            price = 1
+        }
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -166,9 +185,6 @@ extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPicker
         } else if pickerView == pickerView3 {
             return desserts.count
             // Return the number of rows for pickerView3
-        } else if pickerView == pickerView4 {
-            return canteedCategories.count
-            // Return the number of rows for pickerView4
         }
         return 0
     }
@@ -185,10 +201,6 @@ extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPicker
             return desserts[row]
 
             // Return the title for the row in pickerView3
-        } else if pickerView == pickerView4 {
-            return canteedCategories[row]
-
-            // Return the title for the row in pickerView4
         }
         return nil
     }
@@ -202,9 +214,6 @@ extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPicker
         } else if pickerView == pickerView3 {
             pic3 = desserts[row]
             // Handle the selection in pickerView3
-        } else if pickerView == pickerView4 {
-            pic4 = canteedCategories[row]
-            // Handle the selection in pickerView4
         }
     }
 

@@ -128,6 +128,8 @@ class RegisterViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
         configureConstraints()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
@@ -208,4 +210,10 @@ class RegisterViewController: UIViewController {
     
     
 
+}
+extension RegisterViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true;
+    }
 }
