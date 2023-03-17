@@ -49,6 +49,7 @@ class ManageViewController: UIViewController {
     }
     
     private func configureList(){
+        listChoice.append(TitleForSection.init(title: "Manage Menu Food", icons: [UIImage(systemName: "fork.knife")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!], rows: ["Add Food", "Update Food", "Delete Food"]))
         listChoice.append(TitleForSection.init(title: "Manage Menu", icons: [ UIImage(systemName: "calendar.badge.plus")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!], rows: ["Add menu", "Update menu", "Delete menu"] ))
         listChoice.append(TitleForSection.init(title: "Manage Canteen", icons: [UIImage(systemName: "cup.and.saucer")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!],rows: ["Add canteen foods", "Update canteen foods", "Delete canteen foods"]))
         listChoice.append(TitleForSection.init(title: "Manage Free Foods", icons: [UIImage(systemName: "fork.knife")!,UIImage(systemName: "square.and.pencil")!,UIImage(systemName: "trash")!], rows: ["Add free foods", "Update free foods", "Delete free foods"]))
@@ -103,6 +104,15 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let selected = listChoice[indexPath.section].rows[indexPath.row]
         switch selected {
+            case "Add Food":
+            navigationController?.pushViewController(AddFoodViewController(), animated: true)
+            
+            case "Update Food":
+            navigationController?.pushViewController(UpdateFoodViewController(), animated: true)
+            
+            case "Delete Food":
+            navigationController?.pushViewController(DeleteFoodViewController(), animated: true)
+            
             case "Add menu":
             navigationController?.pushViewController(AddMenuViewController(), animated: true)
             
