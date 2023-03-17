@@ -42,8 +42,7 @@ class AddFreeFoodsViewController: UIViewController {
     let textField: UITextField = {
         let field = UITextField()
         field.placeholder = "Amount"
-        field.text = "1"
-        field.backgroundColor = .secondaryLabel
+        field.backgroundColor = .textFieldCustomColor
         field.layer.cornerRadius = 6
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false

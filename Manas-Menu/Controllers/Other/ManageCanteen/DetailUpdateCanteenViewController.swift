@@ -56,8 +56,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
     let priceField: UITextField = {
         let field = UITextField()
         field.placeholder = "Price"
-        field.text = "1"
-        field.backgroundColor = .secondaryLabel
+        field.backgroundColor = .textFieldCustomColor
         field.layer.cornerRadius = 6
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false

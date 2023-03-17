@@ -35,6 +35,7 @@
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
+		A06EA23329C4D533009FCB08 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA23229C4D533009FCB08 /* UIColorExtension.swift */; };
 		A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */; };
 		A073542B299662B200FD74C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073542A299662B200FD74C9 /* MenuTableViewCell.swift */; };
 		A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */; };
@@ -122,6 +123,7 @@
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		A06EA23229C4D533009FCB08 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListTableViewCell.swift; sourceTree = "<group>"; };
 		A073542A299662B200FD74C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeleteTableViewCell.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				A0A08C0E29892F1C007FD406 /* StringExtension.swift */,
 				A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */,
 				A0EBFAB3298FBCD6002F7B16 /* UIViewExtension.swift */,
+				A06EA23229C4D533009FCB08 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				A0B4C38E29BF393F00583E7A /* DeleteFreeFoodsViewController.swift in Sources */,
 				A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */,
 				A0C307E729BB754D001F3230 /* Menu.swift in Sources */,
+				A06EA23329C4D533009FCB08 /* UIColorExtension.swift in Sources */,
 				A0997F8729C20EA400101AA6 /* DetailUpdateFreeFoodsViewController.swift in Sources */,
 				A0997F8529C20AAD00101AA6 /* DetailUpdateCanteenViewController.swift in Sources */,
 				A0EBFA8E298FB87B002F7B16 /* RMLocation.swift in Sources */,

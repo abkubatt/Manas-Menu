@@ -35,8 +35,7 @@ class DetailUpdateFoodViewController: UIViewController {
     let textField1: UITextField = {
         let field = UITextField()
         field.placeholder = "Name"
-        field.text = "1"
-        field.backgroundColor = .secondaryLabel
+        field.backgroundColor = .textFieldCustomColor
         field.layer.cornerRadius = 10
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -46,8 +45,7 @@ class DetailUpdateFoodViewController: UIViewController {
     let textField2: UITextField = {
         let field = UITextField()
         field.placeholder = "Calorie"
-        field.text = "1"
-        field.backgroundColor = .secondaryLabel
+        field.backgroundColor = .textFieldCustomColor
         field.layer.cornerRadius = 10
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -57,8 +55,7 @@ class DetailUpdateFoodViewController: UIViewController {
     let textField3: UITextField = {
         let field = UITextField()
         field.placeholder = "Image"
-        field.text = "1"
-        field.backgroundColor = .secondaryLabel
+        field.backgroundColor = .textFieldCustomColor
         field.layer.cornerRadius = 10
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -131,8 +128,8 @@ class DetailUpdateFoodViewController: UIViewController {
         
         let categoryPickerConstraints = [
             categoryPicker.topAnchor.constraint(equalTo: textField3.bottomAnchor, constant: 35),
-            categoryPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            categoryPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            categoryPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            categoryPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             categoryPicker.heightAnchor.constraint(equalToConstant: 100)
         ]
         
