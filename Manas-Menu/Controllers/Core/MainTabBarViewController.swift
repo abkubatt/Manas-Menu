@@ -66,6 +66,18 @@ class MainTabBarViewController: UITabBarController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkUserForAdmin { role in
+            if role == "admin"{
+                self.setUpTabs(.admin)
+            }else{
+                self.setUpTabs(.user)
+            }
+        }
+    }
+    
+    
     
     
     
