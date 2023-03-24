@@ -42,10 +42,12 @@ class APICaller {
 //        self.getttt { result in
 //            print("---------------------------------------\(result)")
 //        }
-        let menu = Mennu(id: 12, image: "udpated", name: "name up", type: "dinner", calorie: 312)
-        self.putRequest(url: URL(string: "http://192.168.241.114:8080/api/Menus/12")!, menu: menu) { res in
-            print("-------------------\(res)")
-        }
+//        let menu = Mennu(id: 12, image: "udpated", name: "name up", type: "dinner", calorie: 312)
+//        self.putRequest(url: URL(string: "http://192.168.241.114:8080/api/Menus/12")!, menu: menu) { res in
+//            print("-------------------\(res)")
+//        }
+        
+        self.delete()
         
         guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
@@ -189,6 +191,37 @@ class APICaller {
             completion(.failure(error))
         }
     }
+    func delete(){
+        
+        
+        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/7") else {
+            // handle invalid URL
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let httpResponse = response as? HTTPURLResponse {
+                    print("statusCode: \(httpResponse.statusCode)")
+                
+                
+                if (200...299).contains(httpResponse.statusCode) {
+//                    completion(.success(()))
+                    print("success")
+                } else {
+                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+//                    completion(.failure(error))
+                    print("error")
+                }
+            }
+        }
+        
+        task.resume()
+    }
+
 
 
 
