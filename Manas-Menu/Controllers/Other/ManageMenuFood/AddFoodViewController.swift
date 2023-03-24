@@ -10,7 +10,7 @@ import UIKit
 class AddFoodViewController: UIViewController {
     
     let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
-    let canteedCategories = ["DRINKS", "PIZZA AND PIDES", "BAKERY PRODUCTS", "DESSERTS", "OTHER FOODS"]
+    let canteedCategories = ["SOUP", "WITH MEAT", "WITHOUT MEAT", "DESSERT"]
     var adding = [String?]()
     
     var nameField: String?

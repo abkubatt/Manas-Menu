@@ -100,7 +100,8 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
                     self?.imageView.image = image
                 }
             case .failure(let error):
-                print(String(describing: error))
+                let error = error
+//                print(String(describing: error))
                 break
             }
         }

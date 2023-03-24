@@ -20,10 +20,29 @@ struct Constant {
     static let youtubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
+struct Canten: Codable {
+    let id: Int
+    let name: String
+    let type: String
+    let price: Int
+}
+
+struct Mennu: Codable {
+    let id: Int
+    let image: String
+    let name: String
+    let type: String
+    let calorie: Int
+}
+
 class APICaller {
     static let shared = APICaller()
     // "https://drink.free.beeceptor.com/drink"
     func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+        self.getttt { result in
+            print("---------------------------------------\(result)")
+        }
+        
         guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
@@ -34,6 +53,23 @@ class APICaller {
                 completion(.success(results.results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
+            }
+        }
+        task.resume()
+    }
+    
+    func getttt(completion: @escaping (Result<[Mennu], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus") else {return}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode([Mennu].self, from: data)
+                print("---------------------->>>>>>>>>>> \(results)")
+                completion(.success(results))
+            }catch let error{
+                completion(.failure(error))
             }
         }
         task.resume()
@@ -56,6 +92,8 @@ class APICaller {
         }
         task.resume()
     }
+    
+    
     
     // "https://abkubatt.free.beeceptor.com/bakerproducts
     func getPopular(completion: @escaping (Result<[Title], Error>) -> Void) {

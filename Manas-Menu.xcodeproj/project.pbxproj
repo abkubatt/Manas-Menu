@@ -47,6 +47,7 @@
 		A083B60729C4B9AA00B0E405 /* DeleteFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */; };
 		A083B60929C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083B60829C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift */; };
 		A084307929C1FB8B004BA81C /* DetailUpdateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */; };
+		A084539E29CC5F3000BBA66A /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084539D29CC5F3000BBA66A /* Canteen.swift */; };
 		A0853A0B29865FEA001081B2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0A29865FEA001081B2 /* SDWebImage */; };
 		A0853A0D29865FEA001081B2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0853A0C29865FEA001081B2 /* SDWebImageMapKit */; };
 		A0853A0F2986600C001081B2 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0853A0E2986600C001081B2 /* Carousel.swift */; };
@@ -135,6 +136,7 @@
 		A083B60629C4B9AA00B0E405 /* DeleteFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFoodViewController.swift; sourceTree = "<group>"; };
 		A083B60829C4BC0F00B0E405 /* DetailUpdateFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateFoodViewController.swift; sourceTree = "<group>"; };
 		A084307829C1FB8B004BA81C /* DetailUpdateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateMenuViewController.swift; sourceTree = "<group>"; };
+		A084539D29CC5F3000BBA66A /* Canteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteen.swift; sourceTree = "<group>"; };
 		A0853A0E2986600C001081B2 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		A0853A1029866050001081B2 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		A0853A13298673F2001081B2 /* UniversityImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityImages.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				A0C307E629BB754D001F3230 /* Menu.swift */,
 				A08188BA29BC4F6C00499A71 /* Menus.swift */,
 				A081253029C3662100A05D4D /* UserRole.swift */,
+				A084539D29CC5F3000BBA66A /* Canteen.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				A0EBFA8C298FB79C002F7B16 /* RMCharacterListView.swift in Sources */,
 				A0EBFA98298FB95B002F7B16 /* RMSingleLocation.swift in Sources */,
 				A083B60729C4B9AA00B0E405 /* DeleteFoodViewController.swift in Sources */,
+				A084539E29CC5F3000BBA66A /* Canteen.swift in Sources */,
 				A0B4C38429BF388000583E7A /* AddCanteenFoodsViewController.swift in Sources */,
 				A0A08C1C29893322007FD406 /* TitlePreviewViewModel.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,

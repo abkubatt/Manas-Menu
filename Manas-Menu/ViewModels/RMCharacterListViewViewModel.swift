@@ -51,7 +51,8 @@ final class RMCharacterListViewViewModel: NSObject {
                     self?.delegate?.didLoadInitialCharacters()
                 }
             case .failure(let error):
-                print(String(describing: error))
+                let error = error
+//                print(String(describing: error))
             }
         }
     }

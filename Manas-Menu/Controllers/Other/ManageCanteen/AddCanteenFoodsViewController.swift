@@ -174,7 +174,7 @@ extension AddCanteenFoodsViewController: UIPickerViewDelegate, UIPickerViewDataS
             return desserts.count
             // Return the number of rows for pickerView2
         } else if pickerView == pickerView3 {
-            return desserts.count
+            return canteedCategories.count
             // Return the number of rows for pickerView3
         }
         return 0
