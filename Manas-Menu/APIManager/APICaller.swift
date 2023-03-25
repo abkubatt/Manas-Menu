@@ -27,13 +27,13 @@ struct Canten: Codable {
     let price: Int
 }
 
-struct Mennu: Codable {
-    let id: Int
-    let image: String
-    let name: String
-    let type: String
-    let calorie: Int
-}
+//struct Mennu: Codable {
+//    let id: Int
+//    let image: String
+//    let name: String
+//    let type: String
+//    let calorie: Int
+//}
 
 class APICaller {
     static let shared = APICaller()
@@ -61,17 +61,18 @@ class APICaller {
                 completion(.failure(APIError.failedToGetData))
             }
         }
+        
         task.resume()
     }
     
-    func getttt(completion: @escaping (Result<[Mennu], Error>) -> Void) {
+    func getAllMenuFood(completion: @escaping (Result<[Menu], Error>) -> Void) {
         guard let url = URL(string: "http://192.168.241.114:8080/api/Menus") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode([Mennu].self, from: data)
+                let results = try JSONDecoder().decode([Menu].self, from: data)
                 print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
@@ -102,7 +103,7 @@ class APICaller {
       // add headers for the request
       request.addValue("application/json", forHTTPHeaderField: "Content-Type") // change as per server requirements
       request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let menu = Mennu(id: 12, image: "Abdulmajit IMAGE", name: "ASH", type: "Main", calorie: 234)
+        let menu = Menu(id: 12, image: "Abdulmajit IMAGE", name: "ASH", type: "Main", calorie: 234)
 
       do {
         // convert parameters to Data and assign dictionary to httpBody of request
@@ -158,7 +159,7 @@ class APICaller {
     
     
     
-    func putRequest(url: URL, menu: Mennu, completion: @escaping (Result<Void, Error>) -> Void) {
+    func putRequest(url: URL, menu: Menu, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
 

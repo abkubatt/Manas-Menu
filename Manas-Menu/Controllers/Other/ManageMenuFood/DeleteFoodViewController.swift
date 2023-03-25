@@ -11,6 +11,8 @@ class DeleteFoodViewController: UIViewController {
 
     var items = ["Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt",]
     
+    var menuFoods = [Menu]()
+    
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -25,8 +27,20 @@ class DeleteFoodViewController: UIViewController {
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        
+        getMenus()
         configureConstraints()
+    }
+    
+    func getMenus(){
+        APICaller.shared.getAllMenuFood { result in
+            switch result {
+            case .success(let menus):
+                self.menuFoods = menus
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
+            
+        }
     }
     
     private func configureConstraints(){
@@ -51,7 +65,7 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return menuFoods.count
     }
     
     
@@ -63,7 +77,7 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = menuFoods[indexPath.row].name
         return cell
     }
 
@@ -81,8 +95,13 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            items.remove(at: indexPath.row)
+            menuFoods.remove(at: indexPath.row)
+            
+            
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
             tableView.endUpdates()
         }
     }
