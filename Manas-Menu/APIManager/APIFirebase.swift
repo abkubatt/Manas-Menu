@@ -68,10 +68,12 @@ class APIFirebase {
         // Query the subcollection for documents
         subcollectionRef.getDocuments() { (querySnapshot, error) in
             if let error = error {
-                print("-----------------------------Error getting documents: \(error)")
+//                print("-----------------------------Error getting documents: \(error)")
+                _ = "-----------------------------Error getting documents: \(error)"
             } else {
                 for document in querySnapshot!.documents {
-                    print("-----------------------\(document.documentID) => \(document.data())")
+//                    print("-----------------------\(document.documentID) => \(document.data())")
+                    _ = "-----------------------\(document.documentID) => \(document.data())"
                 }
             }
         }
@@ -87,15 +89,17 @@ class APIFirebase {
         do {
             _ = try  dbReference.addDocument(from: menu) { error in
                 if let error = error {
-                    print("Error")
+//                    print("Error")
                     completion(error)
                 } else {
-                    print("Successfully added to fireStore")
+//                    print("Successfully added to fireStore")
+                    _ = "Successfully added to fireStore"
                     completion(nil)
                 }
             }
         }catch let error{
-            print("Error while adding to firestore \(error)")
+//            print("Error while adding to firestore \(error)")
+            _ = "Error while adding to firestore \(error)"
         }
     }
     
@@ -104,15 +108,17 @@ class APIFirebase {
         do{
             _ = try dbReference.document(documentID).setData(from: updateMenu) { error in
                 if let error = error {
-                    print("Error \(error)")
+//                    print("Error \(error)")
                     completion(error)
                 } else {
-                    print("Document successfully updated")
+//                    print("Document successfully updated")
+                    _ = "Document successfully updated"
                     completion(nil)
                 }
             }
         }catch let error{
-            print("Error while updateing Menu \(error)")
+//            print("Error while updateing Menu \(error)")
+            _ = "Error while updateing Menu \(error)"
         }
     }
     
@@ -122,10 +128,12 @@ class APIFirebase {
         //        let documentRef = db.collection(collectionName).document(documentID)
         dbReference.document(documentID).delete() { error in
             if let error = error {
-                print("Error deleting document: \(error.localizedDescription)")
+//                print("Error deleting document: \(error.localizedDescription)")
+                _ = "Error deleting document: \(error.localizedDescription)"
                 completion(error)
             } else {
-                print("Document deleted successfully.")
+//                print("Document deleted successfully.")
+                _ = "Document deleted successfully."
                 completion(nil)
             }
         }
@@ -146,9 +154,11 @@ class APIFirebase {
                 "user_role": "user",
             ]) { err in
                 if let err = err {
-                    print("-----------------------------Error writing document: \(err)")
+                    _ = "-----------------------------Error writing document: \(err)"
+//                    print("-----------------------------Error writing document: \(err)")
                 } else {
-                    print("----------------------------Document successfully written!")
+                     _ = "----------------------------Document successfully written!"
+//                    print("----------------------------Document successfully written!")
                 }
             }
         }

@@ -99,7 +99,7 @@ class AddFoodViewController: UIViewController {
         adding.append(calorieField)
         adding.append(imageField)
         adding.append(categoryFood == "" ? canteedCategories[0] : categoryFood)
-        print(adding)
+//        print(adding)
     }
  
     

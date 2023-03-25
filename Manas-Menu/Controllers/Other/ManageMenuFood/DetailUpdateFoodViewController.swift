@@ -100,7 +100,7 @@ class DetailUpdateFoodViewController: UIViewController {
         adding.append(calorieField)
         adding.append(imageField)
         adding.append(categoryFood == "" ? canteedCategories[0] : categoryFood)
-        print(adding)
+//        print(adding)
     }
  
     
@@ -153,7 +153,7 @@ class DetailUpdateFoodViewController: UIViewController {
     
     public func configure(with idOfMenu: Int) {
         self.idOfMenu = idOfMenu
-        print(self.idOfMenu)
+//        print(self.idOfMenu)
     }
 
 }

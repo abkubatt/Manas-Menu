@@ -131,7 +131,8 @@ class LoginViewController: UIViewController {
         viewModel.$user.sink { [weak self] user in
             guard user != nil else { return }
             guard let vc = self?.navigationController?.viewControllers.first as? LoginViewController else { return }
-            print(vc)
+            _ = vc
+//            print(vc)
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 
         }
@@ -314,11 +315,13 @@ class LoginViewController: UIViewController {
                         let menu = try document.data(as: UserRole.self)
                         return menu
                     } catch {
-                        print("Error decoding Menu: \(error.localizedDescription)")
+                        _ = "Error decoding Menu: \(error.localizedDescription)"
+//                        print("Error decoding Menu: \(error.localizedDescription)")
                         return nil
                     }
                 }
-                print("Fetched Menus: \(self.userR)")
+                _ = "Fetched Menus: \(self.userR)"
+//                print("Fetched Menus: \(self.userR)")
             }
         }
     
@@ -327,15 +330,17 @@ class LoginViewController: UIViewController {
         do {
             _ = try  dbReference.addDocument(from: userRole) { error in
                 if let error = error {
-                    print("Error")
+//                    print("Error")
                     completion(error)
                 } else {
-                    print("Successfully added to fireStore")
+                    _ = "Successfully added to fireStore"
+//                    print("Successfully added to fireStore")
                     completion(nil)
                 }
             }
         }catch let error{
-            print("Error while adding to firestore \(error)")
+            _ =  "Error while adding to firestore \(error)"
+//            print("Error while adding to firestore \(error)")
         }
     }
     
@@ -358,7 +363,8 @@ extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
     func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
         
         guard let token = result?.token?.tokenString else {
-            print("User failed to log in with facebook")
+            _ = "User failed to log in with facebook"
+//            print("User failed to log in with facebook")
             return
         }
         
@@ -406,13 +412,15 @@ extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
             
             guard authResult != nil, error == nil  else{
                 if let error = error {
-                    print("Facebook credential login failed, MFA may be needed - \(error)")
+                    _ = "Facebook credential login failed, MFA may be needed - \(error)"
+//                    print("Facebook credential login failed, MFA may be needed - \(error)")
                     
                 }
                 return
             }
             
-            print("Successfully logged user in")
+//            print("Successfully logged user in")
+            _ = "Successfully logged user in"
             APIFirebase.shared.addDocumentToFirestore()
 
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)

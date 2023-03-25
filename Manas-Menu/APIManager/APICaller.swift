@@ -73,7 +73,8 @@ class APICaller {
             }
             do {
                 let results = try JSONDecoder().decode([Menu].self, from: data)
-                print("---------------------->>>>>>>>>>> \(results)")
+                _ = "---------------------->>>>>>>>>>> \(results)"
+//                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
                 completion(.failure(error))
@@ -88,7 +89,7 @@ class APICaller {
 
       // declare the parameter as a dictionary that contains string as key and value combination. considering inputs are valid
 
-      let parameters: [String: Any] = ["id": 13, "name": "jack"]
+//      let parameters: [String: Any] = ["id": 13, "name": "jack"]
 
       // create the url with URL
       let url = URL(string: "http://192.168.241.114:8080/api/Menus")! // change server url accordingly
@@ -114,7 +115,8 @@ class APICaller {
               }
               request.httpBody = httpBody
       } catch let error {
-        print(error.localizedDescription)
+          _  = error.localizedDescription
+//        print(error.localizedDescription)
         return
       }
 
@@ -122,7 +124,8 @@ class APICaller {
       let task = session.dataTask(with: request) { data, response, error in
 
         if let error = error {
-          print("Post Request Error: \(error.localizedDescription)")
+            _ = "Post Request Error: \(error.localizedDescription)"
+//          print("Post Request Error: \(error.localizedDescription)")
           return
         }
 
@@ -130,27 +133,31 @@ class APICaller {
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode)
         else {
-          print("Invalid Response received from the server")
+            _ = "Invalid Response received from the server"
+//          print("Invalid Response received from the server")
           return
         }
 
         // ensure there is data returned
         guard let responseData = data else {
-          print("nil Data received from the server")
+            _ = "nil Data received from the server"
+//          print("nil Data received from the server")
           return
         }
 
         do {
           // create json object from data or use JSONDecoder to convert to Model stuct
           if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-            print(jsonResponse)
+              _ = jsonResponse
+//            print(jsonResponse)
             // handle json response
           } else {
             print("data maybe corrupted or in wrong format")
             throw URLError(.badServerResponse)
           }
         } catch let error {
-          print(error.localizedDescription)
+            _ = error.localizedDescription
+//          print(error.localizedDescription)
         }
       }
       // perform the task
@@ -206,16 +213,19 @@ class APICaller {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let httpResponse = response as? HTTPURLResponse {
-                    print("statusCode: \(httpResponse.statusCode)")
+                _ = "statusCode: \(httpResponse.statusCode)"
+//                    print("statusCode: \(httpResponse.statusCode)")
                 
                 
                 if (200...299).contains(httpResponse.statusCode) {
 //                    completion(.success(()))
-                    print("success")
+                    _ = "success"
+//                    print("success")
                 } else {
                     let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
 //                    completion(.failure(error))
-                    print("error")
+                    _ = "error \(error)"
+//                    print("error \(error)")
                 }
             }
         }
@@ -235,16 +245,16 @@ class APICaller {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let httpResponse = response as? HTTPURLResponse {
-                    print("statusCode: \(httpResponse.statusCode)")
-                
+//                    print("statusCode: \(httpResponse.statusCode)")
+                let statusCode = httpResponse.statusCode
                 
                 if (200...299).contains(httpResponse.statusCode) {
                     completion(.success(true))
-                    print("success")
+//                    print("success")
                 } else {
                     let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
                     completion(.failure(error as Error))
-                    print("error")
+//                    print("error")
                 }
             }
         }
@@ -378,7 +388,8 @@ class APICaller {
                 completion(.success(results.items[0]))
             }catch{
                 completion(.failure(error))
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
+                _ = error.localizedDescription
             }
         }
         task.resume()

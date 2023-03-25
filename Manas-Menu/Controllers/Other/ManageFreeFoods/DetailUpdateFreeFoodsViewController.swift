@@ -73,8 +73,8 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
     @objc private func addBtn(){
         adding.append(pic1 == "" ? desserts[0] : pic1)
 //        adding.append(amount)
-        print(amount)
-        print(adding)
+//        print(amount)
+//        print(adding)
     }
  
     
@@ -108,7 +108,7 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
     
     public func configure(with idOfFreeFood: Int) {
         self.idOfFreeFood = idOfFreeFood
-        print(self.idOfFreeFood)
+//        print(self.idOfFreeFood)
     }
 
 

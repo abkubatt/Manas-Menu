@@ -49,7 +49,8 @@ class FreeFoodsViewController: UIViewController {
                     self?.upcomingTable.reloadData()
                 }
             case.failure(let error):
-                print(error.localizedDescription)
+                _ = error.localizedDescription
+//                print(error.localizedDescription)
             }
         }
     }
@@ -93,7 +94,8 @@ extension FreeFoodsViewController: UITableViewDelegate, UITableViewDataSource {
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                _ = error.localizedDescription
+//                print(error.localizedDescription)
             }
         }
     }

@@ -57,10 +57,12 @@ class MainTabBarViewController: UITabBarController {
                     response = model.user_role ?? ""
                     completion(response)
                 } catch {
-                    print("Error decoding model: \(error)")
+                    _ = "Error decoding model: \(error)"
+//                    print("Error decoding model: \(error)")
                 }
             } else {
-                print("Document does not exist")
+                 _ = "Document does not exist"
+//                print("Document does not exist")
             }
         }
     }

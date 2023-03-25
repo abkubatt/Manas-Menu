@@ -51,7 +51,8 @@ final class AuthenticationViewViewModel: ObservableObject {
                 }
                 
             }receiveValue: { user in
-                print(user)
+                _ = user
+//                print(user)
             }
             .store(in: &subcriptions)
     }

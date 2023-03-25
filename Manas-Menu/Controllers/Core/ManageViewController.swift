@@ -142,7 +142,8 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
 
             
         default:
-            print("Error")
+            _ = "error"
+//            print("Error")
         }
     }
     

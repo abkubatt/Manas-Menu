@@ -140,7 +140,8 @@ class RegisterViewController: UIViewController {
     
     @objc private func didTapRegister() {
         Auth.auth().createUser(withEmail: emailTextField.text ?? "empty", password: passwordTextField.text ?? "empty") { response, error in
-            print("\(String(describing: response)) + \(String(describing: error))")
+            _ = "\(String(describing: response)) + \(String(describing: error))"
+//            print("\(String(describing: response)) + \(String(describing: error))")
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
             APIFirebase.shared.addDocumentToFirestore()

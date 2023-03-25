@@ -55,7 +55,8 @@ class CanteenViewController: UIViewController {
                 self?.randomTrendingMovie = selectedTitle
 //                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.original_name ?? "", posterURL: selectedTitle?.poster_path ?? ""))
             case .failure(let error):
-                print(error.localizedDescription)
+                _ = error.localizedDescription
+//                print(error.localizedDescription)
             }
         }
     }
@@ -111,7 +112,8 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let titles):
                     cell.configure(with: titles)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    _ = error.localizedDescription
+//                    print(error.localizedDescription)
                 }
             }
             
@@ -121,7 +123,8 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let titles):
                     cell.configure(with: titles)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    _ = error.localizedDescription
+//                    print(error.localizedDescription)
                 }
             }
             
@@ -131,7 +134,8 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let titles):
                     cell.configure(with: titles)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    _ = error.localizedDescription
+//                    print(error.localizedDescription)
                 }
             }
             
@@ -141,7 +145,8 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let titles):
                     cell.configure(with: titles)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    _ = error.localizedDescription
+//                    print(error.localizedDescription)
                 }
             }
             
@@ -151,7 +156,8 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let titles):
                     cell.configure(with: titles)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    _ = error.localizedDescription
+//                    print(error.localizedDescription)
                 }
             }
         default:

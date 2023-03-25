@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         guard error == nil else{
             if let error = error {
-                print("Failed to sign in with Google: \(error)")
+                _ = "Failed to sign in with Google: \(error)"
+//                print("Failed to sign in with Google: \(error)")
             }
             return
         }
@@ -68,10 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FirebaseAuth.Auth.auth().signIn(with: credential, completion: { authResults, error in
             guard authResults != nil, error == nil else{
-                print("failed to log in with google credential")
+//                print("failed to log in with google credential")
+                _ = "failed to log in with google credential"
                 return
             }
-            print("Successfully signed in with Google cred.")
+//            print("Successfully signed in with Google cred.")
+            _ = "Successfully signed in with Google cred."
             APIFirebase.shared.addDocumentToFirestore()
             NotificationCenter.default.post(name: .didLogInNotification, object: nil)
             
@@ -82,7 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print("Google user was disconnected")
+//        print("Google user was disconnected")
+        _ = "Google user was disconnected"
     }
     
    

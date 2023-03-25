@@ -91,9 +91,9 @@ class AddCanteenFoodsViewController: UIViewController {
         adding.append(pic1 == "" ? desserts[0] : pic1)
         adding.append(pic2 == "" ? desserts[0] : pic2)
         adding.append(pic3 == "" ? canteedCategories[0] : pic3)
-        print(price == 1 ? 1 : price)
-
-        print(adding)
+//        print(price == 1 ? 1 : price)
+//
+//        print(adding)
     }
  
     

@@ -106,7 +106,7 @@ class DetailUpdateMenuViewController: UIViewController {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let selectedDate = dateFormatter.string(from: Date())
         adding.append(dateOfMenu == "" ? selectedDate : dateOfMenu)
-        print(adding)
+//        print(adding)
     }
  
     
@@ -165,13 +165,13 @@ class DetailUpdateMenuViewController: UIViewController {
         dateFormatter.timeStyle = .none
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let selectedDate = dateFormatter.string(from: sender.date)
-        print("Selected date: \(selectedDate)")
+//        print("Selected date: \(selectedDate)")
         dateOfMenu = "\(selectedDate)"
     }
     
     public func configure(with idOfMenu: Int) {
         self.idOfMenu = idOfMenu
-        print(self.idOfMenu)
+//        print(self.idOfMenu)
     }
     
 

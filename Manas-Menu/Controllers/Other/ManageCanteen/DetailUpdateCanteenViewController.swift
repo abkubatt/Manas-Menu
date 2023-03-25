@@ -94,9 +94,9 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
         adding.append(pic1 == "" ? desserts[0] : pic1)
         adding.append(pic2 == "" ? desserts[0] : pic2)
         adding.append(pic3 == "" ? desserts[0] : pic3)
-        print(price == 1 ? 1 : price)
-
-        print(adding)
+//        print(price == 1 ? 1 : price)
+//
+//        print(adding)
     }
  
     
@@ -146,7 +146,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
     
     public func configure(with idOfCanteenFood: Int) {
         self.idOfCanteenFood = idOfCanteenFood
-        print(self.idOfCanteenFood)
+//        print(self.idOfCanteenFood)
     }
 
 
