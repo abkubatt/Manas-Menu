@@ -95,14 +95,29 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            menuFoods.remove(at: indexPath.row)
-            
-            
-            
+
             tableView.deleteRows(at: [indexPath], with: .fade)
+
             
-            
+            APICaller.shared.deleteMenuFood(with: menuFoods[indexPath.row].id) { result in
+                switch result {
+                case .success(let res):
+                    let trueVal = res
+                    print(res)
+                case .failure(let error):
+//                    let error = error.localizedDescription
+                    print("\(error.localizedDescription)")
+                }
+            }
+            menuFoods.remove(at: indexPath.row)
+
+//            tableView.reloadData()
+
+            self.getMenus()
+            print("--------------------------------------\(menuFoods)")
+
             tableView.endUpdates()
+
         }
     }
     

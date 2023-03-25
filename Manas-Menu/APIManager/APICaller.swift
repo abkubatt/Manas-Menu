@@ -222,6 +222,35 @@ class APICaller {
         
         task.resume()
     }
+    
+    func deleteMenuFood(with indexOfFood: Int, completion: @escaping (Result<Bool, Error>) -> Void){
+        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/\(indexOfFood)") else {
+            // handle invalid URL
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let httpResponse = response as? HTTPURLResponse {
+                    print("statusCode: \(httpResponse.statusCode)")
+                
+                
+                if (200...299).contains(httpResponse.statusCode) {
+                    completion(.success(true))
+                    print("success")
+                } else {
+                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+                    completion(.failure(error as Error))
+                    print("error")
+                }
+            }
+        }
+        
+        task.resume()
+    }
 
 
 
