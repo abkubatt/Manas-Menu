@@ -8,10 +8,10 @@
 import UIKit
 
 class DeleteFoodViewController: UIViewController {
-
-    var items = ["Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt",]
     
     var menuFoods = [Menu]()
+    var resultOfDeleting: Bool = true
+    var nameOfFood = ""
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -43,7 +43,7 @@ class DeleteFoodViewController: UIViewController {
                 case .success(let menus):
                     self.menuFoods = menus
                 case .failure(let error):
-                    let error = error.localizedDescription
+                    _ = error.localizedDescription
                 }
                 
             }
@@ -101,20 +101,37 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            nameOfFood = menuFoods[indexPath.row].name
             APICaller.shared.deleteMenuFood(with: menuFoods[indexPath.row].id) { result in
                 switch result {
-                case .success(let res):
-                    _ = res
-                    print(res)
+                case .success(_):
+                    self.resultOfDeleting = true
                 case .failure(let error):
-                    let error = error.localizedDescription
+                    _ = error.localizedDescription
+                    self.resultOfDeleting = false
                 }
             }
             menuFoods.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
             tableView.endUpdates()
-
+            
+        }
+        if resultOfDeleting {
+            let alertController = UIAlertController(title: "Success", message: "You successfully deleted Menu Food: \(nameOfFood)", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+                // handle button press
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Error while deleting: \(nameOfFood)", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+                // handle button press
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
