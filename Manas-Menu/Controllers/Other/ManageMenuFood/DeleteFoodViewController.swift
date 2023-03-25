@@ -25,7 +25,6 @@ class DeleteFoodViewController: UIViewController {
         title = "Delete Food"
         view.backgroundColor = .systemBackground
         self.getMenus()
-
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
@@ -44,7 +43,7 @@ class DeleteFoodViewController: UIViewController {
                 case .success(let menus):
                     self.menuFoods = menus
                 case .failure(let error):
-                    print("error: \(error.localizedDescription)")
+                    let error = error.localizedDescription
                 }
                 
             }
@@ -90,7 +89,6 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
 
-
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
@@ -100,32 +98,21 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // Handle deleting rows
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            print(indexPath.row)
-
-            print(menuFoods)
             APICaller.shared.deleteMenuFood(with: menuFoods[indexPath.row].id) { result in
                 switch result {
                 case .success(let res):
                     _ = res
                     print(res)
                 case .failure(let error):
-//                    let error = error.localizedDescription
-                    print("\(error.localizedDescription)")
+                    let error = error.localizedDescription
                 }
             }
             menuFoods.remove(at: indexPath.row)
-
             tableView.deleteRows(at: [indexPath], with: .fade)
-
             tableView.reloadData()
-//            tableView.reloadData()
-
-//            self.getMenus()
-            print("--------------------------------------\(menuFoods)")
             tableView.endUpdates()
 
         }
