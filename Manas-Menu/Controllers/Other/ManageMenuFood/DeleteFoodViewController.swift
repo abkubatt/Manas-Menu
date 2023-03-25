@@ -24,23 +24,32 @@ class DeleteFoodViewController: UIViewController {
         super.viewDidLoad()
         title = "Delete Food"
         view.backgroundColor = .systemBackground
+        self.getMenus()
+
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        getMenus()
+
         configureConstraints()
+            }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     func getMenus(){
-        APICaller.shared.getAllMenuFood { result in
-            switch result {
-            case .success(let menus):
-                self.menuFoods = menus
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenuFood { result in
+                switch result {
+                case .success(let menus):
+                    self.menuFoods = menus
+                case .failure(let error):
+                    print("error: \(error.localizedDescription)")
+                }
+                
             }
-            
         }
+        
     }
     
     private func configureConstraints(){
@@ -95,14 +104,13 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+            print(indexPath.row)
 
-            tableView.deleteRows(at: [indexPath], with: .fade)
-
-            
+            print(menuFoods)
             APICaller.shared.deleteMenuFood(with: menuFoods[indexPath.row].id) { result in
                 switch result {
                 case .success(let res):
-                    let trueVal = res
+                    _ = res
                     print(res)
                 case .failure(let error):
 //                    let error = error.localizedDescription
@@ -111,11 +119,13 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
             }
             menuFoods.remove(at: indexPath.row)
 
+            tableView.deleteRows(at: [indexPath], with: .fade)
+
+            tableView.reloadData()
 //            tableView.reloadData()
 
-            self.getMenus()
+//            self.getMenus()
             print("--------------------------------------\(menuFoods)")
-
             tableView.endUpdates()
 
         }
