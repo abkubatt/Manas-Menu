@@ -12,6 +12,7 @@ class DeleteFoodViewController: UIViewController {
     var menuFoods = [Menu]()
     var resultOfDeleting: Bool = true
     var nameOfFood = ""
+    var baseURL = "http://192.168.241.114:8080/api/Menus/"
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -102,7 +103,7 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         if editingStyle == .delete {
             tableView.beginUpdates()
             nameOfFood = menuFoods[indexPath.row].name
-            APICaller.shared.deleteMenuFood(with: menuFoods[indexPath.row].id) { result in
+            APICaller.shared.delete(with: "\(baseURL)\(menuFoods[indexPath.row].id)") { result in
                 switch result {
                 case .success(_):
                     self.resultOfDeleting = true
@@ -120,7 +121,7 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         if resultOfDeleting {
             let alertController = UIAlertController(title: "Success", message: "You successfully deleted Menu Food: \(nameOfFood)", preferredStyle: .alert)
             self.present(alertController, animated: true, completion: nil)
-            let when = DispatchTime.now() + 1.5
+            let when = DispatchTime.now() + 1.25
             DispatchQueue.main.asyncAfter(deadline: when){
               alertController.dismiss(animated: true, completion: nil)
             }
@@ -128,7 +129,7 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         else{
             let alertController = UIAlertController(title: "Error", message: "Error while deleting: \(nameOfFood)", preferredStyle: .alert)
             self.present(alertController, animated: true, completion: nil)
-            let when = DispatchTime.now() + 1.5
+            let when = DispatchTime.now() + 1.25
             DispatchQueue.main.asyncAfter(deadline: when){
               alertController.dismiss(animated: true, completion: nil)
             }

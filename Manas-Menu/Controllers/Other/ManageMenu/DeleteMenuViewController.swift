@@ -8,9 +8,11 @@
 import UIKit
 
 class DeleteMenuViewController: UIViewController {
-
-    var items = ["10.03.2023", "11.03.2023","12.03.2023","13.03.2023","14.03.2023","15.03.2023","16.03.2023","17.03.2023","18.03.2023","19.03.2023","20.03.2023","21.03.2023","22.03.2023","23.03.2023","24.03.2023","25.03.2023","26.03.2023","27.03.2023","28.03.2023","29.03.2023","30.03.2023","31.03.2023"]
     
+    var menuPerDay = [MenuPerDay]()
+    var dateOfMenu = ""
+    var resultOfDeleting = true
+    var baseURL = "http://192.168.241.114:8080/api/OneDayMenus/"
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -22,11 +24,29 @@ class DeleteMenuViewController: UIViewController {
         super.viewDidLoad()
         title = "Delete Menu"
         view.backgroundColor = .systemBackground
+        self.getMenu()
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         
         configureConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    func getMenu(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenusPerDay { result in
+                switch result {
+                case .success(let menus):
+                    self.menuPerDay = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
     }
     
     private func configureConstraints(){
@@ -51,7 +71,7 @@ extension DeleteMenuViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return menuPerDay.count
     }
     
     
@@ -63,7 +83,7 @@ extension DeleteMenuViewController: UITableViewDelegate, UITableViewDataSource{
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = menuPerDay[indexPath.row].date
         return cell
     }
 
@@ -81,9 +101,37 @@ extension DeleteMenuViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            items.remove(at: indexPath.row)
+            dateOfMenu = menuPerDay[indexPath.row].date
+            APICaller.shared.delete(with: "\(baseURL)\(menuPerDay[indexPath.row].id)") { result in
+                switch result {
+                case .success(_):
+                    self.resultOfDeleting = true
+                case .failure(let error):
+                    _ = error.localizedDescription
+                    self.resultOfDeleting = false
+                }
+            }
+            menuPerDay.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
             tableView.endUpdates()
+            
+        }
+        if resultOfDeleting {
+            let alertController = UIAlertController(title: "Success", message: "You successfully deleted menu on: \(dateOfMenu)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Error while deleting menu on: \(dateOfMenu)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
         }
     }
     

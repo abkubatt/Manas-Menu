@@ -83,6 +83,24 @@ class APICaller {
         task.resume()
     }
     
+    func getAllMenusPerDay(completion: @escaping (Result<[MenuPerDay], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.241.114:8080/api/OneDayMenus") else {return}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode([MenuPerDay].self, from: data)
+                _ = "---------------------->>>>>>>>>>> \(results)"
+//                print("---------------------->>>>>>>>>>> \(results)")
+                completion(.success(results))
+            }catch let error{
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
    
 
     func postRequest() {
@@ -233,8 +251,8 @@ class APICaller {
         task.resume()
     }
     
-    func deleteMenuFood(with indexOfFood: Int, completion: @escaping (Result<Bool, Error>) -> Void){
-        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/\(indexOfFood)") else {
+    func delete(with deleteURL: String, completion: @escaping (Result<Bool, Error>) -> Void){
+        guard let url = URL(string: "\(deleteURL)") else {
             // handle invalid URL
             return
         }
