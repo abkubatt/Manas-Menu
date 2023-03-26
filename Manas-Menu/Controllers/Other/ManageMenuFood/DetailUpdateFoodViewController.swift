@@ -7,18 +7,19 @@
 
 import UIKit
 
+
 class DetailUpdateFoodViewController: UIViewController {
     
-    let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
     let canteedCategories = ["SOUP", "WITH MEAT", "WITHOUT MEAT", "DESSERT"]
     var adding = [String?]()
     
     var nameField: String?
-    var calorieField: String?
+    var calorieField: Int?
     var imageField: String?
     var categoryFood = ""
-    
     var idOfMenu: Int = 0
+    var baseURL = "http://192.168.241.114:8080/api/Menus/"
+
     
     let addButton: UIButton = {
         let button = UIButton()
@@ -90,17 +91,42 @@ class DetailUpdateFoodViewController: UIViewController {
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
 
-        addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
+        DispatchQueue.main.async {
+            self.addButton.addTarget(self, action: #selector(self.addBtn), for: .touchUpInside)
+        }
         
         configureConstraints()
     }
     
     @objc private func addBtn(){
-        adding.append(nameField)
-        adding.append(calorieField)
-        adding.append(imageField)
-        adding.append(categoryFood == "" ? canteedCategories[0] : categoryFood)
-//        print(adding)
+        
+        
+        
+        let menuFood = Menu(id: idOfMenu, image: self.imageField ?? "", name: self.nameField ?? "", type: self.categoryFood == "" ? self.canteedCategories[0] : self.categoryFood, calorie: self.calorieField ?? 1)
+        
+        APICaller.shared.updateMenuFood(url: URL(string: "\(baseURL)\(idOfMenu)")!, menu: menuFood) { [weak self] resposne in
+            
+            DispatchQueue.main.async {
+
+                switch resposne{
+                case .success(_):
+                    let alertController = UIAlertController(title: "Success", message: "You successfully updated menu food: \(menuFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                   
+                case.failure(_):
+                    let alertController = UIAlertController(title: "Error", message: "Error while updateing menu food: \(menuFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
  
     
@@ -150,11 +176,10 @@ class DetailUpdateFoodViewController: UIViewController {
         NSLayoutConstraint.activate(addButtonConstraints)
     }
     
-    
     public func configure(with idOfMenu: Int) {
         self.idOfMenu = idOfMenu
-//        print(self.idOfMenu)
     }
+
 
 }
 
@@ -172,7 +197,7 @@ extension DetailUpdateFoodViewController: UIPickerViewDelegate, UIPickerViewData
         if textField == nameUIField {
             nameField = textField.text
         }else if textField == calorieUIField {
-            calorieField = textField.text
+            calorieField = Int(textField.text ?? "1") ?? 1
         }else if textField == imageUIField {
             imageField = textField.text
         }
@@ -200,3 +225,5 @@ extension DetailUpdateFoodViewController: UIPickerViewDelegate, UIPickerViewData
 
 
 }
+
+

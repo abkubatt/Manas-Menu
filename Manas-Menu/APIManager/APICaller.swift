@@ -218,7 +218,7 @@ class APICaller {
     
     
     
-    func putRequest(url: URL, menu: Menu, completion: @escaping (Result<Void, Error>) -> Void) {
+    func updateMenuFood(url: URL, menu: Menu, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
 
@@ -251,32 +251,7 @@ class APICaller {
             completion(.failure(error))
         }
     }
-//    func delete(){
-//        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/7") else {
-//            // handle invalid URL
-//            return
-//        }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "DELETE"
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { (data, response, error) in
-//            if let httpResponse = response as? HTTPURLResponse {
-//                _ = "statusCode: \(httpResponse.statusCode)"
-////                    print("statusCode: \(httpResponse.statusCode)")
-//                if (200...299).contains(httpResponse.statusCode) {
-////                    completion(.success(()))
-//                    _ = "success"
-////                    print("success")
-//                } else {
-//                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
-////                    completion(.failure(error))
-//                    _ = "error \(error)"
-////                    print("error \(error)")
-//                }
-//            }
-//        }
-//        task.resume()
-//    }
+
     
     func delete(with deleteURL: String, completion: @escaping (Result<Bool, Error>) -> Void){
         guard let url = URL(string: "\(deleteURL)") else {
