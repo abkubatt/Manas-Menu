@@ -41,7 +41,6 @@ class APICaller {
 //            print("-------------------\(res)")
 //        }
         
-        self.delete()
         
         guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
@@ -114,86 +113,108 @@ class APICaller {
         task.resume()
     }
     
-   
-
-    func postRequest() {
-
-      // declare the parameter as a dictionary that contains string as key and value combination. considering inputs are valid
-
-//      let parameters: [String: Any] = ["id": 13, "name": "jack"]
-
-      // create the url with URL
-      let url = URL(string: "http://192.168.241.114:8080/api/Menus")! // change server url accordingly
-
-      // create the session object
-      let session = URLSession.shared
-
-      // now create the URLRequest object using the url object
-      var request = URLRequest(url: url)
-      request.httpMethod = "PUT" //set http method as POST
-
-      // add headers for the request
-      request.addValue("application/json", forHTTPHeaderField: "Content-Type") // change as per server requirements
-      request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let menu = Menu(id: 12, image: "Abdulmajit IMAGE", name: "ASH", type: "Main", calorie: 234)
-
-      do {
-        // convert parameters to Data and assign dictionary to httpBody of request
-//        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-          let encoder = JSONEncoder()
-              guard let httpBody = try? encoder.encode(menu) else {
-                  return
-              }
-              request.httpBody = httpBody
-      } catch let error {
-          _  = error.localizedDescription
-//        print(error.localizedDescription)
-        return
-      }
-
-      // create dataTask using the session object to send data to the server
-      let task = session.dataTask(with: request) { data, response, error in
-
-        if let error = error {
-            _ = "Post Request Error: \(error.localizedDescription)"
-//          print("Post Request Error: \(error.localizedDescription)")
-          return
-        }
-
-        // ensure there is valid response code returned from this HTTP response
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode)
-        else {
-            _ = "Invalid Response received from the server"
-//          print("Invalid Response received from the server")
-          return
-        }
-
-        // ensure there is data returned
-        guard let responseData = data else {
-            _ = "nil Data received from the server"
-//          print("nil Data received from the server")
-          return
-        }
-
+    
+    func saveMenuFood(with menuFood: Menu, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let url = URL(string: "http://192.168.241.114:8080/api/Menus")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         do {
-          // create json object from data or use JSONDecoder to convert to Model stuct
-          if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-              _ = jsonResponse
-//            print(jsonResponse)
-            // handle json response
-          } else {
-            print("data maybe corrupted or in wrong format")
-            throw URLError(.badServerResponse)
-          }
-        } catch let error {
-            _ = error.localizedDescription
-//          print(error.localizedDescription)
+            let encoder = JSONEncoder()
+            let httpBody = try encoder.encode(menuFood)
+            request.httpBody = httpBody
+        } catch {
+            completion(.failure(error))
+            return
         }
-      }
-      // perform the task
-      task.resume()
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                let error = URLError(.badServerResponse)
+                completion(.failure(error))
+                return
+            }
+            guard let responseData = data else {
+                let error = URLError(.badServerResponse)
+                completion(.failure(error))
+                return
+            }
+            do {
+                if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
+                    // Handle the response JSON as needed.
+                    // For example, you might extract an ID field and pass it to the completion handler.
+                    if jsonResponse["id"] is Int {
+                        completion(.success(true))
+                    } else {
+                        let error = URLError(.badServerResponse)
+                        completion(.failure(error))
+                    }
+                } else {
+                    let error = URLError(.badServerResponse)
+                    completion(.failure(error))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
     }
+
+    
+
+//    func postRequest(with menuFood: Menu, completion: (Result<Int, Error>)) -> Void {
+//      let url = URL(string: "http://192.168.241.114:8080/api/Menus")!
+//      let session = URLSession.shared
+//      var request = URLRequest(url: url)
+//      request.httpMethod = "POST"
+//      request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//      request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//      do {
+//          let encoder = JSONEncoder()
+//              guard let httpBody = try? encoder.encode(menuFood) else {
+//                  return
+//              }
+//              request.httpBody = httpBody
+//      } catch let error {
+//          _  = error.localizedDescription
+//        return
+//      }
+//
+//      let task = session.dataTask(with: request) { data, response, error in
+//        if let error = error {
+//            _ = "Post Request Error: \(error.localizedDescription)"
+//            completion(0)
+//          return
+//        }
+//        guard let httpResponse = response as? HTTPURLResponse,
+//              (200...299).contains(httpResponse.statusCode)
+//        else {
+//            _ = "Invalid Response received from the server"
+//          return
+//        }
+//        guard let responseData = data else {
+//            _ = "nil Data received from the server"
+//          return
+//        }
+//        do {
+//          if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
+//              _ = jsonResponse
+//          } else {
+//            print("data maybe corrupted or in wrong format")
+//            throw URLError(.badServerResponse)
+//          }
+//        } catch let error {
+//            _ = error.localizedDescription
+//        }
+//      }
+//      task.resume()
+//    }
     
     
     
@@ -230,39 +251,32 @@ class APICaller {
             completion(.failure(error))
         }
     }
-    func delete(){
-        
-        
-        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/7") else {
-            // handle invalid URL
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let httpResponse = response as? HTTPURLResponse {
-                _ = "statusCode: \(httpResponse.statusCode)"
-//                    print("statusCode: \(httpResponse.statusCode)")
-                
-                
-                if (200...299).contains(httpResponse.statusCode) {
-//                    completion(.success(()))
-                    _ = "success"
-//                    print("success")
-                } else {
-                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
-//                    completion(.failure(error))
-                    _ = "error \(error)"
-//                    print("error \(error)")
-                }
-            }
-        }
-        
-        task.resume()
-    }
+//    func delete(){
+//        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus/7") else {
+//            // handle invalid URL
+//            return
+//        }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "DELETE"
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (data, response, error) in
+//            if let httpResponse = response as? HTTPURLResponse {
+//                _ = "statusCode: \(httpResponse.statusCode)"
+////                    print("statusCode: \(httpResponse.statusCode)")
+//                if (200...299).contains(httpResponse.statusCode) {
+////                    completion(.success(()))
+//                    _ = "success"
+////                    print("success")
+//                } else {
+//                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+////                    completion(.failure(error))
+//                    _ = "error \(error)"
+////                    print("error \(error)")
+//                }
+//            }
+//        }
+//        task.resume()
+//    }
     
     func delete(with deleteURL: String, completion: @escaping (Result<Bool, Error>) -> Void){
         guard let url = URL(string: "\(deleteURL)") else {

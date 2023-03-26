@@ -9,12 +9,11 @@ import UIKit
 
 class AddFoodViewController: UIViewController {
     
-    let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
     let canteedCategories = ["SOUP", "WITH MEAT", "WITHOUT MEAT", "DESSERT"]
     var adding = [String?]()
     
     var nameField: String?
-    var calorieField: String?
+    var calorieField: Int?
     var imageField: String?
     var categoryFood = ""
     
@@ -89,17 +88,40 @@ class AddFoodViewController: UIViewController {
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
 
-        addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
+        DispatchQueue.main.async {
+            self.addButton.addTarget(self, action: #selector(self.addBtn), for: .touchUpInside)
+        }
         
         configureConstraints()
     }
     
     @objc private func addBtn(){
-        adding.append(nameField)
-        adding.append(calorieField)
-        adding.append(imageField)
-        adding.append(categoryFood == "" ? canteedCategories[0] : categoryFood)
-//        print(adding)
+        
+        
+            let menuFood = Menu(id: 0, image: self.imageField ?? "", name: self.nameField ?? "", type: self.categoryFood == "" ? self.canteedCategories[0] : self.categoryFood, calorie: self.calorieField ?? 1)
+            
+            APICaller.shared.saveMenuFood(with: menuFood) { [weak self] result in
+                DispatchQueue.main.async {
+
+                switch result{
+                case .success(_):
+                    let alertController = UIAlertController(title: "Success", message: "You successfully added menu food: \(menuFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                   
+                case.failure(_):
+                    let alertController = UIAlertController(title: "Error", message: "Error while adding menu food: \(menuFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
  
     
@@ -166,7 +188,7 @@ extension AddFoodViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         if textField == nameUIField {
             nameField = textField.text
         }else if textField == calorieUIField {
-            calorieField = textField.text
+            calorieField = Int(textField.text ?? "1") ?? 1
         }else if textField == imageUIField {
             imageField = textField.text
         }
