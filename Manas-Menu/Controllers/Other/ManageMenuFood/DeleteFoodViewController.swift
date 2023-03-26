@@ -119,19 +119,19 @@ extension DeleteFoodViewController: UITableViewDelegate, UITableViewDataSource{
         }
         if resultOfDeleting {
             let alertController = UIAlertController(title: "Success", message: "You successfully deleted Menu Food: \(nameOfFood)", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
-                // handle button press
-            }
-            alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.5
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
         }
         else{
             let alertController = UIAlertController(title: "Error", message: "Error while deleting: \(nameOfFood)", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
-                // handle button press
-            }
-            alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.5
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
