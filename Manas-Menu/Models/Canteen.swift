@@ -13,4 +13,15 @@ struct Canteen: Codable {
     let name: String
     let type: String
     let price: Int
+    let image: String
+    let amountForFree: Int
+    
+    internal init(id: Int, name: String, type: String, price: Int, image: String, amountForFree: Int) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.price = price
+        self.image = image
+        self.amountForFree = amountForFree
+    }
 }

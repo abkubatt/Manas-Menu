@@ -9,7 +9,10 @@ import UIKit
 
 class DeleteCanteenFoodsViewController: UIViewController {
 
-    var items = ["Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt",]
+    var canteenFoods = [Canteen]()
+    var nameOfFood = ""
+    var resultOfDeleting = true
+    var baseURL = "http://192.168.241.114:8080/api/Canteens/"
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -22,11 +25,29 @@ class DeleteCanteenFoodsViewController: UIViewController {
         super.viewDidLoad()
         title = "Delete Canteen Foods"
         view.backgroundColor = .systemBackground
+        self.getCanteenFoods()
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         
         configureConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    func getCanteenFoods(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllCanteenFoods { result in
+                switch result {
+                case .success(let canteens):
+                    self.canteenFoods = canteens
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
     }
     
     private func configureConstraints(){
@@ -51,7 +72,7 @@ extension DeleteCanteenFoodsViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return canteenFoods.count
     }
     
     
@@ -63,7 +84,7 @@ extension DeleteCanteenFoodsViewController: UITableViewDelegate, UITableViewData
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = canteenFoods[indexPath.row].name
         return cell
     }
 
@@ -81,9 +102,37 @@ extension DeleteCanteenFoodsViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            items.remove(at: indexPath.row)
+            nameOfFood = canteenFoods[indexPath.row].name
+            APICaller.shared.delete(with: "\(baseURL)\(canteenFoods[indexPath.row].id)") { result in
+                switch result {
+                case .success(_):
+                    self.resultOfDeleting = true
+                case .failure(let error):
+                    _ = error.localizedDescription
+                    self.resultOfDeleting = false
+                }
+            }
+            canteenFoods.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
             tableView.endUpdates()
+            
+        }
+        if resultOfDeleting {
+            let alertController = UIAlertController(title: "Success", message: "You successfully deleted: \(nameOfFood)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Error while deleting: \(nameOfFood)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
