@@ -218,57 +218,6 @@ class APICaller {
     }
 
     
-
-//    func postRequest(with menuFood: Menu, completion: (Result<Int, Error>)) -> Void {
-//      let url = URL(string: "http://192.168.241.114:8080/api/Menus")!
-//      let session = URLSession.shared
-//      var request = URLRequest(url: url)
-//      request.httpMethod = "POST"
-//      request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//      request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//      do {
-//          let encoder = JSONEncoder()
-//              guard let httpBody = try? encoder.encode(menuFood) else {
-//                  return
-//              }
-//              request.httpBody = httpBody
-//      } catch let error {
-//          _  = error.localizedDescription
-//        return
-//      }
-//
-//      let task = session.dataTask(with: request) { data, response, error in
-//        if let error = error {
-//            _ = "Post Request Error: \(error.localizedDescription)"
-//            completion(0)
-//          return
-//        }
-//        guard let httpResponse = response as? HTTPURLResponse,
-//              (200...299).contains(httpResponse.statusCode)
-//        else {
-//            _ = "Invalid Response received from the server"
-//          return
-//        }
-//        guard let responseData = data else {
-//            _ = "nil Data received from the server"
-//          return
-//        }
-//        do {
-//          if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-//              _ = jsonResponse
-//          } else {
-//            print("data maybe corrupted or in wrong format")
-//            throw URLError(.badServerResponse)
-//          }
-//        } catch let error {
-//            _ = error.localizedDescription
-//        }
-//      }
-//      task.resume()
-//    }
-    
-    
     
     func updateMenuFood(url: URL, menu: Menu, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: url)
@@ -303,6 +252,41 @@ class APICaller {
             completion(.failure(error))
         }
     }
+    
+    func updateMenuPerDay(url: URL, menu: MenuPerDay, completion: @escaping (Result<Void, Error>) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        do {
+            let jsonData = try JSONEncoder().encode(menu)
+            request.httpBody = jsonData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
+                    return
+                }
+
+                if (200...299).contains(httpResponse.statusCode) {
+                    completion(.success(()))
+                } else {
+                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
 
     
     func delete(with deleteURL: String, completion: @escaping (Result<Bool, Error>) -> Void){

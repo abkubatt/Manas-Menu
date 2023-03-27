@@ -112,7 +112,8 @@ class DetailUpdateFoodViewController: UIViewController {
                 case .success(_):
                     let alertController = UIAlertController(title: "Success", message: "You successfully updated menu food: \(menuFood.name)", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.popBack(3)
+
                     }
                     alertController.addAction(okAction)
                     self?.present(alertController, animated: true, completion: nil)
@@ -120,11 +121,20 @@ class DetailUpdateFoodViewController: UIViewController {
                 case.failure(_):
                     let alertController = UIAlertController(title: "Error", message: "Error while updateing menu food: \(menuFood.name)", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.popBack(3)
                     }
                     alertController.addAction(okAction)
                     self?.present(alertController, animated: true, completion: nil)
                 }
+            }
+        }
+    }
+    
+    func popBack(_ nb: Int) {
+        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
+            guard viewControllers.count < nb else {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
+                return
             }
         }
     }

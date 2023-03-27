@@ -9,9 +9,8 @@ import UIKit
 
 class UpdateMenuViewController: UIViewController {
 
-    var items = ["10.03.2023", "11.03.2023","12.03.2023","13.03.2023","14.03.2023","15.03.2023","16.03.2023","17.03.2023","18.03.2023","19.03.2023","20.03.2023","21.03.2023","22.03.2023","23.03.2023","24.03.2023","25.03.2023","26.03.2023","27.03.2023","28.03.2023","29.03.2023","30.03.2023","31.03.2023"]
-    var idOfMenu = 152
-    
+    var menuPerDay = [MenuPerDay]()
+
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -24,11 +23,29 @@ class UpdateMenuViewController: UIViewController {
         super.viewDidLoad()
         title = "Update Menu"
         view.backgroundColor = .systemBackground
+        self.getMenu()
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         
         configureConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    func getMenu(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenusPerDay { result in
+                switch result {
+                case .success(let menus):
+                    self.menuPerDay = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
     }
     
     private func configureConstraints(){
@@ -53,7 +70,7 @@ extension UpdateMenuViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return menuPerDay.count
     }
     
     
@@ -65,7 +82,7 @@ extension UpdateMenuViewController: UITableViewDelegate, UITableViewDataSource{
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = menuPerDay[indexPath.row].date
         return cell
     }
 
@@ -74,7 +91,7 @@ extension UpdateMenuViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = DetailUpdateMenuViewController()
-        vc.configure(with: idOfMenu)
+        vc.configure(with: menuPerDay[indexPath.row].id)
         navigationController?.pushViewController(vc, animated: true)
     }
 
