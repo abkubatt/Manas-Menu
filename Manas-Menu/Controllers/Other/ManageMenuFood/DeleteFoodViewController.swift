@@ -13,6 +13,7 @@ class DeleteFoodViewController: UIViewController {
     var resultOfDeleting: Bool = true
     var nameOfFood = ""
     var baseURL = "http://192.168.241.114:8080/api/Menus/"
+    let getAllUrl = "http://192.168.241.114:8080/api/Menus"
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -39,7 +40,7 @@ class DeleteFoodViewController: UIViewController {
     
     func getMenus(){
         DispatchQueue.main.async {
-            APICaller.shared.getAllMenuFood { result in
+            APICaller.shared.getAllMenuFood (with: self.getAllUrl){ result in
                 switch result {
                 case .success(let menus):
                     self.menuFoods = menus

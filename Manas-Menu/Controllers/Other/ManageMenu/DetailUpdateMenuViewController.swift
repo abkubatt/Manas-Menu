@@ -16,7 +16,10 @@ class DetailUpdateMenuViewController: UIViewController {
     var menusDessert = [Menu]()
     var idOfMenu: Int = 0
     let baseURL = "http://192.168.241.114:8080/api/OneDayMenus/"
-
+    let baseSoupUrl = "http://192.168.241.114:8080/api/Menus/GetSoups"
+    let baseWithMeatUrl = "http://192.168.241.114:8080/api/Menus/GetWithMeat"
+    let baseWithoutMeatUrl = "http://192.168.241.114:8080/api/Menus/GetWithoutMeat"
+    let baseDessertMeatUrl = "http://192.168.241.114:8080/api/Menus/GetDesserts"
     var pic1 = 0
     var pic2 = 0
     var pic3 = 0
@@ -133,7 +136,7 @@ class DetailUpdateMenuViewController: UIViewController {
     
     func getSoutMenus(){
         DispatchQueue.main.async {
-            APICaller.shared.getAllMenuFood { result in
+            APICaller.shared.getAllMenuFood(with: self.baseSoupUrl){ result in
                 switch result {
                 case .success(let menus):
                     self.menusSoup = menus
@@ -147,7 +150,7 @@ class DetailUpdateMenuViewController: UIViewController {
     
     func getWithMeatMenus(){
         DispatchQueue.main.async {
-            APICaller.shared.getAllMenuFood { result in
+            APICaller.shared.getAllMenuFood (with: self.baseWithMeatUrl){ result in
                 switch result {
                 case .success(let menus):
                     self.menusWithMeat = menus
@@ -161,7 +164,7 @@ class DetailUpdateMenuViewController: UIViewController {
     
     func getWithoutMeatMenus(){
         DispatchQueue.main.async {
-            APICaller.shared.getAllMenuFood { result in
+            APICaller.shared.getAllMenuFood (with: self.baseWithoutMeatUrl){ result in
                 switch result {
                 case .success(let menus):
                     self.menusWithoutMeat = menus
@@ -175,7 +178,7 @@ class DetailUpdateMenuViewController: UIViewController {
     
     func getDessertMenus(){
         DispatchQueue.main.async {
-            APICaller.shared.getAllMenuFood { result in
+            APICaller.shared.getAllMenuFood (with: self.baseDessertMeatUrl){ result in
                 switch result {
                 case .success(let menus):
                     self.menusDessert = menus

@@ -58,8 +58,8 @@ class APICaller {
         task.resume()
     }
     
-    func getAllMenuFood(completion: @escaping (Result<[Menu], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.241.114:8080/api/Menus") else {return}
+    func getAllMenuFood(with url: String, completion: @escaping (Result<[Menu], Error>) -> Void) {
+        guard let url = URL(string: "\(url)") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
@@ -176,6 +176,57 @@ class APICaller {
         do {
             let encoder = JSONEncoder()
             let httpBody = try encoder.encode(menuFood)
+            request.httpBody = httpBody
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                let error = URLError(.badServerResponse)
+                completion(.failure(error))
+                return
+            }
+            guard let responseData = data else {
+                let error = URLError(.badServerResponse)
+                completion(.failure(error))
+                return
+            }
+            do {
+                if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
+                    // Handle the response JSON as needed.
+                    // For example, you might extract an ID field and pass it to the completion handler.
+                    if jsonResponse["id"] is Int {
+                        completion(.success(true))
+                    } else {
+                        let error = URLError(.badServerResponse)
+                        completion(.failure(error))
+                    }
+                } else {
+                    let error = URLError(.badServerResponse)
+                    completion(.failure(error))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+
+    func saveCanteenFood(with canteenFood: Canteen, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let url = URL(string: "http://192.168.241.114:8080/api/Canteens")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        do {
+            let encoder = JSONEncoder()
+            let httpBody = try encoder.encode(canteenFood)
             request.httpBody = httpBody
         } catch {
             completion(.failure(error))
