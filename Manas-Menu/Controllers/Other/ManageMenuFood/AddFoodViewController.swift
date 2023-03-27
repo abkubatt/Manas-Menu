@@ -17,7 +17,6 @@ class AddFoodViewController: UIViewController {
     var imageField: String?
     var categoryFood = ""
     
-    
     let addButton: UIButton = {
         let button = UIButton()
         button.setTitle(" ADD ", for: .normal)
