@@ -12,12 +12,15 @@ import FirebaseFirestore
 
 class AddMenuViewController: UIViewController {
     
-    let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
-    var adding = [String]()
-    var pic1 = ""
-    var pic2 = ""
-    var pic3 = ""
-    var pic4 = ""
+    var menusSoup = [Menu]()
+    var menusWithMeat = [Menu]()
+    var menusWithoutMeat = [Menu]()
+    var menusDessert = [Menu]()
+    
+    var pic1 = 0
+    var pic2 = 0
+    var pic3 = 0
+    var pic4 = 0
     var dateOfMenu = ""
     
     let dateForMenu: UIDatePicker = {
@@ -71,7 +74,10 @@ class AddMenuViewController: UIViewController {
         super.viewDidLoad()
         title = "Add Menu"
         view.backgroundColor = .systemBackground
-
+        self.getSoutMenus()
+        self.getWithMeatMenus()
+        self.getWithoutMeatMenus()
+        self.getDessertMenus()
         view.addSubview(dateForMenu)
         view.addSubview(pickerView1)
         view.addSubview(pickerView2)
@@ -95,19 +101,128 @@ class AddMenuViewController: UIViewController {
         configureConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        title = "Add Menu"
+        view.backgroundColor = .systemBackground
+        self.getSoutMenus()
+        self.getWithMeatMenus()
+        self.getWithoutMeatMenus()
+        self.getDessertMenus()
+        view.addSubview(dateForMenu)
+        view.addSubview(pickerView1)
+        view.addSubview(pickerView2)
+        view.addSubview(pickerView3)
+        view.addSubview(pickerView4)
+        view.addSubview(addButton)
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
+
+        pickerView2.delegate = self
+        pickerView2.dataSource = self
+
+        pickerView3.delegate = self
+        pickerView3.dataSource = self
+
+        pickerView4.delegate = self
+        pickerView4.dataSource = self
+        addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
+        dateForMenu.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        configureConstraints()
+    }
+    
+    func getSoutMenus(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenuFood { result in
+                switch result {
+                case .success(let menus):
+                    self.menusSoup = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+                
+            }
+        }
+    }
+    
+    func getWithMeatMenus(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenuFood { result in
+                switch result {
+                case .success(let menus):
+                    self.menusWithMeat = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+                
+            }
+        }
+    }
+    
+    func getWithoutMeatMenus(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenuFood { result in
+                switch result {
+                case .success(let menus):
+                    self.menusWithoutMeat = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+                
+            }
+        }
+    }
+    
+    func getDessertMenus(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllMenuFood { result in
+                switch result {
+                case .success(let menus):
+                    self.menusDessert = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+                
+            }
+        }
+    }
+    
     @objc private func addBtn(){
-        adding.append(pic1 == "" ? desserts[0] : pic1)
-        adding.append(pic2 == "" ? desserts[0] : pic2)
-        adding.append(pic3 == "" ? desserts[0] : pic3)
-        adding.append(pic4 == "" ? desserts[0] : pic4)
+        pic1 = pic1 == 0 ? menusSoup[0].id : pic1
+        pic2 = pic2 == 0 ? menusWithMeat[0].id : pic2
+        pic3 = pic3 == 0 ? menusWithoutMeat[0].id : pic3
+        pic4 = pic4 == 0 ? menusDessert[0].id : pic4
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let selectedDate = dateFormatter.string(from: Date())
-        adding.append(dateOfMenu == "" ? selectedDate : dateOfMenu)
-//        print(adding)
+
+        
+        let saveMenuPerDay = MenuPerDay(id: 0, date: dateOfMenu == "" ? selectedDate : dateOfMenu, soupId: pic1, withMeetId: pic2, withoutMeetId: pic3, dessertId: pic4)
+        
+        APICaller.shared.saveMenuPerDay(with: saveMenuPerDay) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(_):
+                    let alertController = UIAlertController(title: "Success", message: "You successfully added menu on: \(saveMenuPerDay.date)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                   
+                case.failure(_):
+                    let alertController = UIAlertController(title: "Error", message: "Error while adding menu on: \(saveMenuPerDay.date)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
  
     
@@ -194,16 +309,16 @@ extension AddMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
-            return desserts.count
+            return menusSoup.count
             // Return the number of rows for pickerView1
         } else if pickerView == pickerView2 {
-            return desserts.count
+            return menusWithMeat.count
             // Return the number of rows for pickerView2
         } else if pickerView == pickerView3 {
-            return desserts.count
+            return menusWithoutMeat.count
             // Return the number of rows for pickerView3
         } else if pickerView == pickerView4 {
-            return desserts.count
+            return menusDessert.count
             // Return the number of rows for pickerView4
         }
         return 0
@@ -211,18 +326,18 @@ extension AddMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
-            return desserts[row]
+            return menusSoup[row].name
             // Return the title for the row in pickerView1
         } else if pickerView == pickerView2 {
-            return desserts[row]
+            return menusWithMeat[row].name
 
             // Return the title for the row in pickerView2
         } else if pickerView == pickerView3 {
-            return desserts[row]
+            return menusWithoutMeat[row].name
 
             // Return the title for the row in pickerView3
         } else if pickerView == pickerView4 {
-            return desserts[row]
+            return menusDessert[row].name
 
             // Return the title for the row in pickerView4
         }
@@ -231,15 +346,15 @@ extension AddMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerView1 {
-            pic1 = desserts[row]
+            pic1 = menusSoup[row].id
         } else if pickerView == pickerView2 {
-            pic2 = desserts[row]
+            pic2 = menusWithMeat[row].id
 
         } else if pickerView == pickerView3 {
-            pic3 = desserts[row]
+            pic3 = menusWithoutMeat[row].id
             // Handle the selection in pickerView3
         } else if pickerView == pickerView4 {
-            pic4 = desserts[row]
+            pic4 = menusDessert[row].id
             // Handle the selection in pickerView4
         }
     }
