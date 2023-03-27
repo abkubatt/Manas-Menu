@@ -9,10 +9,9 @@ import UIKit
 
 class UpdateCanteenFoodsViewController: UIViewController {
 
-    var items = ["Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt",]
-    
-    let idOfCanteenFood = 654
-    
+    var canteenFoods = [Canteen]()
+
+        
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -22,13 +21,31 @@ class UpdateCanteenFoodsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Delete Canteen Foods"
+        title = "Update Canteen Foods"
         view.backgroundColor = .systemBackground
+        self.getCanteenFoods()
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         
         configureConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    func getCanteenFoods(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllCanteenFoods { result in
+                switch result {
+                case .success(let canteens):
+                    self.canteenFoods = canteens
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
     }
     
     private func configureConstraints(){
@@ -54,7 +71,7 @@ extension UpdateCanteenFoodsViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return canteenFoods.count
     }
     
     
@@ -66,7 +83,7 @@ extension UpdateCanteenFoodsViewController: UITableViewDelegate, UITableViewData
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = canteenFoods[indexPath.row].name
         return cell
     }
 
@@ -74,7 +91,7 @@ extension UpdateCanteenFoodsViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = DetailUpdateCanteenFoodsViewController()
-        vc.configure(with: idOfCanteenFood)
+        vc.configure(with: canteenFoods[indexPath.row].id)
         navigationController?.pushViewController(vc, animated: true)
     }
     

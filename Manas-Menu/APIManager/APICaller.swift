@@ -304,6 +304,40 @@ class APICaller {
         }
     }
     
+    func updateCanteenFood(url: URL, canteen: Canteen, completion: @escaping (Result<Void, Error>) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        do {
+            let jsonData = try JSONEncoder().encode(canteen)
+            request.httpBody = jsonData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
+                    return
+                }
+
+                if (200...299).contains(httpResponse.statusCode) {
+                    completion(.success(()))
+                } else {
+                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
     func updateMenuPerDay(url: URL, menu: MenuPerDay, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
