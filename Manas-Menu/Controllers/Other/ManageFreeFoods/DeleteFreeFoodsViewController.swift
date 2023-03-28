@@ -9,8 +9,10 @@ import UIKit
 
 class DeleteFreeFoodsViewController: UIViewController {
 
-    var items = ["Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt","Coca Cola", "Fanta", "Pepsi", "Kofte", "Pizza", "Yougurt",]
-    
+    var freeFoods = [Canteen]()
+    var nameOfFood = ""
+    let baseURL = "http://192.168.200.202:8080/api/Canteens/DeleteFreeFood?id="
+    var resultOfDeleting = true
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -22,11 +24,30 @@ class DeleteFreeFoodsViewController: UIViewController {
         super.viewDidLoad()
         title = "Delete Free Foods"
         view.backgroundColor = .systemBackground
+        self.getFreeFoods()
         view.addSubviews(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         
         configureConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    func getFreeFoods(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllFreeFoods { result in
+                switch result {
+                case .success(let menus):
+                    self.freeFoods = menus
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
+        
     }
     
     private func configureConstraints(){
@@ -51,7 +72,7 @@ extension DeleteFreeFoodsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return freeFoods.count
     }
     
     
@@ -63,7 +84,7 @@ extension DeleteFreeFoodsViewController: UITableViewDelegate, UITableViewDataSou
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22)
         cell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = freeFoods[indexPath.row].name
         return cell
     }
 
@@ -81,9 +102,37 @@ extension DeleteFreeFoodsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            items.remove(at: indexPath.row)
+            nameOfFood = freeFoods[indexPath.row].name
+            APICaller.shared.delete(with: "\(baseURL)\(freeFoods[indexPath.row].id)") { result in
+                switch result {
+                case .success(_):
+                    self.resultOfDeleting = true
+                case .failure(let error):
+                    _ = error.localizedDescription
+                    self.resultOfDeleting = false
+                }
+            }
+            freeFoods.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
             tableView.endUpdates()
+            
+        }
+        if resultOfDeleting {
+            let alertController = UIAlertController(title: "Success", message: "You successfully deleted Free Food: \(nameOfFood)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Error while deleting: free food: \(nameOfFood)", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let when = DispatchTime.now() + 1.25
+            DispatchQueue.main.asyncAfter(deadline: when){
+              alertController.dismiss(animated: true, completion: nil)
+            }
         }
     }
     

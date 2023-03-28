@@ -76,6 +76,8 @@ class APICaller {
         task.resume()
     }
     
+    
+    
     func getAllMenusPerDay(completion: @escaping (Result<[MenuPerDay], Error>) -> Void) {
         guard let url = URL(string: "http://192.168.241.114:8080/api/OneDayMenus") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
@@ -97,6 +99,24 @@ class APICaller {
     
     func getAllCanteenFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
         guard let url = URL(string: "http://192.168.241.114:8080/api/Canteens") else {return}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                _ = "---------------------->>>>>>>>>>> \(results)"
+//                print("---------------------->>>>>>>>>>> \(results)")
+                completion(.success(results))
+            }catch let error{
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
+    func getAllFreeFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.200.202:8080/api/Canteens/GetFreeFoods") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
