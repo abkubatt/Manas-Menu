@@ -116,7 +116,7 @@ class APICaller {
     }
     
     func getAllFreeFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.200.202:8080/api/Canteens/GetFreeFoods") else {return}
+        guard let url = URL(string: "http://192.168.242.182:8080/api/Canteens/GetFreeFoods") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
@@ -331,6 +331,41 @@ class APICaller {
         do {
             let jsonData = try JSONEncoder().encode(canteen)
             request.httpBody = jsonData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
+                    return
+                }
+
+                if (200...299).contains(httpResponse.statusCode) {
+                    completion(.success(()))
+                } else {
+                    let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    func updateFreeFood(canteen: Canteen, id: Int, amount: Int,completion: @escaping (Result<Void, Error>) -> Void) {
+        var request = URLRequest(url: URL(string:"http://192.168.242.182:8080/api/Canteens/FreeFood?id=\(id)&amount=\(amount)")!)
+    
+        request.httpMethod = "PUT"
+
+        do {
+//            let jsonData = try JSONEncoder().encode(canteen)
+//            request.httpBody = jsonData
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
             let session = URLSession.shared

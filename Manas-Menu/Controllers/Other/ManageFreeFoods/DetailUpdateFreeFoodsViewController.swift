@@ -9,17 +9,15 @@ import UIKit
 
 
 class DetailUpdateFreeFoodsViewController: UIViewController {
+
+    var freeConteenFood = [Canteen]()
     
-    let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
-    let canteedCategories = ["DRINKS", "PIZZA AND PIDES", "BAKERY PRODUCTS", "DESSERTS", "OTHER FOODS"]
     var adding = [String]()
-    var pic1 = ""
-    var amount = 1
-    var pic3 = ""
-    var pic4 = ""
-    var dateOfMenu = ""
-    
+    var toUpdateFreeFood: Canteen?
+    var idOdFreeFood = 0
     var idOfFreeFood: Int = 0
+    var nameOfFreeFood = ""
+    var amountOfFreeFood: Int = 0
     
     let addButton: UIButton = {
         let button = UIButton()
@@ -40,41 +38,92 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
         return picker
     }()
     
-    let textField: UITextField = {
-        let field = UITextField()
-        field.placeholder = "Amount"
-        field.backgroundColor = .textFieldCustomColor
-        field.layer.cornerRadius = 6
-        field.textAlignment = .center
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
+    let counter: UIStepper = {
+        let stepper = UIStepper()
+        stepper.value = 0
+        stepper.minimumValue = 0
+        stepper.maximumValue = 1000
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        stepper.addTarget(self, action: #selector(updateCounter(sender:)), for: .valueChanged)
+        return stepper
     }()
     
-
+    let counterValue: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Update Free Foods"
+        title = "Add Free Foods"
         view.backgroundColor = .systemBackground
-
         view.addSubview(pickerView1)
-        view.addSubviews(textField)
+        view.addSubviews(counter)
+        view.addSubviews(counterValue)
         view.addSubview(addButton)
         pickerView1.delegate = self
         pickerView1.dataSource = self
-        textField.delegate = self
+//        textField.delegate = self
 
         addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
         
         configureConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        title = "Update Free Foods"
+        view.backgroundColor = .systemBackground
+        view.addSubview(pickerView1)
+        view.addSubviews(counter)
+        view.addSubview(addButton)
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
+
+        addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
+        
+        configureConstraints()
+    }
+    
+    @objc func updateCounter(sender: UIStepper) {
+        counterValue.text = "\(Int(counter.value))"
+        toUpdateFreeFood?.amountForFree = Int(sender.value)
+    }
+    
+    
     @objc private func addBtn(){
-        adding.append(pic1 == "" ? desserts[0] : pic1)
-//        adding.append(amount)
-//        print(amount)
-//        print(adding)
+            
+        toUpdateFreeFood = toUpdateFreeFood == nil ? freeConteenFood[0] : toUpdateFreeFood
+                
+        guard let freeFood = toUpdateFreeFood else{
+            _ = "Free food is empty \(String(describing: toUpdateFreeFood))"
+            return
+        }
+        
+        APICaller.shared.updateFreeFood(canteen: freeFood, id: freeFood.id, amount: freeFood.amountForFree) { [weak self] response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(_):
+                    let alertController = UIAlertController(title: "Success", message: "You successfully update free food: \(freeFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.popBack(3)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                   
+                case.failure(_):
+                    let alertController = UIAlertController(title: "Error", message: "Error while updating free food: \(freeFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.popBack(3)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
  
     
@@ -84,33 +133,48 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
             pickerView1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             pickerView1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             pickerView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            pickerView1.heightAnchor.constraint(equalToConstant: 130)
+            pickerView1.heightAnchor.constraint(equalToConstant: 50)
         ]
         
-        let textFieldConstraints = [
-            textField.topAnchor.constraint(equalTo: pickerView1.bottomAnchor, constant: 25),
-            textField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 30),
-            textField.widthAnchor.constraint(equalToConstant: 80)
+        let counterValueConstraints = [
+            counterValue.topAnchor.constraint(equalTo: pickerView1.bottomAnchor, constant: 30),
+            counterValue.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
+        let counterConstraints = [
+            counter.topAnchor.constraint(equalTo: counterValue.bottomAnchor, constant: 20),
+            counter.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
         let addButtonConstraints = [
-            addButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 40),
+            addButton.topAnchor.constraint(equalTo: counter.bottomAnchor, constant: 60),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 90),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -90),
             addButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         NSLayoutConstraint.activate(pickerView1Constraints)
-        NSLayoutConstraint.activate(textFieldConstraints)
+        NSLayoutConstraint.activate(counterValueConstraints)
+        NSLayoutConstraint.activate(counterConstraints)
         NSLayoutConstraint.activate(addButtonConstraints)
     }
     
-    public func configure(with idOfFreeFood: Int) {
-        self.idOfFreeFood = idOfFreeFood
-//        print(self.idOfFreeFood)
+    func popBack(_ nb: Int) {
+        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
+            guard viewControllers.count < nb else {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
+                return
+            }
+        }
     }
-
+    
+    
+    public func configure(with freeFood: Canteen) {
+        toUpdateFreeFood = freeFood
+        self.idOfFreeFood = freeFood.id
+        self.nameOfFreeFood = freeFood.name
+        self.counterValue.text = "\(freeFood.amountForFree)"
+    }
 
 }
 
@@ -122,15 +186,7 @@ extension DetailUpdateFreeFoodsViewController: UIPickerViewDelegate, UIPickerVie
         return true;
     }
     
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text {
-            amount = Int(text) ?? 1
-        }else{
-            amount = 1
-        }
-    }
+
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -139,29 +195,16 @@ extension DetailUpdateFreeFoodsViewController: UIPickerViewDelegate, UIPickerVie
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
-            return desserts.count
-            // Return the number of rows for pickerView1
+            return 1
         }
         return 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
-            return desserts[row]
-            // Return the title for the row in pickerView1
+            return nameOfFreeFood
         }
-
-            // Return the title for the row in pickerView2
-        
         return nil
     }
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == pickerView1 {
-            pic1 = desserts[row]
-        }
-    }
-
-
 }
-
