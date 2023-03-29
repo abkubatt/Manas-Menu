@@ -90,6 +90,13 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
     @objc func updateCounter(sender: UIStepper) {
         counterValue.text = "\(Int(counter.value))"
         toUpdateFreeFood?.amountForFree = Int(sender.value)
+        if Int(sender.value) == 0 {
+            addButton.setTitle(" DELETE ", for: .normal)
+            addButton.backgroundColor = .red
+        }else{
+            addButton.setTitle(" UPDATE ", for: .normal)
+            addButton.backgroundColor = .blue
+        }
     }
     
     
