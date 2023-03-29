@@ -98,7 +98,7 @@ class APICaller {
     
     
     func getAllCanteenFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.241.114:8080/api/Canteens") else {return}
+        guard let url = URL(string: "http://192.168.242.182:8080/api/Canteens") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return

@@ -14,7 +14,7 @@ struct Canteen: Codable {
     let type: String
     let price: Int
     let image: String
-    let amountForFree: Int
+    var amountForFree: Int
     
     internal init(id: Int, name: String, type: String, price: Int, image: String, amountForFree: Int) {
         self.id = id

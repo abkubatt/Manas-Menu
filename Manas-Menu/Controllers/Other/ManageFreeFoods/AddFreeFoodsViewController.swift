@@ -10,15 +10,15 @@ import FirebaseFirestore
 
 
 class AddFreeFoodsViewController: UIViewController {
+
+    var freeConteenFood = [Canteen]()
     
-    let desserts = ["Apple", "Banana", "Watermelon", "Kiwi", "Avocado", "Orange", "Mango", "Longan"]
-    let canteedCategories = ["DRINKS", "PIZZA AND PIDES", "BAKERY PRODUCTS", "DESSERTS", "OTHER FOODS"]
     var adding = [String]()
-    var pic1 = ""
+    var toSaveFreeFood: Canteen?
     var amount = 1
-    var pic3 = ""
-    var pic4 = ""
-    var dateOfMenu = ""
+    var idOdFreeFood = 0
+    let baseURL = "http://192.168.242.182:8080/api/Canteens/"
+
     
     let addButton: UIButton = {
         let button = UIButton()
@@ -56,7 +56,7 @@ class AddFreeFoodsViewController: UIViewController {
         super.viewDidLoad()
         title = "Add Free Foods"
         view.backgroundColor = .systemBackground
-
+        self.getCanteenFoods()
         view.addSubview(pickerView1)
         view.addSubviews(textField)
         view.addSubview(addButton)
@@ -69,11 +69,69 @@ class AddFreeFoodsViewController: UIViewController {
         configureConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        title = "Add Free Foods"
+        view.backgroundColor = .systemBackground
+        self.getCanteenFoods()
+        view.addSubview(pickerView1)
+        view.addSubviews(textField)
+        view.addSubview(addButton)
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
+        textField.delegate = self
+
+        addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
+        
+        configureConstraints()
+    }
+    
+    func getCanteenFoods(){
+        DispatchQueue.main.async {
+            APICaller.shared.getAllCanteenFoods { result in
+                switch result {
+                case .success(let canteens):
+                    self.freeConteenFood = canteens
+                case .failure(let error):
+                    _ = error.localizedDescription
+                }
+            }
+        }
+    }
+    
+    
     @objc private func addBtn(){
-        adding.append(pic1 == "" ? desserts[0] : pic1)
-//        adding.append(amount)
-//        print(amount)
-//        print(adding)
+            
+        toSaveFreeFood = toSaveFreeFood == nil ? freeConteenFood[0] : toSaveFreeFood
+        
+        toSaveFreeFood?.amountForFree = amount
+        
+        guard let freeFood = toSaveFreeFood else{
+            _ = "Free food is empty \(String(describing: toSaveFreeFood))"
+            return
+        }
+        
+        APICaller.shared.updateCanteenFood(url: URL(string: "\(baseURL)\(idOdFreeFood)")!, canteen: freeFood) { [weak self] response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(_):
+                    let alertController = UIAlertController(title: "Success", message: "You successfully add free food: \(freeFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                   
+                case.failure(_):
+                    let alertController = UIAlertController(title: "Error", message: "Error while adding free food: \(freeFood.name)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
  
     
@@ -133,26 +191,22 @@ extension AddFreeFoodsViewController: UIPickerViewDelegate, UIPickerViewDataSour
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
-            return desserts.count
-            // Return the number of rows for pickerView1
+            return freeConteenFood.count
         }
         return 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
-            return desserts[row]
-            // Return the title for the row in pickerView1
+            return freeConteenFood[row].name
         }
-
-            // Return the title for the row in pickerView2
-        
         return nil
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerView1 {
-            pic1 = desserts[row]
+            toSaveFreeFood = freeConteenFood[row]
+            idOdFreeFood = freeConteenFood[row].id
         }
     }
 
