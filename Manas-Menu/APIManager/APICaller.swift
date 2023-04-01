@@ -79,7 +79,7 @@ class APICaller {
     
     
     func getAllMenusPerDay(completion: @escaping (Result<[MenuPerDay], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.241.114:8080/api/OneDayMenus") else {return}
+        guard let url = URL(string: "http://192.168.242.250:8080/api/OneDayMenus") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
@@ -98,7 +98,7 @@ class APICaller {
     
     
     func getAllCanteenFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.242.182:8080/api/Canteens") else {return}
+        guard let url = URL(string: "http://192.168.242.250:8080/api/Canteens") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
@@ -116,7 +116,7 @@ class APICaller {
     }
     
     func getAllFreeFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
-        guard let url = URL(string: "http://192.168.242.182:8080/api/Canteens/GetFreeFoods") else {return}
+        guard let url = URL(string: "http://192.168.242.250:8080/api/Canteens/GetFreeFoods") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
@@ -135,7 +135,7 @@ class APICaller {
     
     
     func saveMenuFood(with menuFood: Menu, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let url = URL(string: "http://192.168.241.114:8080/api/Menus")!
+        let url = URL(string: "http://192.168.242.250:8080/api/Menus")!
         let session = URLSession.shared
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -187,7 +187,7 @@ class APICaller {
     
     
     func saveMenuPerDay(with menuFood: MenuPerDay, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let url = URL(string: "http://192.168.241.114:8080/api/OneDayMenus")!
+        let url = URL(string: "http://192.168.242.250:8080/api/OneDayMenus")!
         let session = URLSession.shared
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -238,7 +238,7 @@ class APICaller {
     }
 
     func saveCanteenFood(with canteenFood: Canteen, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let url = URL(string: "http://192.168.241.114:8080/api/Canteens")!
+        let url = URL(string: "http://192.168.242.250:8080/api/Canteens")!
         let session = URLSession.shared
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -359,7 +359,7 @@ class APICaller {
     }
     
     func updateFreeFood(canteen: Canteen, id: Int, amount: Int,completion: @escaping (Result<Void, Error>) -> Void) {
-        var request = URLRequest(url: URL(string:"http://192.168.242.182:8080/api/Canteens/FreeFood?id=\(id)&amount=\(amount)")!)
+        var request = URLRequest(url: URL(string:"http://192.168.242.250:8080/api/Canteens/FreeFood?id=\(id)&amount=\(amount)")!)
     
         request.httpMethod = "PUT"
 

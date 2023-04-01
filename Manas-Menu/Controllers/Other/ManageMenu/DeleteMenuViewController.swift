@@ -12,7 +12,7 @@ class DeleteMenuViewController: UIViewController {
     var menuPerDay = [MenuPerDay]()
     var dateOfMenu = ""
     var resultOfDeleting = true
-    var baseURL = "http://192.168.241.114:8080/api/OneDayMenus/"
+    var baseURL = "http://192.168.242.250:8080/api/OneDayMenus/"
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false

@@ -11,7 +11,7 @@ class DeleteFreeFoodsViewController: UIViewController {
 
     var freeFoods = [Canteen]()
     var nameOfFood = ""
-    let baseURL = "http://192.168.241.114:8080/api/Canteens/DeleteFreeFood?id="
+    let baseURL = "http://192.168.242.250:8080/api/Canteens/DeleteFreeFood?id="
     var resultOfDeleting = true
     let tableView: UITableView = {
         let table = UITableView()

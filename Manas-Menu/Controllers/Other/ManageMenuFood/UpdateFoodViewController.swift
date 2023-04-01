@@ -10,7 +10,7 @@ import UIKit
 class UpdateFoodViewController: UIViewController {
 
     var menus = [Menu]()
-    let getAllUrl = "http://192.168.241.114:8080/api/Menus"
+    let getAllUrl = "http://192.168.242.250:8080/api/Menus"
 
     let tableView: UITableView = {
         let table = UITableView()
