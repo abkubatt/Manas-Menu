@@ -23,7 +23,6 @@ class TitleTableViewCell: UITableViewCell {
 //    }()
     private let countOfFoodLabel: UILabel = {
         let label = UILabel()
-        label.text = "5"
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,6 +47,7 @@ class TitleTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
     
@@ -79,12 +79,13 @@ class TitleTableViewCell: UITableViewCell {
         
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: titlesPosterUIImageView.trailingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -14)
         ]
         
         let amountOfFoodLabelConstraints = [
             amountOfFoodLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            amountOfFoodLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 14)
+            amountOfFoodLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 15)
         ]
         
         let countOfFoodLabelConstraints = [
