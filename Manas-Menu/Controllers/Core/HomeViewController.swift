@@ -147,7 +147,7 @@ class HomeViewController: UIViewController, RMCharacterListViewDelegate {
 
     // MARK: - RMCharacterListViewDelegate
 
-    func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
+    func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: Menu) {
         // Open details controller for that character
         let viewModel = RMCharacterDetailViewViewModel(character: character)
         let detailVC = RMCharacterDetailViewController(viewModel: viewModel)

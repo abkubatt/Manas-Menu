@@ -10,7 +10,7 @@ import UIKit
 
 protocol RMCharacterListViewViewModelDelegate: AnyObject {
     func didLoadInitialCharacters()
-    func didSelectCharacter(_ character: RMCharacter)
+    func didSelectCharacter(_ character: Menu)
 }
 
 
@@ -21,12 +21,12 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var isLoadingMoreCharacters = false
     
-    private var characters: [RMCharacter] = []{
+    private var characters: [Menu] = []{
         didSet {
             for character in characters {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
                     characterName: character.name,
-                    CharacterStatuss: character.species,
+                    CharacterStatuss: "\(character.calorie)",
                     characterImageUrl: URL(string: character.image)                )
                 cellViewModels.append(viewModel)
             }
@@ -40,13 +40,13 @@ final class RMCharacterListViewViewModel: NSObject {
     
     /// Fetch initial set of characters (20)
     func fetchCharacters(){
-        RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharactersResponse.self) { [weak self] result in
+        RMService.shared.execute(.listCharactersRequests, expecting: [Menu].self) { [weak self] result in
             switch result{
             case .success(let responseModel):
-                let results = responseModel.results
-                let info = responseModel.info
+                let results = responseModel
+//                let info = responseModel.info
                 self?.characters = results
-                self?.apiInfo = info
+//                self?.apiInfo = info
                 DispatchQueue.main.async {
                     self?.delegate?.didLoadInitialCharacters()
                 }

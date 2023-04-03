@@ -9,9 +9,9 @@ import Foundation
 
 
 final class RMCharacterDetailViewViewModel {
-    private var character: RMCharacter
+    private var character: Menu
     
-    init(character: RMCharacter) {
+    init(character: Menu) {
         self.character = character
     }
     
