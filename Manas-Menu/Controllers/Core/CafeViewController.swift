@@ -8,18 +8,16 @@
 import UIKit
 
 class CafeViewController: UIViewController {
-    private var titles: [Canteen] = [Canteen]()
-    var set = Set<String>()
-    var arr = Array<String>()
-
-    let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top rated"]
-
+    private var menus = [Menus]()
+    
     
     let menuTableView: UITableView = {
         let table = UITableView()
-        table.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
+        let m = MenuTableViewCell()
+        table.register(MenusTableViewCell.self, forCellReuseIdentifier: MenusTableViewCell.identifier)
         return table
     }()
+    
     override func viewDidLoad() {
        super.viewDidLoad()
         title = "Cafe"
@@ -37,16 +35,15 @@ class CafeViewController: UIViewController {
     }
     
     private func fetchUpcoming() {
-        APICaller.shared.getFreeFoods { [weak self] result in
+        APICaller.shared.getMenus { [weak self] result in
             switch result {
-            case.success(let titles):
-                self?.titles = titles
+            case.success(let menus):
+                self?.menus = menus
                 DispatchQueue.main.async {
                     self?.menuTableView.reloadData()
                 }
             case.failure(let error):
                 _ = error.localizedDescription
-//                print(error.localizedDescription)
             }
         }
     }
@@ -68,27 +65,21 @@ class CafeViewController: UIViewController {
 extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        for i in titles {
-            set.insert(i.name)
-        }
-        arr = Array(set)
-        return set.count
+        return menus.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return menus[section].menus.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.identifier, for: indexPath) as? TitleTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenusTableViewCell.identifier, for: indexPath) as? MenusTableViewCell else {return UITableViewCell()}
         
-        let title = titles[indexPath.row]
+        let title = menus[indexPath.section].menus[indexPath.row]
         
-        cell.configure(with: TitleViewModel(titleName: (title.name), posterURL: title.image, countOfFood: title.amountForFree))
+        cell.configure(with: MenusViewModel(titleName: title.name, posterURL: title.image, calorie: title.calorie))
         return cell
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -98,7 +89,7 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let title = titles[indexPath.row]
+        let title = menus[indexPath.row].menus[indexPath.row]
         
         let titleName = title.name
         
@@ -107,12 +98,11 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
             case .success(let videoElement):
                 DispatchQueue.main.async {
                     let vc = TitlePreviewViewController()
-                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "\(title.price)"))
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "Calorie: \(title.calorie)"))
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
                 _ = (error.localizedDescription)
-//                print(error.localizedDescription)
             }
         }
     }
@@ -120,7 +110,7 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return arr[section]
+        return menus[section].date
     }
     
     

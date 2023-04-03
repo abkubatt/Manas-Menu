@@ -34,6 +34,8 @@
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
+		A0409B8129DAC0600074BDA7 /* MenusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0409B8029DAC05F0074BDA7 /* MenusTableViewCell.swift */; };
+		A0409B8329DAC16B0074BDA7 /* MenusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0409B8229DAC16B0074BDA7 /* MenusViewModel.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
 		A06EA23329C4D533009FCB08 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA23229C4D533009FCB08 /* UIColorExtension.swift */; };
 		A0728B7E29BF073200B3C00B /* ManageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */; };
@@ -124,6 +126,8 @@
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		A0409B8029DAC05F0074BDA7 /* MenusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenusTableViewCell.swift; sourceTree = "<group>"; };
+		A0409B8229DAC16B0074BDA7 /* MenusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenusViewModel.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A06EA23229C4D533009FCB08 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListTableViewCell.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				A0938E5E29A86672007B1727 /* TitleTableViewCell.swift */,
 				A0728B7D29BF073200B3C00B /* ManageListTableViewCell.swift */,
 				A077D4D329C0E5E400C5751F /* MyDeleteTableViewCell.swift */,
+				A0409B8029DAC05F0074BDA7 /* MenusTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				A0EBFA9D298FBA0E002F7B16 /* RMCharacterDetailViewViewModel.swift */,
 				A0EBFAA4298FBAFF002F7B16 /* RMCharacterListViewViewModel.swift */,
 				A0EBFAA6298FBB2E002F7B16 /* RMCharacterCollectionViewCellViewModel.swift */,
+				A0409B8229DAC16B0074BDA7 /* MenusViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 				A0EBFA92298FB8B6002F7B16 /* RMEpisode.swift in Sources */,
 				A0A08C14298930EC007FD406 /* Sections.swift in Sources */,
 				A0EBFAAC298FBBCB002F7B16 /* RMService.swift in Sources */,
+				A0409B8329DAC16B0074BDA7 /* MenusViewModel.swift in Sources */,
 				A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */,
 				A0EBFAA7298FBB2E002F7B16 /* RMCharacterCollectionViewCellViewModel.swift in Sources */,
 				A0EBFAB2298FBC29002F7B16 /* RMFooterLoadingCollectionReusableView.swift in Sources */,
@@ -679,6 +686,7 @@
 				A0EBFA9C298FB9AB002F7B16 /* RMGetAllCharactersResponse.swift in Sources */,
 				A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */,
 				A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */,
+				A0409B8129DAC0600074BDA7 /* MenusTableViewCell.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
 				A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */,
 				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,

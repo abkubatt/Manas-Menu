@@ -21,33 +21,8 @@ struct Constant {
 }
 
 
-//struct Mennu: Codable {
-//    let id: Int
-//    let image: String
-//    let name: String
-//    let type: String
-//    let calorie: Int
-//}
-
 class APICaller {
     static let shared = APICaller()
-    // "https://drink.free.beeceptor.com/drink"
-//    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
-//        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
-//        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
-//            guard let data = data, error == nil else{
-//                return
-//            }
-//            do {
-//                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-//                completion(.success(results.results))
-//            }catch{
-//                completion(.failure(APIError.failedToGetData))
-//            }
-//        }
-//
-//        task.resume()
-//    }
     func getTrendingMovies(completion: @escaping (Result<[Canteen], Error>) -> Void) {
         guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetDrinks") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
@@ -497,6 +472,23 @@ class APICaller {
             }
             do {
                 let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
+            }catch{
+                completion(.failure(APIError.failedToGetData))
+            }
+        }
+        task.resume()
+    }
+    
+    func getMenus(completion: @escaping (Result<[Menus], Error>) -> Void) {
+        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/getMenus") else {return}
+        //https://abkubatt.free.beeceptor.com/desserts
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode([Menus].self, from: data)
                 completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))

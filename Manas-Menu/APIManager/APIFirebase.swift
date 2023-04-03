@@ -55,7 +55,7 @@ class APIFirebase {
     static let shared = APIFirebase()
     
     private let dbReference = Firestore.firestore().collection("menus")
-    private var menus = [Menus]()
+//    private var menus = [Menus]()
     
     
     func fetchSubcollection() {
