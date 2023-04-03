@@ -32,24 +32,31 @@ struct Constant {
 class APICaller {
     static let shared = APICaller()
     // "https://drink.free.beeceptor.com/drink"
-    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
-//        self.getttt { result in
-//            print("---------------------------------------\(result)")
+//    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+//        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
+//        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+//            guard let data = data, error == nil else{
+//                return
+//            }
+//            do {
+//                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+//                completion(.success(results.results))
+//            }catch{
+//                completion(.failure(APIError.failedToGetData))
+//            }
 //        }
-//        let menu = Mennu(id: 12, image: "udpated", name: "name up", type: "dinner", calorie: 312)
-//        self.putRequest(url: URL(string: "http://192.168.241.114:8080/api/Menus/12")!, menu: menu) { res in
-//            print("-------------------\(res)")
-//        }
-        
-        
-        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/drinks") else {return}
+//
+//        task.resume()
+//    }
+    func getTrendingMovies(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetDrinks") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
             }
@@ -464,16 +471,16 @@ class APICaller {
 
     
     //"https://drink.free.beeceptor.com/desserts"
-    func getUpcomingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "https://freef.free.beeceptor.com/free") else {return}
+    func getDesserts(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetDesserts") else {return}
         //https://abkubatt.free.beeceptor.com/desserts
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
             }
@@ -481,18 +488,36 @@ class APICaller {
         task.resume()
     }
     
+    func getFreeFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetFreeFoods") else {return}
+        //https://abkubatt.free.beeceptor.com/desserts
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
+            }catch{
+                completion(.failure(APIError.failedToGetData))
+            }
+        }
+        task.resume()
+    }
     
+
+
     
     // "https://abkubatt.free.beeceptor.com/bakerproducts
-    func getPopular(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/bakers") else {return}
+    func getBakeryProducts(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetBakeryProducts") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
             }
@@ -501,15 +526,15 @@ class APICaller {
     }
     
     
-    func getTopRated(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/others") else {return}
+    func getOtherFoods(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetOtherFoods") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
             }
@@ -518,15 +543,15 @@ class APICaller {
     }
     
     // https://manas.free.beeceptor.com/pizzaandpides
-    func getTrendingTvs(completion: @escaping (Result<[Title], Error>) -> Void) {
-        guard let url = URL(string: "https://abkubatt.free.beeceptor.com/pizzaandpide") else {return}
+    func getPaP(completion: @escaping (Result<[Canteen], Error>) -> Void) {
+        guard let url = URL(string: "http://192.168.203.173:8080/api/Canteens/GetPaP") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode([Canteen].self, from: data)
+                completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))
             }

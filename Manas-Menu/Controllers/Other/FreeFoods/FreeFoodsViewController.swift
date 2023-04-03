@@ -10,7 +10,7 @@ import UIKit
 
 class FreeFoodsViewController: UIViewController {
     
-    private var titles: [Title] = [Title]()
+    private var titles: [Canteen] = [Canteen]()
     
     private var upcomingTable: UITableView = {
         let table = UITableView()
@@ -41,7 +41,7 @@ class FreeFoodsViewController: UIViewController {
     }
     
     private func fetchUpcoming() {
-        APICaller.shared.getUpcomingMovies { [weak self] result in
+        APICaller.shared.getFreeFoods { [weak self] result in
             switch result {
             case.success(let titles):
                 self?.titles = titles
@@ -68,7 +68,7 @@ extension FreeFoodsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        cell.configure(with: TitleViewModel(titleName: (title.original_title ?? title.original_name) ?? "Unknown title name", posterURL: title.poster_path ?? "", countOfFood: title.vote_count))
+        cell.configure(with: TitleViewModel(titleName: (title.name), posterURL: title.image, countOfFood: title.amountForFree))
         return cell
         
         
@@ -83,14 +83,14 @@ extension FreeFoodsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_title ?? title.original_name else {return}
+         let titleName = title.name
         
         APICaller.shared.getMovie(with: titleName) {[weak self] result in
             switch result{
             case .success(let videoElement):
                 DispatchQueue.main.async {
                     let vc = TitlePreviewViewController()
-                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "\(title.price)"))
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):

@@ -18,7 +18,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     weak var delegate: CollectionViewTableCellDelegate?
     
-    private var titles = [Title]()
+    private var titles = [Canteen]()
     
     private let collectionView: UICollectionView = {
         
@@ -48,7 +48,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         collectionView.frame = contentView.bounds
     }
     
-    public func configure(with titles: [Title]) {
+    public func configure(with titles: [Canteen]) {
         self.titles = titles
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
@@ -78,9 +78,9 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         
-        guard let model = titles[indexPath.row].poster_path else {
-            return UICollectionViewCell()
-        }
+         let model = titles[indexPath.row].image
+//            return UICollectionViewCell()
+//        }
         
         cell.configure(with: model)
         
@@ -99,18 +99,17 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let title = titles[indexPath.row]
-        guard let titleName = title.original_title ?? title.original_name  else{
-            return
-        }
+        let titleName = title.name
+         
         
         APICaller.shared.getMovie(with: titleName + " video") { [weak self] result in
             switch result{
             case .success(let videoElement):
                 let title = self?.titles[indexPath.row]
-                guard let titleOverview = title?.overview else {return}
+                guard let titleOverview = title?.price else {return}
                 guard let strongSelf = self else {return}
                 
-                let viewModel = TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: titleOverview)
+                let viewModel = TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "\(titleOverview)  som")
                 self?.delegate?.collectionViewTableViewCellDidTapCell(strongSelf, viewModel: viewModel)
             case .failure(let error):
                 _ = error

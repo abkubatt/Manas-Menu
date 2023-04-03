@@ -8,7 +8,7 @@
 import UIKit
 
 class CafeViewController: UIViewController {
-    private var titles: [Title] = [Title]()
+    private var titles: [Canteen] = [Canteen]()
     var set = Set<String>()
     var arr = Array<String>()
 
@@ -37,7 +37,7 @@ class CafeViewController: UIViewController {
     }
     
     private func fetchUpcoming() {
-        APICaller.shared.getUpcomingMovies { [weak self] result in
+        APICaller.shared.getFreeFoods { [weak self] result in
             switch result {
             case.success(let titles):
                 self?.titles = titles
@@ -69,7 +69,7 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         for i in titles {
-            set.insert(i.original_language ?? "")
+            set.insert(i.name)
         }
         arr = Array(set)
         return set.count
@@ -85,7 +85,7 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        cell.configure(with: TitleViewModel(titleName: (title.original_title ?? title.original_name) ?? "Unknown title name", posterURL: title.poster_path ?? "", countOfFood: title.vote_count))
+        cell.configure(with: TitleViewModel(titleName: (title.name), posterURL: title.image, countOfFood: title.amountForFree))
         return cell
         
         
@@ -100,14 +100,14 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_title ?? title.original_name else {return}
+        let titleName = title.name
         
         APICaller.shared.getMovie(with: titleName) {[weak self] result in
             switch result{
             case .success(let videoElement):
                 DispatchQueue.main.async {
                     let vc = TitlePreviewViewController()
-                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "\(title.price)"))
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):

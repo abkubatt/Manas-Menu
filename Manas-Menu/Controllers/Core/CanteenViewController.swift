@@ -16,7 +16,7 @@ class CanteenViewController: UIViewController {
         return controller
     }()
     
-    private var randomTrendingMovie: Title?
+    private var randomTrendingMovie: Canteen?
 //    private var headerView: HeroHeaderUIView?
     let sectionTitles: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
     
@@ -113,12 +113,11 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.configure(with: titles)
                 case .failure(let error):
                     _ = error.localizedDescription
-//                    print(error.localizedDescription)
                 }
             }
-            
+         
         case Sections.TrendingTv.rawValue:
-            APICaller.shared.getTrendingTvs {result in
+            APICaller.shared.getPaP {result in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles)
@@ -127,9 +126,9 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
 //                    print(error.localizedDescription)
                 }
             }
-            
+
         case Sections.Popular.rawValue:
-            APICaller.shared.getPopular {result in
+            APICaller.shared.getBakeryProducts {result in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles)
@@ -138,9 +137,9 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
 //                    print(error.localizedDescription)
                 }
             }
-            
+
         case Sections.Upcoming.rawValue:
-            APICaller.shared.getUpcomingMovies {result in
+            APICaller.shared.getDesserts {result in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles)
@@ -149,9 +148,9 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
 //                    print(error.localizedDescription)
                 }
             }
-            
+
         case Sections.TopRated.rawValue:
-            APICaller.shared.getTopRated {result in
+            APICaller.shared.getOtherFoods {result in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles)
