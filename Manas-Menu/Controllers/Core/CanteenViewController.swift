@@ -31,7 +31,6 @@ class CanteenViewController: UIViewController {
         super.viewDidLoad()
         title = "Canteen"
         view.backgroundColor = .systemBackground
-        navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Free Foods", style: .done, target: self, action: #selector(didTapFreeFoods))
         view.addSubview(homeFeedTable)
         
