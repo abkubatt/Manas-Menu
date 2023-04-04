@@ -19,7 +19,7 @@ class DetailUpdateCanteenFoodsViewController: UIViewController {
     var price: Int = 0
     var dateOfMenu = ""
     var idOfCanteenFood: Int = 0
-    let baseURL = "http://192.168.242.250:8080/api/Canteens/"
+    let baseURL = "http://\(Constant.IP):8080/api/Canteens/"
 
     let addButton: UIButton = {
         let button = UIButton()

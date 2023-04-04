@@ -17,7 +17,7 @@ class AddFreeFoodsViewController: UIViewController {
     var toSaveFreeFood: Canteen?
     var amount = 1
     var idOdFreeFood = 0
-    let baseURL = "http://192.168.242.250:8080/api/Canteens/"
+    let baseURL = "http://\(Constant.IP):8080/api/Canteens/"
 
     
     let addButton: UIButton = {

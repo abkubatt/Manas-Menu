@@ -78,6 +78,7 @@
 		A0B4C38C29BF391500583E7A /* UpdateFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */; };
 		A0B4C38E29BF393F00583E7A /* DeleteFreeFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */; };
 		A0C307E729BB754D001F3230 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C307E629BB754D001F3230 /* Menu.swift */; };
+		A0D0744E29DC252B009CD12B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0744D29DC252B009CD12B /* Constant.swift */; };
 		A0E362B829D050F90087B4FF /* MenuPerDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E362B729D050F90087B4FF /* MenuPerDay.swift */; };
 		A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */; };
 		A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */; };
@@ -168,6 +169,7 @@
 		A0B4C38B29BF391400583E7A /* UpdateFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A0B4C38D29BF393F00583E7A /* DeleteFreeFoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFreeFoodsViewController.swift; sourceTree = "<group>"; };
 		A0C307E629BB754D001F3230 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		A0D0744D29DC252B009CD12B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A0E362B729D050F90087B4FF /* MenuPerDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPerDay.swift; sourceTree = "<group>"; };
 		A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
 		A0E9FD7929BE297D006F89DC /* AddMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				A081253029C3662100A05D4D /* UserRole.swift */,
 				A084539D29CC5F3000BBA66A /* Canteen.swift */,
 				A0E362B729D050F90087B4FF /* MenuPerDay.swift */,
+				A0D0744D29DC252B009CD12B /* Constant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				A084539E29CC5F3000BBA66A /* Canteen.swift in Sources */,
 				A0B4C38429BF388000583E7A /* AddCanteenFoodsViewController.swift in Sources */,
 				A0A08C1C29893322007FD406 /* TitlePreviewViewModel.swift in Sources */,
+				A0D0744E29DC252B009CD12B /* Constant.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
 				A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */,
 				A0EBFAB0298FBBF1002F7B16 /* RMEndpoint.swift in Sources */,
