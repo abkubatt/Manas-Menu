@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C310CE79D484B7CCC4B3548 /* Pods_Manas_Menu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */; };
+		A014D96829DED12C00D51B76 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014D96729DED12C00D51B76 /* DeliveryViewController.swift */; };
 		A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403612984ED8E00F5227C /* AppDelegate.swift */; };
 		A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403632984ED8E00F5227C /* SceneDelegate.swift */; };
 		A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403652984ED8E00F5227C /* MainTabBarViewController.swift */; };
@@ -108,6 +109,7 @@
 		61A5CE2DDE77C56460A38147 /* Pods-Manas-Menu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.release.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.release.xcconfig"; sourceTree = "<group>"; };
 		848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manas_Menu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		892EF9386621FB46C6E5A38F /* Pods-Manas-Menu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.debug.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.debug.xcconfig"; sourceTree = "<group>"; };
+		A014D96729DED12C00D51B76 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		A024035E2984ED8E00F5227C /* Manas-Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Manas-Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02403612984ED8E00F5227C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A02403632984ED8E00F5227C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				A02403802985183000F5227C /* CafeViewController.swift */,
 				A02403822985185A00F5227C /* CanteenViewController.swift */,
 				A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */,
+				A014D96729DED12C00D51B76 /* DeliveryViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				A0EBFA9A298FB97C002F7B16 /* RMOrigin.swift in Sources */,
 				A0EBFAAA298FBB94002F7B16 /* RMCharacterCollectionViewCell.swift in Sources */,
 				A0B4C38629BF38B100583E7A /* UpdateCanteenFoodsViewController.swift in Sources */,
+				A014D96829DED12C00D51B76 /* DeliveryViewController.swift in Sources */,
 				A0A08C1829893240007FD406 /* APICaller.swift in Sources */,
 				A0A08C16298931EC007FD406 /* CollectionViewTableViewCell.swift in Sources */,
 				A0A08C11298930AF007FD406 /* Title.swift in Sources */,
