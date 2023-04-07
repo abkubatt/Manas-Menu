@@ -42,7 +42,43 @@ class DeliveryViewController: UIViewController {
         step.minimumValue = 0
         step.maximumValue = 100
         step.translatesAutoresizingMaskIntoConstraints = false
-        step.addTarget(self, action: #selector(updateCounter(sender:)), for: .valueChanged)
+        step.addTarget(self, action: #selector(updateTurkishTea(sender:)), for: .valueChanged)
+        return step
+    }()
+    
+    private let sTeaImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "stea")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 10
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    private let sTeaName: UILabel = {
+        let label = UILabel()
+        label.text = "Shaking Tea"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let sAmountTea: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.font = .systemFont(ofSize: 20)
+        return label
+    }()
+    
+    private let sTeaCounter: UIStepper = {
+        let step = UIStepper()
+        step.value = 0
+        step.minimumValue = 0
+        step.maximumValue = 100
+        step.translatesAutoresizingMaskIntoConstraints = false
+        step.addTarget(self, action: #selector(updateSimpleTea(sender:)), for: .valueChanged)
         return step
     }()
     
@@ -53,16 +89,29 @@ class DeliveryViewController: UIViewController {
         view.addSubview(turkishTeaName)
         view.addSubview(amountTurkishTea)
         view.addSubview(turkishTeaCounter)
+        view.addSubview(sTeaImage)
+        view.addSubview(sTeaName)
+        view.addSubview(sAmountTea)
+        view.addSubview(sTeaCounter)
         
         configureConstraints()
     }
     
-    @objc func updateCounter(sender: UIStepper) {
+    @objc func updateTurkishTea(sender: UIStepper) {
         amountTurkishTea.text = "\(Int(sender.value))"
         if sender.value != 0 {
             turkishTeaName.text = "Turkish Tea ✓"
         }else{
             turkishTeaName.text = "Turkish Tea"
+        }
+    }
+    
+    @objc func updateSimpleTea(sender: UIStepper) {
+        sAmountTea.text = "\(Int(sender.value))"
+        if sender.value != 0 {
+            sTeaName.text = "Shaking Tea ✓"
+        }else{
+            sTeaName.text = "Shaking Tea"
         }
     }
     
@@ -91,10 +140,39 @@ class DeliveryViewController: UIViewController {
             turkishTeaCounter.leadingAnchor.constraint(equalTo: turkishTeaImage.trailingAnchor, constant: 130)
         ]
         
+        //----------------
+        
+        
+        let sTeaImageConst = [
+            sTeaImage.topAnchor.constraint(equalTo: turkishTeaImage.bottomAnchor, constant: 25),
+            sTeaImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            sTeaImage.heightAnchor.constraint(equalToConstant: 90),
+            sTeaImage.widthAnchor.constraint(equalToConstant: 80)
+        ]
+        
+        let sTeaNameConst = [
+            sTeaName.topAnchor.constraint(equalTo: sTeaImage.topAnchor, constant: 10),
+            sTeaName.leadingAnchor.constraint(equalTo: sTeaImage.trailingAnchor, constant: 30),
+        ]
+        
+        let samountTeaConst = [
+            sAmountTea.topAnchor.constraint(equalTo: sTeaImage.bottomAnchor, constant: -35),
+            sAmountTea.leadingAnchor.constraint(equalTo: sTeaImage.trailingAnchor, constant: 60)
+        ]
+        
+        let sTeaCounterConst = [
+            sTeaCounter.topAnchor.constraint(equalTo: sTeaName.bottomAnchor, constant: 20),
+            sTeaCounter.leadingAnchor.constraint(equalTo: sTeaImage.trailingAnchor, constant: 130)
+        ]
+        
         NSLayoutConstraint.activate(turkishTeaImageConst)
         NSLayoutConstraint.activate(turkishTeaNameConst)
         NSLayoutConstraint.activate(amountTurkishTeaConst)
         NSLayoutConstraint.activate(turkishTeaCounterConst)
+        NSLayoutConstraint.activate(sTeaImageConst)
+        NSLayoutConstraint.activate(sTeaNameConst)
+        NSLayoutConstraint.activate(samountTeaConst)
+        NSLayoutConstraint.activate(sTeaCounterConst)
         
     }
 }
