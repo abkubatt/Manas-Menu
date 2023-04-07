@@ -338,7 +338,7 @@ class DeliveryViewController: UIViewController {
         //-------------
         
         let orderButtonConst = [
-            orderButton.topAnchor.constraint(equalTo: coffeeMilkImage.bottomAnchor, constant: 60),
+            orderButton.topAnchor.constraint(equalTo: coffeeMilkImage.bottomAnchor, constant: 70),
             orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
         ]
