@@ -162,6 +162,16 @@ class DeliveryViewController: UIViewController {
         return step
     }()
     
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(" ORDER ", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .red
+        button.layer.cornerRadius = 12
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         title = "Delivery"
         view.backgroundColor = .systemBackground
@@ -185,6 +195,7 @@ class DeliveryViewController: UIViewController {
         view.addSubview(coffeeMilkAmount)
         view.addSubview(coffeeMilkCounter)
         
+        view.addSubview(orderButton)
         configureConstraints()
     }
     
@@ -326,6 +337,12 @@ class DeliveryViewController: UIViewController {
         
         //-------------
         
+        let orderButtonConst = [
+            orderButton.topAnchor.constraint(equalTo: coffeeMilkImage.bottomAnchor, constant: 60),
+            orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+            orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
+        ]
+        
         NSLayoutConstraint.activate(turkishTeaImageConst)
         NSLayoutConstraint.activate(turkishTeaNameConst)
         NSLayoutConstraint.activate(amountTurkishTeaConst)
@@ -345,6 +362,8 @@ class DeliveryViewController: UIViewController {
         NSLayoutConstraint.activate(coffeeMilkNameConst)
         NSLayoutConstraint.activate(coffeeMilkAmountConst)
         NSLayoutConstraint.activate(coffeeMilkCounterConst)
+        
+        NSLayoutConstraint.activate(orderButtonConst)
         
         
     }
