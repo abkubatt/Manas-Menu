@@ -9,6 +9,8 @@ import UIKit
 
 
 class DeliveryViewController: UIViewController {
+
+    // - TURKISH TEA
     
     private let turkishTeaImage: UIImageView = {
         let image = UIImageView()
@@ -46,6 +48,8 @@ class DeliveryViewController: UIViewController {
         return step
     }()
     
+    // - SIMPLE TEA
+    
     private let sTeaImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "stea")
@@ -82,6 +86,82 @@ class DeliveryViewController: UIViewController {
         return step
     }()
     
+    // SIMPLE COFFE
+    
+    private let coffeeImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "coffeep")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 10
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    private let coffeeName: UILabel = {
+        let label = UILabel()
+        label.text = "Coffee Plain"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let coffeeAmount: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.font = .systemFont(ofSize: 20)
+        return label
+    }()
+    
+    private let coffeeCounter: UIStepper = {
+        let step = UIStepper()
+        step.value = 0
+        step.minimumValue = 0
+        step.maximumValue = 100
+        step.translatesAutoresizingMaskIntoConstraints = false
+        step.addTarget(self, action: #selector(updateSimpleCoffee(sender:)), for: .valueChanged)
+        return step
+    }()
+    
+    // MILK COFFE
+    
+    private let coffeeMilkImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "coffeem")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 10
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    private let coffeeMilkName: UILabel = {
+        let label = UILabel()
+        label.text = "Coffee with Milk"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let coffeeMilkAmount: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.font = .systemFont(ofSize: 20)
+        return label
+    }()
+    
+    private let coffeeMilkCounter: UIStepper = {
+        let step = UIStepper()
+        step.value = 0
+        step.minimumValue = 0
+        step.maximumValue = 100
+        step.translatesAutoresizingMaskIntoConstraints = false
+        step.addTarget(self, action: #selector(updateMilkCoffee(sender:)), for: .valueChanged)
+        return step
+    }()
+    
     override func viewDidLoad() {
         title = "Delivery"
         view.backgroundColor = .systemBackground
@@ -89,10 +169,21 @@ class DeliveryViewController: UIViewController {
         view.addSubview(turkishTeaName)
         view.addSubview(amountTurkishTea)
         view.addSubview(turkishTeaCounter)
+        
         view.addSubview(sTeaImage)
         view.addSubview(sTeaName)
         view.addSubview(sAmountTea)
         view.addSubview(sTeaCounter)
+        
+        view.addSubview(coffeeImage)
+        view.addSubview(coffeeName)
+        view.addSubview(coffeeAmount)
+        view.addSubview(coffeeCounter)
+        
+        view.addSubview(coffeeMilkImage)
+        view.addSubview(coffeeMilkName)
+        view.addSubview(coffeeMilkAmount)
+        view.addSubview(coffeeMilkCounter)
         
         configureConstraints()
     }
@@ -112,6 +203,24 @@ class DeliveryViewController: UIViewController {
             sTeaName.text = "Shaking Tea ✓"
         }else{
             sTeaName.text = "Shaking Tea"
+        }
+    }
+    
+    @objc func updateSimpleCoffee(sender: UIStepper) {
+        coffeeAmount.text = "\(Int(sender.value))"
+        if sender.value != 0 {
+            coffeeName.text = "Coffee Plain ✓"
+        }else{
+            coffeeName.text = "Coffee Plain"
+        }
+    }
+    
+    @objc func updateMilkCoffee(sender: UIStepper) {
+        coffeeMilkAmount.text = "\(Int(sender.value))"
+        if sender.value != 0 {
+            coffeeMilkName.text = "Coffee with Milk ✓"
+        }else{
+            coffeeMilkName.text = "Coffee with Milk"
         }
     }
     
@@ -165,14 +274,78 @@ class DeliveryViewController: UIViewController {
             sTeaCounter.leadingAnchor.constraint(equalTo: sTeaImage.trailingAnchor, constant: 130)
         ]
         
+        
+        //----------------
+        
+        let coffeeImageConst = [
+            coffeeImage.topAnchor.constraint(equalTo: sTeaImage.bottomAnchor, constant: 25),
+            coffeeImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            coffeeImage.heightAnchor.constraint(equalToConstant: 90),
+            coffeeImage.widthAnchor.constraint(equalToConstant: 80)
+        ]
+        
+        let coffeeNameConst = [
+            coffeeName.topAnchor.constraint(equalTo: coffeeImage.topAnchor, constant: 10),
+            coffeeName.leadingAnchor.constraint(equalTo: coffeeImage.trailingAnchor, constant: 30),
+        ]
+        
+        let coffeeAmountConst = [
+            coffeeAmount.topAnchor.constraint(equalTo: coffeeImage.bottomAnchor, constant: -35),
+            coffeeAmount.leadingAnchor.constraint(equalTo: coffeeImage.trailingAnchor, constant: 60)
+        ]
+        
+        let coffeeCounterConst = [
+            coffeeCounter.topAnchor.constraint(equalTo: coffeeName.bottomAnchor, constant: 20),
+            coffeeCounter.leadingAnchor.constraint(equalTo: coffeeImage.trailingAnchor, constant: 130)
+        ]
+
+        
+        //----------------
+
+        let coffeeMilkImageConst = [
+            coffeeMilkImage.topAnchor.constraint(equalTo: coffeeImage.bottomAnchor, constant: 25),
+            coffeeMilkImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            coffeeMilkImage.heightAnchor.constraint(equalToConstant: 90),
+            coffeeMilkImage.widthAnchor.constraint(equalToConstant: 80)
+        ]
+        
+        let coffeeMilkNameConst = [
+            coffeeMilkName.topAnchor.constraint(equalTo: coffeeMilkImage.topAnchor, constant: 10),
+            coffeeMilkName.leadingAnchor.constraint(equalTo: coffeeMilkImage.trailingAnchor, constant: 30),
+        ]
+        
+        let coffeeMilkAmountConst = [
+            coffeeMilkAmount.topAnchor.constraint(equalTo: coffeeMilkImage.bottomAnchor, constant: -35),
+            coffeeMilkAmount.leadingAnchor.constraint(equalTo: coffeeMilkImage.trailingAnchor, constant: 60)
+        ]
+        
+        let coffeeMilkCounterConst = [
+            coffeeMilkCounter.topAnchor.constraint(equalTo: coffeeMilkName.bottomAnchor, constant: 20),
+            coffeeMilkCounter.leadingAnchor.constraint(equalTo: coffeeMilkImage.trailingAnchor, constant: 130)
+        ]
+        
+        //-------------
+        
         NSLayoutConstraint.activate(turkishTeaImageConst)
         NSLayoutConstraint.activate(turkishTeaNameConst)
         NSLayoutConstraint.activate(amountTurkishTeaConst)
         NSLayoutConstraint.activate(turkishTeaCounterConst)
+        
         NSLayoutConstraint.activate(sTeaImageConst)
         NSLayoutConstraint.activate(sTeaNameConst)
         NSLayoutConstraint.activate(samountTeaConst)
         NSLayoutConstraint.activate(sTeaCounterConst)
+        
+        NSLayoutConstraint.activate(coffeeImageConst)
+        NSLayoutConstraint.activate(coffeeNameConst)
+        NSLayoutConstraint.activate(coffeeAmountConst)
+        NSLayoutConstraint.activate(coffeeCounterConst)
+        
+        NSLayoutConstraint.activate(coffeeMilkImageConst)
+        NSLayoutConstraint.activate(coffeeMilkNameConst)
+        NSLayoutConstraint.activate(coffeeMilkAmountConst)
+        NSLayoutConstraint.activate(coffeeMilkCounterConst)
+        
         
     }
 }
