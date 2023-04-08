@@ -13,6 +13,16 @@ import FBSDKLoginKit
 
 class SettingsViewController: UIViewController {
     
+    let faculties = ["SOUP", "WITH MEAT", "WITHOUT MEAT", "DESSERT"]
+    var currenFaculty = ""
+    
+    let faculty: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    
     private let roomAddressTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +45,7 @@ class SettingsViewController: UIViewController {
         button.layer.cornerRadius = 6
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.systemBlue.cgColor
+        button.addTarget(self, action: #selector(saveAddress), for: .touchUpInside)
         return button
     }()
     
@@ -49,8 +60,11 @@ class SettingsViewController: UIViewController {
                 self.saveRoodAddressButton.isHidden = true
             }
         }
+        view.addSubview(faculty)
         view.addSubview(roomAddressTextField)
         view.addSubview(saveRoodAddressButton)
+        faculty.delegate = self
+        faculty.dataSource = self
         roomAddressTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
         
@@ -58,6 +72,12 @@ class SettingsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(didTapSignOut))
 
         configureConstraints()
+    }
+    
+    @objc private func saveAddress() {
+        DispatchQueue.main.async { [self] in
+            APIFirebase.shared.addTeacherAddress(address: self.roomAddressTextField.text ?? "", faculty: currenFaculty)
+        }
     }
     
     
@@ -78,8 +98,15 @@ class SettingsViewController: UIViewController {
     
     private func configureConstraints() {
         
+        let facultyConst = [
+            faculty.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            faculty.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            faculty.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            faculty.heightAnchor.constraint(equalToConstant: 100)
+        ]
+        
         let roomAddressConstraints = [
-            roomAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            roomAddressTextField.topAnchor.constraint(equalTo: faculty.bottomAnchor, constant: 30),
             roomAddressTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             roomAddressTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
         ]
@@ -88,7 +115,7 @@ class SettingsViewController: UIViewController {
             saveRoodAddressButton.topAnchor.constraint(equalTo: roomAddressTextField.bottomAnchor, constant: 50),
             saveRoodAddressButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
-        
+        NSLayoutConstraint.activate(facultyConst)
         NSLayoutConstraint.activate(roomAddressConstraints)
         NSLayoutConstraint.activate(saveRoodAddressButtonConst)
     }
@@ -110,9 +137,27 @@ class SettingsViewController: UIViewController {
 
 }
 
-extension SettingsViewController: UITextFieldDelegate {
+extension SettingsViewController: UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return faculties.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return faculties[row]
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true;
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currenFaculty = faculties[row]
+    }
+    
+    
 }
