@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 class DeliveryViewController: UIViewController {
 
@@ -256,6 +256,15 @@ class DeliveryViewController: UIViewController {
         }
 
         if message != "" {
+            let currentUserEmail = Auth.auth().currentUser?.email
+            
+            guard let nameOfDrink = turkishTeaName.text else {return}
+            let delivery = DrinksDelivery(id: 0, name: turkishTeaName.text ?? "", amount: amountTurkishTea.text ?? "", orderedPersonEmail: currentUserEmail ?? "", roomName: "BIL-543")
+            PostService.shared.uploadTodoItem(delivery: delivery) { (error, ref) in
+                self.amountTurkishTea.text = "0"
+            }
+            
+            
             let alertController = UIAlertController(title: "Success", message: "You successfully ordered: \(message)", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
                 print(#function)

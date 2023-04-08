@@ -46,11 +46,11 @@ class CreateTodoViewController: UIViewController {
     
     @objc private func createItemPressed() {
         guard let todoText = itemTextField.text else {return}
-        PostService.shared.uploadTodoItem(text: todoText) { (error, ref) in
-            self.itemTextField.text = ""
-            
-            self.dismiss(animated: true)
-        }
+//        PostService.shared.uploadTodoItem(text: todoText) { (error, ref) in
+//            self.itemTextField.text = ""
+//
+//            self.dismiss(animated: true)
+//        }
     }
 
     func configureUI() {

@@ -52,8 +52,9 @@ struct PostService {
         }
     }
     
-    func uploadTodoItem(text: String, completion: @escaping(Error?, DatabaseReference) -> Void) {
-        let values = ["title": text, "isComplete": false] as [String: Any]
+    func uploadTodoItem(delivery: DrinksDelivery, completion: @escaping(Error?, DatabaseReference) -> Void) {
+//        let values = ["title": text, "isComplete": false] as [String: Any]
+        let values = ["name": delivery.name, "amount": delivery.amount, "orderedPersonEmail": delivery.orderedPersonEmail, "roomName": delivery.roomName]
         let id = DB_REF.child("items").childByAutoId()
         id.updateChildValues(values, withCompletionBlock: completion)
         id.updateChildValues(values) { (err, ref) in
@@ -69,4 +70,12 @@ struct PostService {
     }
     
     
+}
+
+struct DrinksDelivery: Codable {
+    let id: Int
+    let name: String
+    let amount: String
+    let orderedPersonEmail: String
+    let roomName: String
 }
