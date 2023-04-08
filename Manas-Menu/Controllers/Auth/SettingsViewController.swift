@@ -13,9 +13,20 @@ import FBSDKLoginKit
 
 class SettingsViewController: UIViewController {
     
-    private let signOutButton: UIButton = {
+    private let roomAddressTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textAlignment = .center
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Address",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        return textField
+    }()
+    
+    private let saveRoodAddressButton: UIButton = {
         let button = UIButton()
-        button.setTitle(" Sign out ", for: .normal)
+        button.setTitle(" Save Room Address ", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
@@ -24,16 +35,19 @@ class SettingsViewController: UIViewController {
         button.layer.borderColor = UIColor.systemBlue.cgColor
         return button
     }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
         view.backgroundColor = .systemBackground
-        view.addSubview(signOutButton)
-        signOutButton.addTarget(self, action: #selector(didTapSignOut), for: .touchUpInside)
+        view.addSubview(roomAddressTextField)
+        view.addSubview(saveRoodAddressButton)
+        roomAddressTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .done, target: self, action: #selector(didTapDismiss))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(didTapSignOut))
 
         configureConstraints()
     }
@@ -53,12 +67,19 @@ class SettingsViewController: UIViewController {
     
     private func configureConstraints() {
         
-        let signOutButtonConstraints = [
-            signOutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            signOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let roomAddressConstraints = [
+            roomAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            roomAddressTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+            roomAddressTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
         ]
         
-        NSLayoutConstraint.activate(signOutButtonConstraints)
+        let saveRoodAddressButtonConst = [
+            saveRoodAddressButton.topAnchor.constraint(equalTo: roomAddressTextField.bottomAnchor, constant: 30),
+            saveRoodAddressButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(roomAddressConstraints)
+        NSLayoutConstraint.activate(saveRoodAddressButtonConst)
     }
     
     @objc private func didTapSignOut() {
@@ -76,4 +97,11 @@ class SettingsViewController: UIViewController {
         }
     }
 
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true;
+    }
 }
