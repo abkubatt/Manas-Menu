@@ -164,4 +164,29 @@ class APIFirebase {
         }
     }
     
+    func addTeacherAddress(address: String, faculty: String) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        let dbReference = Firestore.firestore().collection("roomaddresss").document(currentUser.uid)
+        dbReference.getDocument { (document, error) in
+            guard let document = document, !document.exists else {
+                return
+            }
+            let userToAdd = UserRole(email: currentUser.email, user_role: "user")
+            dbReference.setData([
+                "email": userToAdd.email as Any,
+                "address": address,
+                "faculty": faculty,
+            ]) { err in
+                if let err = err {
+                    _ = "-----------------------------Error writing document: \(err)"
+//                    print("-----------------------------Error writing document: \(err)")
+                } else {
+                     _ = "----------------------------Document successfully written!"
+//                    print("----------------------------Document successfully written!")
+                }
+            }
+        }
+    }
+    
 }

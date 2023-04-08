@@ -40,7 +40,7 @@ class MainTabBarViewController: UITabBarController {
     }
    
     
-    private func checkUserForAdmin(completion: @escaping ((String) -> Void)){
+    func checkUserForAdmin(completion: @escaping ((String) -> Void)){
         var response: String = ""
         guard let userUid = Auth.auth().currentUser?.uid else {
             if Auth.auth().currentUser?.uid == nil {

@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .center
+        textField.backgroundColor = .textFieldCustomColor
+        textField.layer.cornerRadius = 8
         textField.attributedPlaceholder = NSAttributedString(
             string: "Address",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
@@ -41,6 +43,12 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         title = "Settings"
         view.backgroundColor = .systemBackground
+        MainTabBarViewController.shared.checkUserForAdmin { role in
+            if role != "teacher" {
+                self.roomAddressTextField.isHidden = true
+                self.saveRoodAddressButton.isHidden = true
+            }
+        }
         view.addSubview(roomAddressTextField)
         view.addSubview(saveRoodAddressButton)
         roomAddressTextField.delegate = self
@@ -51,6 +59,9 @@ class SettingsViewController: UIViewController {
 
         configureConstraints()
     }
+    
+    
+    
     @objc private func didTapDismiss(){
         self.dismiss(animated: true)
     }
@@ -74,7 +85,7 @@ class SettingsViewController: UIViewController {
         ]
         
         let saveRoodAddressButtonConst = [
-            saveRoodAddressButton.topAnchor.constraint(equalTo: roomAddressTextField.bottomAnchor, constant: 30),
+            saveRoodAddressButton.topAnchor.constraint(equalTo: roomAddressTextField.bottomAnchor, constant: 50),
             saveRoodAddressButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
