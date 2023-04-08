@@ -169,6 +169,7 @@ class DeliveryViewController: UIViewController {
         button.backgroundColor = .red
         button.layer.cornerRadius = 12
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(orderDrinks), for: .touchUpInside)
         return button
     }()
     
@@ -233,6 +234,43 @@ class DeliveryViewController: UIViewController {
         }else{
             coffeeMilkName.text = "Coffee with Milk"
         }
+    }
+    
+    @objc func orderDrinks(){
+        var message = ""
+        if amountTurkishTea.text != "0" {
+            message += "\(amountTurkishTea.text ?? "") "
+            message += "Turkish Tea "
+        }
+        if sAmountTea.text != "0" {
+            message += "\(sAmountTea.text ?? "") "
+            message += "Shaking Tea "
+        }
+        if coffeeAmount.text != "0" {
+            message += "\(coffeeAmount.text ?? "") "
+            message += "Coffee Plain "
+        }
+        if coffeeMilkAmount.text != "0" {
+            message += "\(coffeeMilkAmount.text ?? "") "
+            message += "Coffee with Milk "
+        }
+
+        if message != "" {
+            let alertController = UIAlertController(title: "Success", message: "You successfully ordered: \(message)", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                print(#function)
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }else{
+            let alertController = UIAlertController(title: "Warning", message: "You do not choose an order", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                print(#function)
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+
     }
     
     
