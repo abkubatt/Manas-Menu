@@ -22,7 +22,7 @@ class DetailUpdateFoodViewController: UIViewController {
 
     
     let addButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(" UPDATE ", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
