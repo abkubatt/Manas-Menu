@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9C310CE79D484B7CCC4B3548 /* Pods_Manas_Menu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */; };
-		A014D96829DED12C00D51B76 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014D96729DED12C00D51B76 /* DeliveryViewController.swift */; };
 		A02403622984ED8E00F5227C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403612984ED8E00F5227C /* AppDelegate.swift */; };
 		A02403642984ED8E00F5227C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403632984ED8E00F5227C /* SceneDelegate.swift */; };
 		A02403662984ED8E00F5227C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403652984ED8E00F5227C /* MainTabBarViewController.swift */; };
@@ -35,10 +34,6 @@
 		A02403A42985932D00F5227C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A32985932C00F5227C /* SearchViewController.swift */; };
 		A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02403A52985943000F5227C /* SearchResultsViewController.swift */; };
 		A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031581129B9FA80006090CD /* ResetPasswordViewController.swift */; };
-		A031B77529DF50B900DDC055 /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031B77429DF50B900DDC055 /* CreateTodoViewController.swift */; };
-		A031B77729DF50F900DDC055 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031B77629DF50F900DDC055 /* PostService.swift */; };
-		A031B77929DF511F00DDC055 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031B77829DF511F00DDC055 /* Extensions.swift */; };
-		A031B77B29DF516000DDC055 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031B77A29DF516000DDC055 /* TodoCell.swift */; };
 		A0409B8129DAC0600074BDA7 /* MenusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0409B8029DAC05F0074BDA7 /* MenusTableViewCell.swift */; };
 		A0409B8329DAC16B0074BDA7 /* MenusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0409B8229DAC16B0074BDA7 /* MenusViewModel.swift */; };
 		A06EA1DE298E9B1F00223CD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */; };
@@ -113,7 +108,6 @@
 		61A5CE2DDE77C56460A38147 /* Pods-Manas-Menu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.release.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.release.xcconfig"; sourceTree = "<group>"; };
 		848614D67D1F7837D5911F4D /* Pods_Manas_Menu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manas_Menu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		892EF9386621FB46C6E5A38F /* Pods-Manas-Menu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manas-Menu.debug.xcconfig"; path = "Target Support Files/Pods-Manas-Menu/Pods-Manas-Menu.debug.xcconfig"; sourceTree = "<group>"; };
-		A014D96729DED12C00D51B76 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		A024035E2984ED8E00F5227C /* Manas-Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Manas-Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02403612984ED8E00F5227C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A02403632984ED8E00F5227C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,10 +127,6 @@
 		A02403A32985932C00F5227C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A02403A52985943000F5227C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		A031581129B9FA80006090CD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		A031B77429DF50B900DDC055 /* CreateTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
-		A031B77629DF50F900DDC055 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
-		A031B77829DF511F00DDC055 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		A031B77A29DF516000DDC055 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		A0409B8029DAC05F0074BDA7 /* MenusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenusTableViewCell.swift; sourceTree = "<group>"; };
 		A0409B8229DAC16B0074BDA7 /* MenusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenusViewModel.swift; sourceTree = "<group>"; };
 		A06EA1DD298E9B1F00223CD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
@@ -378,11 +368,6 @@
 				A02403802985183000F5227C /* CafeViewController.swift */,
 				A02403822985185A00F5227C /* CanteenViewController.swift */,
 				A0E9428A29BB2D8500F24A27 /* ManageViewController.swift */,
-				A014D96729DED12C00D51B76 /* DeliveryViewController.swift */,
-				A031B77429DF50B900DDC055 /* CreateTodoViewController.swift */,
-				A031B77629DF50F900DDC055 /* PostService.swift */,
-				A031B77829DF511F00DDC055 /* Extensions.swift */,
-				A031B77A29DF516000DDC055 /* TodoCell.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -656,7 +641,6 @@
 				A0938E5F29A86672007B1727 /* TitleTableViewCell.swift in Sources */,
 				A024039A29855D2900F5227C /* LoginViewController.swift in Sources */,
 				A0A08C2229893432007FD406 /* TitleCollectionViewCell.swift in Sources */,
-				A031B77729DF50F900DDC055 /* PostService.swift in Sources */,
 				A02403A62985943000F5227C /* SearchResultsViewController.swift in Sources */,
 				A0B4C38029BF382F00583E7A /* UpdateMenuViewController.swift in Sources */,
 				A0B4C38C29BF391500583E7A /* UpdateFreeFoodsViewController.swift in Sources */,
@@ -686,9 +670,7 @@
 				A0EBFA9A298FB97C002F7B16 /* RMOrigin.swift in Sources */,
 				A0EBFAAA298FBB94002F7B16 /* RMCharacterCollectionViewCell.swift in Sources */,
 				A0B4C38629BF38B100583E7A /* UpdateCanteenFoodsViewController.swift in Sources */,
-				A014D96829DED12C00D51B76 /* DeliveryViewController.swift in Sources */,
 				A0A08C1829893240007FD406 /* APICaller.swift in Sources */,
-				A031B77529DF50B900DDC055 /* CreateTodoViewController.swift in Sources */,
 				A0A08C16298931EC007FD406 /* CollectionViewTableViewCell.swift in Sources */,
 				A0A08C11298930AF007FD406 /* Title.swift in Sources */,
 				A0B4C38229BF385300583E7A /* DeleteMenuViewController.swift in Sources */,
@@ -708,7 +690,6 @@
 				A0A08C2429893469007FD406 /* DataPersistenceManager.swift in Sources */,
 				A031581229B9FA80006090CD /* ResetPasswordViewController.swift in Sources */,
 				A0409B8129DAC0600074BDA7 /* MenusTableViewCell.swift in Sources */,
-				A031B77929DF511F00DDC055 /* Extensions.swift in Sources */,
 				A024037F2985180B00F5227C /* HomeViewController.swift in Sources */,
 				A077D4D429C0E5E400C5751F /* MyDeleteTableViewCell.swift in Sources */,
 				A0853A0F2986600C001081B2 /* Carousel.swift in Sources */,
@@ -726,7 +707,6 @@
 				A0A08C1C29893322007FD406 /* TitlePreviewViewModel.swift in Sources */,
 				A0D0744E29DC252B009CD12B /* Constant.swift in Sources */,
 				A02403A029855EE300F5227C /* AuthenticationViewViewModel.swift in Sources */,
-				A031B77B29DF516000DDC055 /* TodoCell.swift in Sources */,
 				A0E9FD7A29BE297D006F89DC /* AddMenuViewController.swift in Sources */,
 				A0EBFAB0298FBBF1002F7B16 /* RMEndpoint.swift in Sources */,
 				A0E9428B29BB2D8500F24A27 /* ManageViewController.swift in Sources */,

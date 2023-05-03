@@ -12,7 +12,6 @@ import Firebase
 enum UserType {
     case admin
     case user
-    case teacher
 }
 
 class MainTabBarViewController: UITabBarController {
@@ -29,8 +28,6 @@ class MainTabBarViewController: UITabBarController {
         checkUserForAdmin { role in
             if role == "admin" {
                 self.setUpTabs(.admin)
-            }else if role == "teacher" {
-                self.setUpTabs(.teacher)
             }
             else{
                 self.setUpTabs(.user)
@@ -77,8 +74,6 @@ class MainTabBarViewController: UITabBarController {
         checkUserForAdmin { role in
             if role == "admin" {
                 self.setUpTabs(.admin)
-            }else if role == "teacher" {
-                self.setUpTabs(.teacher)
             }
             else{
                 self.setUpTabs(.user)
@@ -96,25 +91,21 @@ class MainTabBarViewController: UITabBarController {
         let yemekhane = CafeViewController()
         let kyraat = CanteenViewController()
         let manage = ManageViewController()
-        let delivery = DeliveryViewController()
         
         homeVC.navigationItem.largeTitleDisplayMode = .automatic
         yemekhane.navigationItem.largeTitleDisplayMode = .automatic
         kyraat.navigationItem.largeTitleDisplayMode = .automatic
         manage.navigationItem.largeTitleDisplayMode = .automatic
-        delivery.navigationItem.largeTitleDisplayMode = .automatic
         
         let nav1 = UINavigationController(rootViewController: homeVC)
         let nav2 = UINavigationController(rootViewController: yemekhane)
         let nav3 = UINavigationController(rootViewController: kyraat)
         let nav4 = UINavigationController(rootViewController: manage)
-        let nav5 = UINavigationController(rootViewController: delivery)
         
         nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         nav2.tabBarItem = UITabBarItem(title: "Cafe", image: UIImage(systemName: "fork.knife.circle"), selectedImage: UIImage(systemName: "fork.knife.circle.fill"))
         nav3.tabBarItem = UITabBarItem(title: "Canteen", image: UIImage(systemName: "cup.and.saucer"), selectedImage: UIImage(systemName: "cup.and.saucer.fill"))
         nav4.tabBarItem = UITabBarItem(title: "Manage", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
-        nav5.tabBarItem = UITabBarItem(title: "Delivery", image: UIImage(systemName: "takeoutbag.and.cup.and.straw"), selectedImage: UIImage(systemName: "takeoutbag.and.cup.and.straw.fill"))
         
         nav3.navigationBar.prefersLargeTitles = true
         
@@ -123,10 +114,8 @@ class MainTabBarViewController: UITabBarController {
             setViewControllers([nav1, nav2, nav3, nav4], animated: true)
         case .user:
             setViewControllers([nav1, nav2, nav3], animated: true)
-        case .teacher:
-            setViewControllers([nav1, nav2, nav3, nav5], animated: true)
         }
     }
-}
+    }
 
 
