@@ -17,7 +17,7 @@ class AddFreeFoodsViewController: UIViewController {
     var toSaveFreeFood: Canteen?
     var amount = 1
     var idOdFreeFood = 0
-    let baseURL = "http://\(Constant.IP):5000/api/Canteens/"
+    let baseURL = "http://\(Constant.IP):5000/api/Canteens/FreeFood?id="
 
     
     let addButton: UIButton = {
@@ -110,7 +110,8 @@ class AddFreeFoodsViewController: UIViewController {
             return
         }
         
-        APICaller.shared.updateCanteenFood(url: URL(string: "\(baseURL)\(idOdFreeFood)")!, canteen: freeFood) { [weak self] response in
+        APICaller.shared.updateCanteenFood(url: URL(string: "\(baseURL)\(idOdFreeFood)&amount=\(amount)")!, canteen: freeFood) { [weak self] response in
+
             DispatchQueue.main.async {
                 switch response {
                 case .success(_):
