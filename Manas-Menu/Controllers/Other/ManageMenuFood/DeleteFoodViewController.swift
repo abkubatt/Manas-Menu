@@ -12,8 +12,8 @@ class DeleteFoodViewController: UIViewController {
     var menuFoods = [Menu]()
     var resultOfDeleting: Bool = true
     var nameOfFood = ""
-    var baseURL = "http://\(Constant.IP):8080/api/Menus/"
-    let getAllUrl = "http://\(Constant.IP):8080/api/Menus"
+    var baseURL = "http://\(Constant.IP):5000/api/Menus/"
+    let getAllUrl = "http://\(Constant.IP):5000/api/Menus"
     
     let tableView: UITableView = {
         let table = UITableView()

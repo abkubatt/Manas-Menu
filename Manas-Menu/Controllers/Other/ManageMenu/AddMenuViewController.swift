@@ -16,10 +16,10 @@ class AddMenuViewController: UIViewController {
     var menusWithMeat = [Menu]()
     var menusWithoutMeat = [Menu]()
     var menusDessert = [Menu]()
-    let baseSoupUrl = "http://\(Constant.IP):8080/api/Menus/GetSoups"
-    let baseWithMeatUrl = "http://\(Constant.IP):8080/api/Menus/GetWithMeat"
-    let baseWithoutMeatUrl = "http://\(Constant.IP):8080/api/Menus/GetWithoutMeat"
-    let baseDessertMeatUrl = "http://\(Constant.IP):8080/api/Menus/GetDesserts"
+    let baseSoupUrl = "http://\(Constant.IP):5000/api/Menus/GetSoups"
+    let baseWithMeatUrl = "http://\(Constant.IP):5000/api/Menus/GetWithMeat"
+    let baseWithoutMeatUrl = "http://\(Constant.IP):5000/api/Menus/GetWithoutMeat"
+    let baseDessertMeatUrl = "http://\(Constant.IP):5000/api/Menus/GetDesserts"
     
     var pic1 = 0
     var pic2 = 0

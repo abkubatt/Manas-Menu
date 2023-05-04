@@ -18,7 +18,7 @@ class DetailUpdateFoodViewController: UIViewController {
     var imageField: String?
     var categoryFood = ""
     var idOfMenu: Int = 0
-    var baseURL = "http://\(Constant.IP):8080/api/Menus/"
+    var baseURL = "http://\(Constant.IP):5000/api/Menus/"
 
     
     let addButton: UIButton = {

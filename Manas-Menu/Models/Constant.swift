@@ -13,5 +13,5 @@ struct Constant {
     static let baseURL = "https://api.themoviedb.org"
     static let youtubeAPI_KEY = "AIzaSyDp5RXNUArtwoGXFA05zM9zi-_JgjiOGcY"
     static let youtubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
-    static let IP = "192.168.202.219"
+    static let IP = "localhost"
 }

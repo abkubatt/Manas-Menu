@@ -12,7 +12,7 @@ class DeleteCanteenFoodsViewController: UIViewController {
     var canteenFoods = [Canteen]()
     var nameOfFood = ""
     var resultOfDeleting = true
-    var baseURL = "http://\(Constant.IP):8080/api/Canteens/"
+    var baseURL = "http://\(Constant.IP):5000/api/Canteens/"
     
     let tableView: UITableView = {
         let table = UITableView()
