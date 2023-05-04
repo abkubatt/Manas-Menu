@@ -7,12 +7,39 @@
 
 import UIKit
 
-class DeleteMenuViewController: UIViewController {
+struct Mennu: Codable {
+    internal init(id: Int, image: String, name: String, type: String, calorie: Int) {
+        self.id = id
+        self.image = image
+        self.name = name
+        self.type = type
+        self.calorie = calorie
+    }
     
-    var menuPerDay = [MenuPerDay]()
+    let id: Int
+    let image, name, type: String
+    let calorie: Int
+}
+struct WelcomeElement: Codable {
+    
+    let id: Int
+    let date: String
+    let menus: [Menu]
+}
+typealias Welcomee = [WelcomeElement]
+
+class DeleteMenuViewController: UIViewController {
+   
+
+    // MARK: - Menu
+    
+
+    
+    var menuPerDay = Welcomee()
     var dateOfMenu = ""
     var resultOfDeleting = true
     var baseURL = "http://\(Constant.IP):5000/api/OneDayMenus/"
+
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false

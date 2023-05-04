@@ -25,4 +25,5 @@ struct MenuPerDay: Codable {
         self.withoutMeetId = withoutMeetId
         self.dessertId = dessertId
     }
+    
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 /// Object that represents a single API call
@@ -51,9 +52,19 @@ final class RMRequest {
         return string
     }
     
+    private func currentDate()-> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: Date())
+        return dateString
+    }
+        
+    
     /// Computed & constructed API url
     public var url: URL? {
-        return URL(string: "https://majitt.free.beeceptor.com/per")
+        return URL(string: "http://localhost:5000/api/OneDayMenus/\(currentDate())")
+//        return URL(string: "https://majitt.free.beeceptor.com/per")
     }
     
     public let httpMethod = "GET"
