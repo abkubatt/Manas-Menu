@@ -51,14 +51,14 @@ class APICaller {
    
     
     
-    func getAllMenusPerDay(completion: @escaping (Result<Welcomee, Error>) -> Void) {
+    func getAllMenusPerDay(completion: @escaping (Result<MainStruct, Error>) -> Void) {
         guard let url = URL(string: "http://\(Constant.IP):5000/api/OneDayMenus") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
             guard let data = data, error == nil else{
                 return
             }
             do {
-                let results = try JSONDecoder().decode(Welcomee.self, from: data)
+                let results = try JSONDecoder().decode(MainStruct.self, from: data)
                 _ = "---------------------->>>>>>>>>>> \(results)"
 //                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
@@ -471,7 +471,7 @@ class APICaller {
         task.resume()
     }
     
-    func getMenus(completion: @escaping (Result<[Menus], Error>) -> Void) {
+    func getMenus(completion: @escaping (Result<[MenusPerDay], Error>) -> Void) {
         guard let url = URL(string: "http://localhost:5000/api/OneDayMenus") else {return}
         //https://abkubatt.free.beeceptor.com/desserts
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, _, error in
@@ -479,7 +479,7 @@ class APICaller {
                 return
             }
             do {
-                let results = try JSONDecoder().decode([Menus].self, from: data)
+                let results = try JSONDecoder().decode([MenusPerDay].self, from: data)
                 completion(.success(results))
             }catch{
                 completion(.failure(APIError.failedToGetData))

@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 
-struct Menus: Codable {
+struct MenusPerDay: Codable {
     let id: Int
     let date: String
     let menus: [Menu]

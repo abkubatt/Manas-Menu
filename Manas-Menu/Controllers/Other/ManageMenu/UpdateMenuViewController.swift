@@ -9,7 +9,7 @@ import UIKit
 
 class UpdateMenuViewController: UIViewController {
 
-    var menuPerDay = Welcomee()
+    var menuPerDay = MainStruct()
 
     
     let tableView: UITableView = {

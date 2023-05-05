@@ -8,7 +8,7 @@
 import UIKit
 
 class CafeViewController: UIViewController {
-    private var menus = [Menus]()
+    private var menus = [MenusPerDay]()
     
     
     let menuTableView: UITableView = {
