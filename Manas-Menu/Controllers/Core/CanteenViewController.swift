@@ -17,7 +17,6 @@ class CanteenViewController: UIViewController {
     }()
     
     private var randomTrendingMovie: Canteen?
-//    private var headerView: HeroHeaderUIView?
     let sectionTitles: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
     
     private let homeFeedTable: UITableView = {
@@ -36,12 +35,6 @@ class CanteenViewController: UIViewController {
         
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
-        
-//        configureNavbar()
-//        view.bounds.width
-//        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 550))
-        
-//        homeFeedTable.tableHeaderView  = headerView
         configureHeroHeaderView()
     }
     
@@ -52,34 +45,16 @@ class CanteenViewController: UIViewController {
                 let selectedTitle = titles.randomElement()
                 
                 self?.randomTrendingMovie = selectedTitle
-//                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.original_name ?? "", posterURL: selectedTitle?.poster_path ?? ""))
             case .failure(let error):
                 _ = error.localizedDescription
-//                print(error.localizedDescription)
             }
         }
     }
-    
-//    private func configureNavbar() {
-////        var image = UIImage(named: "netflixLogo")
-////        image = image?.withRenderingMode(.alwaysOriginal)
-////        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-//
-//        navigationItem.rightBarButtonItems = [
-//            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
-//            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
-//         ]
-//        navigationController?.navigationBar.tintColor = .white
-//    }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
     }
-    
-    
-    
     
     @objc private func didTapFreeFoods() {
         
@@ -122,7 +97,6 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.configure(with: titles)
                 case .failure(let error):
                     _ = error.localizedDescription
-//                    print(error.localizedDescription)
                 }
             }
 
@@ -133,7 +107,6 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.configure(with: titles)
                 case .failure(let error):
                     _ = error.localizedDescription
-//                    print(error.localizedDescription)
                 }
             }
 
@@ -144,7 +117,6 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.configure(with: titles)
                 case .failure(let error):
                     _ = error.localizedDescription
-//                    print(error.localizedDescription)
                 }
             }
 
@@ -155,7 +127,6 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.configure(with: titles)
                 case .failure(let error):
                     _ = error.localizedDescription
-//                    print(error.localizedDescription)
                 }
             }
         default:
@@ -177,7 +148,6 @@ extension CanteenViewController: UITableViewDelegate, UITableViewDataSource {
         guard let header = view as? UITableViewHeaderFooterView else {return}
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
-//        header.textLabel?.textColor = .white
         header.textLabel?.text = header.textLabel?.text?.uppercased()
     }
     

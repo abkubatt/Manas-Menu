@@ -132,7 +132,6 @@ class LoginViewController: UIViewController {
             guard user != nil else { return }
             guard let vc = self?.navigationController?.viewControllers.first as? LoginViewController else { return }
             _ = vc
-//            print(vc)
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 
         }
@@ -194,7 +193,6 @@ class LoginViewController: UIViewController {
         view.addSubviews(forgotPasswordButton)
         emailTextField.delegate = self
         passwordTextField.delegate = self
-//        facebookLoginButton.permissions = ["public_profile", "email"]
         view.addSubview(facebookLoginButton)
         for constraint in facebookLoginButton.constraints where constraint.firstAttribute == .height {
             constraint.constant = 39
@@ -316,12 +314,10 @@ class LoginViewController: UIViewController {
                         return menu
                     } catch {
                         _ = "Error decoding Menu: \(error.localizedDescription)"
-//                        print("Error decoding Menu: \(error.localizedDescription)")
                         return nil
                     }
                 }
                 _ = "Fetched Menus: \(self.userR)"
-//                print("Fetched Menus: \(self.userR)")
             }
         }
     
@@ -330,22 +326,16 @@ class LoginViewController: UIViewController {
         do {
             _ = try  dbReference.addDocument(from: userRole) { error in
                 if let error = error {
-//                    print("Error")
                     completion(error)
                 } else {
                     _ = "Successfully added to fireStore"
-//                    print("Successfully added to fireStore")
                     completion(nil)
                 }
             }
         }catch let error{
             _ =  "Error while adding to firestore \(error)"
-//            print("Error while adding to firestore \(error)")
         }
     }
-    
-    
-   
 }
 
 
@@ -357,50 +347,14 @@ extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
-        // no operation
     }
     
     func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
         
         guard let token = result?.token?.tokenString else {
             _ = "User failed to log in with facebook"
-//            print("User failed to log in with facebook")
             return
         }
-        
-        
-//        let faceBookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
-//                                                         parameters: ["fields": "email, name"],
-//                                                         tokenString: token,
-//                                                         version: nil,
-//                                                         httpMethod: .get
-//        )
-//
-//
-//        faceBookRequest.start(completionHandler: {_, result, error in
-//            guard let result = result as? [String: Any],
-//                  error == nil else{
-//                print("Failed to make facebook graph request")
-//                return
-//            }
-//
-//            guard let email = result["email"] as? String else{
-//                print("Failed to get email from fb request")
-//                return
-//            }
-//
-//            Auth.auth().fetchSignInMethods(forEmail: email, completion: { (providers, error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                    print("email not exists")
-//                } else if let providers = providers {
-//                    print(providers)
-//                    self.alreadyHaveAccountAlert(with: "With this email account already exists")
-//                    return
-//                }
-//            })
-//        })
-       
         
         
         let credential = FacebookAuthProvider.credential(withAccessToken: token)
@@ -413,13 +367,9 @@ extension LoginViewController: LoginButtonDelegate, UITextFieldDelegate {
             guard authResult != nil, error == nil  else{
                 if let error = error {
                     _ = "Facebook credential login failed, MFA may be needed - \(error)"
-//                    print("Facebook credential login failed, MFA may be needed - \(error)")
-                    
                 }
                 return
             }
-            
-//            print("Successfully logged user in")
             _ = "Successfully logged user in"
             APIFirebase.shared.addDocumentToFirestore()
 

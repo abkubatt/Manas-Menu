@@ -8,7 +8,6 @@
 import UIKit
 
 final class CarouselLayout: UICollectionViewFlowLayout {
-    // perform the setup for the layout
     override init() {
         super.init()
         self.minimumInteritemSpacing = 0
@@ -22,7 +21,6 @@ final class CarouselLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // Tells the layout object to update the current layout.
     override func prepare() {
         super.prepare()
         if let collectionView = collectionView {
@@ -30,7 +28,6 @@ final class CarouselLayout: UICollectionViewFlowLayout {
         }
     }
 
-    // Asks the layout object if the new bounds require a layout update.
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard itemSize != newBounds.size else { return false }
         itemSize = newBounds.size

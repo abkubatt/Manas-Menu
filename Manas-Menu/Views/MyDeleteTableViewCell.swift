@@ -11,5 +11,4 @@ class MyDeleteTableViewCell: UITableViewCell {
     
     static let identifier = "MyDeleteTableViewCell"
     
-    
 }

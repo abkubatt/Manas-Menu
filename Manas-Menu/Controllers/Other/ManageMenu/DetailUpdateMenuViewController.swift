@@ -294,7 +294,6 @@ class DetailUpdateMenuViewController: UIViewController {
         dateFormatter.timeStyle = .none
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let selectedDate = dateFormatter.string(from: sender.date)
-//        print("Selected date: \(selectedDate)")
         dateOfMenu = "\(selectedDate)"
     }
     
@@ -306,18 +305,6 @@ class DetailUpdateMenuViewController: UIViewController {
 
 
 extension DetailUpdateMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate{
-    
-    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//      // Filter the data based on the search query
-//      let filteredData = // your filtering logic here
-//
-//      // Reload the picker view with the filtered data
-//      pickerView1.reloadAllComponents()
-//    }
-    
-    
-
 
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -327,16 +314,12 @@ extension DetailUpdateMenuViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
             return menusSoup.count
-            // Return the number of rows for pickerView1
         } else if pickerView == pickerView2 {
             return menusWithMeat.count
-            // Return the number of rows for pickerView2
         } else if pickerView == pickerView3 {
             return menusWithoutMeat.count
-            // Return the number of rows for pickerView3
         } else if pickerView == pickerView4 {
             return menusDessert.count
-            // Return the number of rows for pickerView4
         }
         return 0
     }
@@ -344,19 +327,14 @@ extension DetailUpdateMenuViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
             return menusSoup[row].name
-            // Return the title for the row in pickerView1
         } else if pickerView == pickerView2 {
             return menusWithMeat[row].name
 
-            // Return the title for the row in pickerView2
         } else if pickerView == pickerView3 {
             return menusWithoutMeat[row].name
 
-            // Return the title for the row in pickerView3
         } else if pickerView == pickerView4 {
             return menusDessert[row].name
-
-            // Return the title for the row in pickerView4
         }
         return nil
     }
@@ -369,13 +347,9 @@ extension DetailUpdateMenuViewController: UIPickerViewDelegate, UIPickerViewData
 
         } else if pickerView == pickerView3 {
             pic3 = menusWithoutMeat[row].id
-            // Handle the selection in pickerView3
         } else if pickerView == pickerView4 {
             pic4 = menusDessert[row].id
-            // Handle the selection in pickerView4
         }
     }
-
-
 }
 

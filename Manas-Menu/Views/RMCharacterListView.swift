@@ -12,12 +12,9 @@ protocol RMCharacterListViewDelegate: AnyObject {
         _ characterListView: RMCharacterListView,
         didSelectCharacter character: Menu
     )
-    
-    
 }
 
 
-/// View that handles showing lits of characters, loeader, etc.
 final class RMCharacterListView: UIView {
     
     public weak var delegate: RMCharacterListViewDelegate?
@@ -40,12 +37,10 @@ final class RMCharacterListView: UIView {
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(RMCharacterCollectionViewCell   .self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
-//        collectionView.register(RMFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
+
         return collectionView
     }()
     
-    // MARK - Init
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false

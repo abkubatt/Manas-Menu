@@ -9,24 +9,18 @@ import Foundation
 import UIKit
 
 
-/// Object that represents a single API call
 final class RMRequest {
     
-    /// API Constants
     private struct Constants {
         static let baseURL  = "https://rickandmortyapi.com/api"
     }
     
-    /// Desired endpoint
     private let endpoint: RMEndpoint
     
-    /// Path components for API, if any
     private let pathComponents: [String]
         
-    /// Query  arguments for API, if any
     private let queryParameters: [URLQueryItem]
     
-    /// Constructed url  for the api request in  string format
     private var urlString: String {
         var string = Constants.baseURL
         
@@ -61,21 +55,11 @@ final class RMRequest {
     }
         
     
-    /// Computed & constructed API url
     public var url: URL? {
         return URL(string: "http://localhost:5000/api/OneDayMenus/\(currentDate())")
-//        return URL(string: "https://majitt.free.beeceptor.com/per")
     }
     
     public let httpMethod = "GET"
-    
-    // MARK: - Public
-    
-    /// Constructed request
-    /// - Parameters:
-    ///   - endpoint: Target endpoint
-    ///   - pathComponents: Collection of Path components
-    ///   - queryParameters: Collection of query parameters
     public init(
         endpoint: RMEndpoint,
         pathComponents: [String] = [],

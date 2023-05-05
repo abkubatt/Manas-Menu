@@ -14,9 +14,6 @@ final class RMCharacterCollectionViewCellViewModel{
     private let characterStatus: String
     private let characterImageUrl: URL?
     
-    
-    // MARK: - Init
-    
     init(characterName: String, CharacterStatuss: String, characterImageUrl: URL?) {
         self.characterName = characterName
         self.characterStatus = CharacterStatuss
@@ -28,7 +25,6 @@ final class RMCharacterCollectionViewCellViewModel{
     }
     
     public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
-        // TODO: - Abstract to image manager
         
         guard let url = characterImageUrl else{
             completion(.failure(URLError(.badURL)))

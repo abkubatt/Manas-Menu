@@ -8,12 +8,9 @@
 import Foundation
 
 
-/// Primary API service object to get
 final class RMService {
-    /// Shared singletone instance
     static let shared = RMService()
     
-    /// Privitizated constructor
     private init() {}
     
     enum RMSerivceError: Error {
@@ -21,11 +18,6 @@ final class RMService {
         case failedToGetData
     }
     
-    /// Send Rick and Morty API Call
-    /// - Parameters:
-    ///   - request: Request instance
-    ///   - type: The type of object we expect to get back
-    ///   - completion: Callback with data or error
     public func execute<T: Codable>(
         _ request: RMRequest,
         expecting type: T.Type,
@@ -35,14 +27,11 @@ final class RMService {
             completion(.failure(RMSerivceError.failedToCreateRequest))
             return
         }
-        
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data = data, error == nil else{
                 completion(.failure(error ?? RMSerivceError.failedToGetData))
                 return
             }
-            
-            //Decode response
             do{
                 let result = try JSONDecoder().decode(type.self, from: data)
                 completion(.success(result))
@@ -53,9 +42,7 @@ final class RMService {
         task.resume()
     }
     
-    
-    // MARK: - Private
-    
+
     private func request(from rmRequest: RMRequest) -> URLRequest? {
         guard let url = rmRequest.url else{
             return nil

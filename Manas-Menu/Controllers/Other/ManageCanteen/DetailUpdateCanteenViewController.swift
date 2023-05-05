@@ -232,7 +232,6 @@ extension DetailUpdateCanteenFoodsViewController: UIPickerViewDelegate, UIPicker
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             if pickerView == pickerView3 {
                 pic3 = canteedCategories[row]
-                // Handle the selection in pickerView3
             }
         }
 }

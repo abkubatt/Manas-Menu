@@ -14,7 +14,6 @@ protocol RMCharacterListViewViewModelDelegate: AnyObject {
 }
 
 
-/// View Model to handle character list view logic
 final class RMCharacterListViewViewModel: NSObject {
     
     public weak var delegate: RMCharacterListViewViewModelDelegate?
@@ -38,28 +37,22 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var apiInfo: RMGetAllCharactersResponse.Info? = nil
     
-    /// Fetch initial set of characters (20)
     func fetchCharacters(){
         RMService.shared.execute(.listCharactersRequests, expecting: [Menu].self) { [weak self] result in
             switch result{
             case .success(let responseModel):
                 let results = responseModel
-//                let info = responseModel.info
                 self?.characters = results
-//                self?.apiInfo = info
                 DispatchQueue.main.async {
                     self?.delegate?.didLoadInitialCharacters()
                 }
             case .failure(let error):
                 _ = error
-//                print(String(describing: error))
             }
         }
     }
     
     
-    
-    /// Paginate it additional characters    are needed
     public func fetchAdditionalCharacters(){
         isLoadingMoreCharacters = true
     }
@@ -91,19 +84,6 @@ extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollection
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        guard kind == UICollectionView.elementKindSectionFooter,
-//              let footer = collectionView.dequeueReusableSupplementaryView(
-//                ofKind: kind,
-//                withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier,
-//                for: indexPath) as? RMFooterLoadingCollectionReusableView else{
-//            fatalError("Unsupported")
-//        }
-//        footer.startAnimating()
-//        return footer
-//    }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard shouldShowLoadMoreIndicator else {
@@ -125,11 +105,7 @@ extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-//        let character = characters[indexPath.row]
-//        delegate?.didSelectCharacter(character)
     }
-    
-
 }
 
 extension RMCharacterListViewViewModel: UIScrollViewDelegate {

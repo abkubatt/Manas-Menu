@@ -40,7 +40,6 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode([Menu].self, from: data)
                 _ = "---------------------->>>>>>>>>>> \(results)"
-//                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
                 completion(.failure(error))
@@ -60,7 +59,6 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode(MainStruct.self, from: data)
                 _ = "---------------------->>>>>>>>>>> \(results)"
-//                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
                 completion(.failure(error))
@@ -79,7 +77,6 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode([Canteen].self, from: data)
                 _ = "---------------------->>>>>>>>>>> \(results)"
-//                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
                 completion(.failure(error))
@@ -97,7 +94,6 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode([Canteen].self, from: data)
                 _ = "---------------------->>>>>>>>>>> \(results)"
-//                print("---------------------->>>>>>>>>>> \(results)")
                 completion(.success(results))
             }catch let error{
                 completion(.failure(error))
@@ -139,8 +135,6 @@ class APICaller {
             }
             do {
                 if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-                    // Handle the response JSON as needed.
-                    // For example, you might extract an ID field and pass it to the completion handler.
                     if jsonResponse["id"] is Int {
                         completion(.success(true))
                     } else {
@@ -191,8 +185,6 @@ class APICaller {
             }
             do {
                 if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-                    // Handle the response JSON as needed.
-                    // For example, you might extract an ID field and pass it to the completion handler.
                     if jsonResponse["id"] is Int {
                         completion(.success(true))
                     } else {
@@ -242,8 +234,6 @@ class APICaller {
             }
             do {
                 if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
-                    // Handle the response JSON as needed.
-                    // For example, you might extract an ID field and pass it to the completion handler.
                     if jsonResponse["id"] is Int {
                         completion(.success(true))
                     } else {
@@ -337,8 +327,6 @@ class APICaller {
         request.httpMethod = "PUT"
 
         do {
-//            let jsonData = try JSONEncoder().encode(canteen)
-//            request.httpBody = jsonData
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
             let session = URLSession.shared
@@ -414,16 +402,13 @@ class APICaller {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let httpResponse = response as? HTTPURLResponse {
-//                    print("statusCode: \(httpResponse.statusCode)")
                 let statusCode = httpResponse.statusCode
                 
                 if (200...299).contains(httpResponse.statusCode) {
                     completion(.success(true))
-//                    print("success")
                 } else {
                     let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
                     completion(.failure(error as Error))
-//                    print("error")
                 }
             }
         }
@@ -592,7 +577,6 @@ class APICaller {
                 completion(.success(results.items[0]))
             }catch{
                 completion(.failure(error))
-//                print(error.localizedDescription)
                 _ = error.localizedDescription
             }
         }

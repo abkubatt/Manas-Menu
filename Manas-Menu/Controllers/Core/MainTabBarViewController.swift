@@ -59,11 +59,9 @@ class MainTabBarViewController: UITabBarController {
                     completion(response)
                 } catch {
                     _ = "Error decoding model: \(error)"
-//                    print("Error decoding model: \(error)")
                 }
             } else {
                  _ = "Document does not exist"
-//                print("Document does not exist")
             }
         }
     }
@@ -80,9 +78,6 @@ class MainTabBarViewController: UITabBarController {
             }
         }
     }
-    
-    
-    
     
     
     private func setUpTabs(_ userType: UserType) {

@@ -66,8 +66,6 @@ class DetailUpdateFreeFoodsViewController: UIViewController {
         view.addSubview(addButton)
         pickerView1.delegate = self
         pickerView1.dataSource = self
-//        textField.delegate = self
-
         addButton.addTarget(self, action: #selector(addBtn), for: .touchUpInside)
         
         configureConstraints()

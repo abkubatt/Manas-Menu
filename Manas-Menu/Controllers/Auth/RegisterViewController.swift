@@ -86,7 +86,6 @@ class RegisterViewController: UIViewController {
         viewModel.$user.sink { [weak self] user in
             guard user != nil else { return }
             guard let vc = self?.navigationController?.viewControllers.first as? LoginViewController else { return }
-//            self?.presentSignUpMessage()
             print(vc)
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 
@@ -190,25 +189,7 @@ class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate(emailTextFieldConstraints)
         NSLayoutConstraint.activate(passwordTextFieldConstraints)
         NSLayoutConstraint.activate(registerButtonConstraints)
-    }
-//
-//    func fetchMenus() {
-//            dbReference.addSnapshotListener { querySnapshot, error in
-//                guard let documents = querySnapshot?.documents else { return }
-//                self.userR = documents.compactMap{ document in
-//                    do {
-//                        let menu = try document.data(as: UserRole.self)
-//                        return menu
-//                    } catch {
-//                        print("Error decoding Menu: \(error.localizedDescription)")
-//                        return nil
-//                    }
-//                }
-//                print("Fetched Menus: \(self.userR)")
-//            }
-//        }
-    
-    
+    }    
 
 }
 extension RegisterViewController: UITextFieldDelegate{

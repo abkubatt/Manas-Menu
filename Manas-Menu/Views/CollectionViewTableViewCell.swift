@@ -54,20 +54,6 @@ class CollectionViewTableViewCell: UITableViewCell {
             self?.collectionView.reloadData()
         }
     }
-    
-//    private func downloadTitleAt(indexPath: IndexPath){
-//        DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.row]) {result in
-//            switch result{
-//            case .success():
-//                NotificationCenter.default.post(name: NSNotification.Name("downloaded"), object: nil)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//    let sectionT: [String] = ["Drinks", "Pizza and Pides", "Bakery Products", "Desserts", "Other Foods"]
-
-
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -79,17 +65,11 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         }
         
          let model = titles[indexPath.row].image
-//            return UICollectionViewCell()
-//        }
         
         cell.configure(with: model)
         
         return cell
     }
-    
-//    func indexTitles(for collectionView: UICollectionView) -> [String]? {
-//        return sectionT
-//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return titles.count
@@ -113,7 +93,6 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
                 self?.delegate?.collectionViewTableViewCellDidTapCell(strongSelf, viewModel: viewModel)
             case .failure(let error):
                 _ = error
-//                print(error.localizedDescription)
             }
         }
         
@@ -126,7 +105,6 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         identifier: nil,
         previewProvider: nil) { [weak self] _ in
             let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) {_ in
-//                self?.downloadTitleAt(indexPath: indexPath)
             }
             return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
         }

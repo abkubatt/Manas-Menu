@@ -11,10 +11,7 @@ import UIKit
 class DeleteMenuViewController: UIViewController {
    
 
-    // MARK: - Menu
-    
-
-    
+ 
     var menuPerDay = MainStruct()
     var dateOfMenu = ""
     var resultOfDeleting = true

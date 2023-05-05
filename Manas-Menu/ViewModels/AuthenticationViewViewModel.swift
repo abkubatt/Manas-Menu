@@ -21,7 +21,6 @@ final class AuthenticationViewViewModel: ObservableObject {
     private var subcriptions: Set<AnyCancellable> = []
     
     
-    
     func validateAuthenticationForm() {
         guard let email = email,
               let password = password else{
@@ -52,11 +51,9 @@ final class AuthenticationViewViewModel: ObservableObject {
                 
             }receiveValue: { user in
                 _ = user
-//                print(user)
             }
             .store(in: &subcriptions)
     }
-    
     
     
     func loginUser() {
