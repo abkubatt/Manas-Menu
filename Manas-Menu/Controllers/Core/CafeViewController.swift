@@ -89,22 +89,22 @@ extension CafeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let title = menus[indexPath.row].menus[indexPath.row]
-        
-        let titleName = title.name
-        
-        APICaller.shared.getMovie(with: titleName) {[weak self] result in
-            switch result{
-            case .success(let videoElement):
-                DispatchQueue.main.async {
-                    let vc = TitlePreviewViewController()
-                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "Calorie: \(title.calorie)"))
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }
-            case .failure(let error):
-                _ = (error.localizedDescription)
-            }
-        }
+//        let title = menus[indexPath.row].menus[indexPath.row]
+//
+//        let titleName = title.name
+//
+//        APICaller.shared.getMovie(with: titleName) {[weak self] result in
+//            switch result{
+//            case .success(let videoElement):
+//                DispatchQueue.main.async {
+//                    let vc = TitlePreviewViewController()
+//                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: "Calorie: \(title.calorie)"))
+//                    self?.navigationController?.pushViewController(vc, animated: true)
+//                }
+//            case .failure(let error):
+//                _ = (error.localizedDescription)
+//            }
+//        }
     }
     
 
